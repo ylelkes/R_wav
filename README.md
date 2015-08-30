@@ -10,12 +10,16 @@ R_wav is both theoretical and practically oriented. In each session, we will dis
 
 ## Literature
 There are no required books for this course, but there are many useful books out there:
+
 R Cookbook by Paul Teeter
+
 Advanced R by Hadley Wickham
+
 The Art of R Programming by Norman Matloff
 
 ## Grades
 The weekly problem sets (30 percent), your presentation (10 percent) and an individual final assignment (60 percent) will determine your grade for the course. The problem sets will consist of questions related to that weeks material. Problem sets will be assigned by Friday and be due the following Tuesday. 
+
 In the the final project and presentation you will apply wrangling, analysis, and visualization to a dataset of your choosing. More details to come. You are encouraged to help each other during the practicum, but problem sets are individual assignments.
 
 As always, you need a 6 to pass the course. If your final mark is below 5.5, you will have to redo the assignment (you cannot retake the presentation). Assignment retakes can earn a maximum of 6.
@@ -32,14 +36,16 @@ Email: y.lelkes@uva.nl
 
 
 ## Syllabus
-*. Week 1
+* Week 1
 	* Session 1
 		* Course Introduction
 		* Data hygiene
 		* Installing R and Rstudio
 		* Libraries, packages
-	Readings: 
-	Code and Data for the Social Sciences: A Practitioners Guide
+	* Readings: 
+		* [Code and Data for the Social Sciences: A Practitioners Guide, pp 1-44insta (Gentzkow and Shapiro)](http://web.stanford.edu/~gentzkow/research/CodeAndData.pdf)
+		* [An Introduction to R, Chapter 1](https://cran.r-project.org/doc/manuals/R-intro.pdf)
+	
 	* Session 2
 		* Introduction to R objects
 		* Using R for arithmetic
@@ -58,6 +64,7 @@ Email: y.lelkes@uva.nl
 		* dplyr 
 	* Session 2	
 		* Basic analytics (regression, anova, clustering, anything else?)
+		* Simulation
 * Week 4 
 	* Session 1
 		* Graphs	

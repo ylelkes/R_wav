@@ -18,7 +18,7 @@ Advanced R by Hadley Wickham
 The Art of R Programming by Norman Matloff
 
 ## Grades
-The weekly problem sets (30 percent), your presentation (10 percent) and an individual final assignment (60 percent) will determine your grade for the course. The problem sets will consist of questions related to that weeks material. Problem sets will be assigned by Friday and be due the following Tuesday. 
+The weekly problem sets (30 percent), your presentation (10 percent) and an individual final assignment (60 percent) will determine your grade for the course. The problem sets will consist of questions related to that weeks material. Problem sets will be assigned by Friday and be due the following Wednesday. 
 
 In the the final project and presentation you will apply wrangling, analysis, and visualization to a dataset of your choosing. More details to come. You are encouraged to help each other during the practicum, but problem sets are individual assignments.
 

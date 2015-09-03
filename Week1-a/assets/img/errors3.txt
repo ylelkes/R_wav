@@ -1,0 +1,263 @@
+> ##--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---++
+> ##           							
+> ##	Validation Checks of ROW
+> ##	for Hostile Audience, AJPS
+> ##  Yphtach Lelkes						
+> ## 	Last Edited: 13/05/14 by yl
+> ##--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---++
+> 
+> if (!require("pacman")) install.packages("pacman")
+> pacman::p_load(AER, ivpack,texreg)
+> 
+> ## rescale items to lie between 0 and 1
+> zero1 <- function(x, minx=NA, maxx=NA){
++   res <- NA
++   if(is.na(minx)) res <- (x - min(x,na.rm=T))/(max(x,na.rm=T) -min(x,na.rm=T))
++   if(!is.na(minx)) res <- (x - minx)/(maxx -minx)
++   res
++ }
+> 
+> #### ROW related to state ideology?
+> bbindex <- read.csv("bbindex.csv")
+> bbindex$state <- gsub("_"," ",bbindex$State)
+> stateideo <- read.csv("T_S_ideologystate.csv")
+> stateideo$state <- state.name[match(stateideo$abb,state.abb)]
+> check1 <- merge(stateideo,bbindex,by="state")
+> summary(lm(mrp_estimate~log(Total),check1))
+
+Call:
+lm(formula = mrp_estimate ~ log(Total), data = check1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.4280 -0.1270  0.0226  0.1509  0.2973 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept)  0.046362   0.080764   0.574    0.569
+log(Total)  -0.003704   0.025207  -0.147    0.884
+
+Residual standard error: 0.1856 on 48 degrees of freedom
+Multiple R-squared:  0.0004496,	Adjusted R-squared:  -0.02037 
+F-statistic: 0.02159 on 1 and 48 DF,  p-value: 0.8838
+
+> 
+> ### Check 2: Governor related to ROW
+> data <- read.csv("Partisan_Balance_For_Use2011_06_09b.csv")
+> # Merge the two
+> all <- merge(bbindex,data,by="state")
+> all$repgov <- all$govparty_c==1
+> ### Governor's Party
+> l1 <- glm(repgov~log(Total),data=subset(all,year==1996),family="binomial")
+> l2 <- glm(repgov~log(Total),data=subset(all,year==1998),family="binomial")
+> l3 <- glm(repgov~log(Total),data=subset(all,year==2000),family="binomial")
+> l4 <- glm(repgov~log(Total),data=subset(all,year==2002),family="binomial")
+> l5 <- glm(repgov~log(Total),data=subset(all,year==2004),family="binomial")
+> l6 <- glm(repgov~log(Total),data=subset(all,year==2006),family="binomial")
+> l7 <- glm(repgov~log(Total),data=subset(all,year==2008),family="binomial")
+> meanb <- cbind(l1$coefficients[2],
++             l2$coefficients[2],
++             l3$coefficients[2],
++             l4$coefficients[2],
++             l5$coefficients[2],
++             l6$coefficients[2],
++             l7$coefficients[2])
+> meanp <- cbind(summary(l1)$coefficients[2,4],
++             summary(l2)$coefficients[2,4],
++             summary(l3)$coefficients[2,4],
++             summary(l4)$coefficients[2,4],
++             summary(l5)$coefficients[2,4],
++             summary(l6)$coefficients[2,4],
++             summary(l7)$coefficients[2,4])
+> mean(meanb)
+[1] 0.1862579
+> mean(meanp)
+[1] 0.5755074
+> 
+> ### Check 3: Legislature Ideology related to ROW
+> load("shor mccarty 1993-2013 state aggregate data public July 2014.RData")
+Error: bad restore file magic number (file may be corrupted) -- no data loaded
+In addition: Warning message:
+file ‘shor mccarty 1993-2013 state aggregate data public July 2014.RData’ has magic number '"AK"	'
+  Use of save versions prior to 2 is deprecated 
+> x$state <- state.name[match(x$st,state.abb)]
+Error in match(x$st, state.abb) : object 'x' not found
+> # Merge the two
+> ideoleg <- merge(bbindex,x,by="state")
+Error in as.data.frame(y) : object 'x' not found
+> l1 <- lm(sen_chamber  ~log(Total),data=subset(ideoleg,year==1996))
+Error in subset(ideoleg, year == 1996) : object 'ideoleg' not found
+> l2 <- lm(sen_chamber  ~log(Total),data=subset(ideoleg,year==1998))
+Error in subset(ideoleg, year == 1998) : object 'ideoleg' not found
+> l3 <- lm(sen_chamber  ~log(Total),data=subset(ideoleg,year==2000))
+Error in subset(ideoleg, year == 2000) : object 'ideoleg' not found
+> l4 <- lm(sen_chamber  ~log(Total),data=subset(ideoleg,year==2002))
+Error in subset(ideoleg, year == 2002) : object 'ideoleg' not found
+> l5 <- lm(sen_chamber  ~log(Total),data=subset(ideoleg,year==2004))
+Error in subset(ideoleg, year == 2004) : object 'ideoleg' not found
+> l6 <- lm(sen_chamber  ~log(Total),data=subset(ideoleg,year==2006))
+Error in subset(ideoleg, year == 2006) : object 'ideoleg' not found
+> l7 <- lm(sen_chamber  ~log(Total),data=subset(ideoleg,year==2008))
+Error in subset(ideoleg, year == 2008) : object 'ideoleg' not found
+> 
+> ll <- cbind(l1$coefficients[2],
++             l2$coefficients[2],
++             l3$coefficients[2],
++             l4$coefficients[2],
++             l5$coefficients[2],
++             l6$coefficients[2],
++             l7$coefficients[2])
+> senmeanrel <- mean(ll)
+> 
+> ll <- cbind(summary(l1)$coefficients[2,4],
++             summary(l2)$coefficients[2,4],
++             summary(l3)$coefficients[2,4],
++             summary(l4)$coefficients[2,4],
++             summary(l5)$coefficients[2,4],
++             summary(l6)$coefficients[2,4],
++             summary(l7)$coefficients[2,4])
+> senmeanp <- mean(ll)
+> 
+> ####
+> l1 <- lm(hou_chamber  ~log(Total),data=subset(ideoleg,year==1996))
+Error in subset(ideoleg, year == 1996) : object 'ideoleg' not found
+> l2 <- lm(hou_chamber  ~log(Total),data=subset(ideoleg,year==1998))
+Error in subset(ideoleg, year == 1998) : object 'ideoleg' not found
+> l3 <- lm(hou_chamber  ~log(Total),data=subset(ideoleg,year==2000))
+Error in subset(ideoleg, year == 2000) : object 'ideoleg' not found
+> l4 <- lm(hou_chamber  ~log(Total),data=subset(ideoleg,year==2002))
+Error in subset(ideoleg, year == 2002) : object 'ideoleg' not found
+> l5 <- lm(hou_chamber  ~log(Total),data=subset(ideoleg,year==2004))
+Error in subset(ideoleg, year == 2004) : object 'ideoleg' not found
+> l6 <- lm(hou_chamber  ~log(Total),data=subset(ideoleg,year==2006))
+Error in subset(ideoleg, year == 2006) : object 'ideoleg' not found
+> l7 <- lm(hou_chamber  ~log(Total),data=subset(ideoleg,year==2008))
+Error in subset(ideoleg, year == 2008) : object 'ideoleg' not found
+> 
+> ll <- cbind(l1$coefficients[2],
++             l2$coefficients[2],
++             l3$coefficients[2],
++             l4$coefficients[2],
++             l5$coefficients[2],
++             l6$coefficients[2],
++             l7$coefficients[2])
+> houmeanrel <- mean(ll)
+> 
+> ll <- cbind(summary(l1)$coefficients[2,4],
++             summary(l2)$coefficients[2,4],
++             summary(l3)$coefficients[2,4],
++             summary(l4)$coefficients[2,4],
++             summary(l5)$coefficients[2,4],
++             summary(l6)$coefficients[2,4],
++             summary(l7)$coefficients[2,4])
+> houmeanp <- mean(ll)
+> 
+> 
+> ##################### ROW related to income
+> income <- read.csv("medianincomebystate.csv")
+> # merge income and ROW
+> bbindex$State
+ [1] Michigan             Florida              Missouri             Texas                Ohio                
+ [6] Washington           Kansas               Virginia             Colorado             Iowa                
+[11] Oregon               Arizona              Indiana              California           Illinois            
+[16] Minnesota            Nebraska             North_Dakota         North_Carolina       South_Carolina      
+[21] Maine                Pennsylvania         Alaska               Kentucky             Wisconsin           
+[26] New_Hampshire        Tennessee            Alabama              Idaho                Connecticut         
+[31] Montana              Maryland             District of Columbia Oklahoma             New_York            
+[36] Vermont              South_Dakota         Wyoming              Massachusetts        Louisiana           
+[41] New_Mexico           Hawaii               New_Jersey           Rhode_Island         Utah                
+[46] Delaware             Mississippi          West_Virginia        Georgia              Arkansas            
+[51] Nevada              
+51 Levels: Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware District of Columbia Florida ... Wyoming
+> statestuff <- merge(income,bbindex,by.x="State",by.y="state")
+Warning message:
+In merge.data.frame(income, bbindex, by.x = "State", by.y = "state") :
+  column name ‘State’ is duplicated in the result
+> l1 <- (lm(log(X1996.income)~log(Total),statestuff))
+> l5 <- (lm(log(X2000.income)~log(Total),statestuff))
+> l9 <- (lm(log(X2004.income)~log(Total),statestuff))
+> l13 <- (lm(log(X2008.income)~log(Total),statestuff))
+> 
+> 
+> 
+> ll <- cbind(summary(l1)$coefficients[2,1:4],
++             summary(l5)$coefficients[2,1:4],
++             summary(l9)$coefficients[2,1:4],
++             summary(l13)$coefficients[2,1:4])
+> 
+> mean(ll[1,])  
+[1] 0.02007212
+> mean(ll[4,])             
+[1] 0.3868203
+> 
+> 
+> ##################### ROW related to Education?
+> education <- read.csv("education.csv")
+> educationbbindex <- merge(education,bbindex, by.x="State",by.y="state")
+Warning message:
+In merge.data.frame(education, bbindex, by.x = "State", by.y = "state") :
+  column name ‘State’ is duplicated in the result
+> summary(lm(log(Total)~(bachelors.1990),educationbbindex))
+
+Call:
+lm(formula = log(Total) ~ (bachelors.1990), data = educationbbindex)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.8918 -0.7045  0.0199  0.8066  2.0219 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)   
+(Intercept)     2.46559    0.72637   3.394  0.00137 **
+bachelors.1990  0.02786    0.03553   0.784  0.43684   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.047 on 49 degrees of freedom
+Multiple R-squared:  0.01239,	Adjusted R-squared:  -0.007768 
+F-statistic: 0.6146 on 1 and 49 DF,  p-value: 0.4368
+
+> summary(lm(log(Total)~(bachelors.2000),educationbbindex))
+
+Call:
+lm(formula = log(Total) ~ (bachelors.2000), data = educationbbindex)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.82528 -0.79964  0.06011  0.74891  2.02564 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)   
+(Intercept)     2.21194    0.76017   2.910  0.00543 **
+bachelors.2000  0.03370    0.03099   1.088  0.28212   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.041 on 49 degrees of freedom
+Multiple R-squared:  0.02357,	Adjusted R-squared:  0.003641 
+F-statistic: 1.183 on 1 and 49 DF,  p-value: 0.2821
+
+> 
+> #### State level ROW related 2000 Affpol
+> load("naes200aff.RData")
+> naes2000aff$state <-   state.name[match(naes2000aff$state,state.abb)]
+> naes2000aff <- merge(naes2000aff,bbindex, by="state")
+> summary(lm(naes2000aff$inout~log(naes2000aff$Total)))
+
+Call:
+lm(formula = naes2000aff$inout ~ log(naes2000aff$Total))
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.065894 -0.014854 -0.000842  0.022043  0.052747 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)            0.336577   0.013177  25.542   <2e-16 ***
+log(naes2000aff$Total) 0.004729   0.004088   1.157    0.253    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.0298 on 46 degrees of freedom
+Multiple R-squared:  0.02827,	Adjusted R-squared:  0.00715 
+F-statistic: 1.338 on 1 and 46 DF,  p-value: 0.2533

@@ -44,14 +44,19 @@ Email: y.lelkes@uva.nl
 		* Installing R and Rstudio
 		* Libraries, packages
 		* Readings: 
-			* [Code and Data for the Social Sciences: A Practitioners Guide, pp 1-44insta (Gentzkow and Shapiro)](http://web.stanford.edu/~gentzkow/research/CodeAndData.pdf)
+			* [Code and Data for the Social Sciences: A Practitioners Guide, pp 1-44(Gentzkow and Shapiro)](http://web.stanford.edu/~gentzkow/research/CodeAndData.pdf)
 			* [An Introduction to R, Chapter 1](https://cran.r-project.org/doc/manuals/R-intro.pdf)
 	
 	* Session 2
 		* Introduction to R objects
 		* Using R for arithmetic
 		* Getting data into R
-*. Week 2
+		* Readings
+			* [Jones et al, Chapter 2](https://dl.dropboxusercontent.com/u/42416194/r_wav_2a/jones2a.pdf)
+			* [Foreign package](https://cran.r-project.org/web/packages/foreign/foreign.pdf)
+			* [Read about haven](https://github.com/hadley/haven)
+		
+* Week 2
 	* Session 1
 		* Getting your data into shape
 		* Tidy, reshape
@@ -59,13 +64,15 @@ Email: y.lelkes@uva.nl
 		* Factors
 		* Dates
 		* Strings			
-*. Week 3
+
+* Week 3
  	* Session 1
 		* Managing and manipulating data frames (data wrangling) 
 		* dplyr 
 	* Session 2	
 		* Basic analytics (regression, anova, clustering, anything else?)
 		* Simulation
+
 * Week 4 
 	* Session 1
 		* Graphs	
@@ -80,20 +87,22 @@ Email: y.lelkes@uva.nl
 	* Session 2
 		* Github and reproducible research
 		
-* Week 5
+* Week 6
 	* Session 1
 		* R programing: Writing functions  
 	* Session 2
 		* Automating pipelines 
-* Week 6
+
+* Week 7
  	* Session 1
  		* Getting data from the web
+ 		* Handling large datasets in R  
     * Session 2
-    	* Handling large datasets in R  
-* Week 7
-	* Session 1
-		* Shiny 
-    * Session 2 
-    	* Slidify, Odds and Ends
+    	* Shiny 
+
+
 * Week 8
-	* Presentations 
+	* Session 1
+		* Slidify, Odds and Ends 	
+   * Session 2 
+    	* Presentations

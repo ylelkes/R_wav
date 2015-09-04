@@ -1,0 +1,385 @@
+---
+title: "Using R for Data Wrangling, Analysis, and Visualization"
+author: "Dr. Yphtach Lelkes"
+highlighter: highlight.js
+output: pdf_document
+job: null
+knit: slidify::knit2slides
+mode: selfcontained
+hitheme: tomorrow
+subtitle: 'Lecture 2: More getting started, R objects, Arithmetic'
+framework: io2012
+widgets: []
+---
+
+## R projects
+
+---
+## Getting Help in R
+Use help to display the documentation for the function:
+`> help(functionname)`
+
+`> ?(functioname)`
+
+Use args for a quick reminder of the function arguments:
+`> args(functionname)`
+
+Use example to see examples of using the function:
+`> example(functionname)`
+
+---
+## Stackoverflow
+[stackoverflow](http://stackoverflow.com/questions/1296646/how-to-sort-a-dataframe-by-columns)
+
+---
+## Data and Good Housekeeping
+[An example of "interactive" data analysis](http://fortune.com/2013/04/17/damn-excel-how-the-most-important-software-application-of-all-time-is-ruining-the-world/)
+
+---
+## Automation
+1. Automate everything that can be automated
+2. Write a single script that executes all code from beginning to end.
+  * For each step in your project, whether it is data manipulation or figure creation, create a different script.
+  * Create a batch file that runs all scripts, in the right order, from start to finish. 
+
+---
+## Directories
+1. Separate directories by function.
+2. Separate files into inputs and outputs.
+3. Make directories portable.
+
+---
+## Non-Ideal
+<div style='text-align: center;'>
+    <img width='560' src='../Week1-a/assets/img/baddir.png' />
+</div>
+
+---
+## Ideal
+<div style='text-align: center;'>
+    <img width='560' src='../Week1-a/assets/img/gooddir.png' />
+</div>
+
+
+
+---
+## Documenting your code
+```{r,eval=F}
+#############################################
+##  What
+##	Original author						
+## 	Last Edited: 10/31/14 by YL
+#############################################
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(stringr, dplyr, reshape2,foreign)
+```
+
+---
+## Documenting your code
+```{r,eval=F}
+#############################################
+##  What
+##	Original author						
+## 	Last Edited: 10/31/14 by YL
+#############################################
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(stringr, dplyr, reshape2,foreign)
+```
+
+---
+## Documenting your code
+```{r}
+## <- Comments in R
+## Computing the correlation between MPG and Horsepower
+cor(mtcars$mpg,mtcars$hp)
+
+## Table 1A, Lelkes (2014) Liberian Journal of Information Technology
+m1 <- lm(mpg~hp,mtcars)
+```
+
+---
+## Documenting your code
+Who is your code for?
+> Yourself
+
+> Your collaborators
+
+
+---
+##  Other points
+1. Use descriptive variable names:
+  * income not V019832
+2. Order functions and commands linearly
+
+---
+##  A small intro task
+1. Install the datasets library
+2. using data() load the beaver datasets (two datasets tracking the body temperature of two beavers); hint, use View()
+3. What is the body temperature of beaver1 on day 347, time 0
+4. Using mean(), what are the mean body temperatures of beaver1 and beaver2?
+
+---
+## Basics of R 
+* R is a calculator for all basic math
+```{r}
+1+9*3/3
+```
+
+```
++ Addition
+- Subtraction
+\ Division
+* Multiplication
+```
+
+---
+## A little bit of searching
+* What is the square root of 246?
+* What is 6 to the 7th power?
+* What's the difference between 5*6 and 5 * 6?
+* Without changing any of the numbers, make 5*10-3 equal 35. 
+
+---
+## Variables/Objects
+* The way R stores information (shortcuts to data)
+
+```
+foo <- 5+3
+foo
+foo <- 5-3
+foo
+ob1 <- 93
+ob2 <- 4
+ob1-ob2
+ob1*4
+```
+
+* Objects are case sensitive
+
+```
+Foo
+```
+
+---
+## Objects can be characters and strings
+
+```
+hi <- "hello"
+hi2 <- "hello world"
+hi3 <- "5"
+hi3/3
+sqrt(hi3)
+```
+
+---
+## Each object is assigned a class
+```
+j1 <- 67
+j2 <- "67"
+j3 <- "Hello everybody!"
+class(j1)
+class(j2)
+class(j3)
+class(sqrt)
+class(mtcars)
+```
+* Lots more classes coming up. 
+
+
+---
+## Vectors
+* One-dimensional array representing a collection of information stored in a specific order
+* c(): concatenate or combine
+
+```
+world.pop <- c(2525779, 3026003, 3691173, 4449049, 5320817, 6127700,6916183)
+world.pop
+```
+* Can use c() to combine several vectors
+
+```
+pop.first <- c(2525779, 3026003, 3691173)
+pop.second <- c(4449049, 5320817, 6127700)
+pop.all <- c(pop.first, pop.second, 6916183)
+pop.all
+```
+
+---
+## Indexing
+* To access specific elements of a vector, we use square brackets
+
+```
+pop.all[3]
+```
+
+* Can access multiple elements by including a vector in the square brackets
+
+```
+pop.all[c(3,4)]
+pop.all[c(1,3,4)]
+pop.all[c(1,3,10)]
+```
+
+* Can also remove elements
+```
+pop.all[-5]
+```
+
+---
+## Hands on vectors
+* What happens here?
+
+```
+pop.all[c(3,1)]
+pop.all[-c(1,3)]
+```
+
+* In one line of code, create a vector that is the first two elements of pop.all, followed by the name of the city of your birth, followed by square root of 87, followed by all states in the US that begin with the letter W (hint, use the state.name vector)  
+
+---
+## You can apply arithmetic rules to vectors
+
+* Convert world population (in thousands) to millions
+
+```
+popthousands <- pop.all/1000
+```
+
+* Interact vectors
+
+```
+lotsofnumbers <- 90:96
+popthousands + lotsofnumbers
+```
+
+---
+## Matrices
+* A matrix is a two-dimensional vector
+* An array is k dimensions
+* Can be numeric OR string, not both
+
+```
+m1 <- matrix(c(1,2,3,4),nrow=2)
+m2 <- matrix(c(1,2,3,4,5,6),ncol=2)
+class(m2)
+str(m2)
+m3 <- matrix(letters,ncol=2)
+str(m3)
+```
+
+---
+## Matrices
+* matrices are indexed by x and y coordinates [x,y]
+* Indexing matrices: 
+  * What element is in the 6th row, 2nd column of m3?
+
+---
+## Download the following to your working directory
+* Download the following to your working directory (http://heather.cs.ucdavis.edu/~matloff/mtrush1.pgm) (hint getwd())
+
+
+```
+library(pixmap)
+mtrush2 <- read.pnm("mtrush1.pgm")
+mtrush2
+str(mtrush2)
+plot(mtrush2)
+mtrush2@grey
+dim(mtrush2@grey)
+mtrush2@grey[84:163,135:177] <- 1
+plot(mtrush2)
+mtrush2@grey[84:163,135:177] <- 0
+plot(mtrush2)
+```
+
+---
+## data.frames
+* Type of class you'll (probably) use most
+* Like a matrix, but each column can be any type of class
+
+```
+x <- 10:1
+y <- -4:5
+first10letters <- letters[1:10] 
+df <- data.frame(x,y,first10letters)
+```
+
+* Columns have to be the same length
+```
+first11letters <- letters[1:11] 
+data.frame(x,y,first11letters)
+```
+
+---
+## The object names are the column names
+
+```
+names(df)
+athroughj <- letters[1:10] 
+df <- data.frame(x,y,athroughj)
+names(df)
+names(df) <- c("a1","a2","column3")
+names(df)
+```
+
+---
+## Learning about your data.frame
+
+```
+nrow(df)
+ncol(df)
+dim(df)
+names(df)[3]
+head(df)
+tail(df)
+df[1:3,3]
+class(df[,3])
+class(df[,1])
+df$column3
+df$ 
+```
+
+---
+## Getting your data into R
+
+* Lots of ways
+```
+read.csv()
+library(foreign)
+library(haven)
+library(rio)
+```
+
+---
+##
+* use read.csv() to read in "Countries-Europe.csv"
+* located in Week1-b/data examples
+* What is the median population of Europe?
+* What is the mean population/land area
+
+---
+## More complicated datasets
+* use the following libraries to read in child_data.sav
+  * foreign
+  * haven
+  * rio
+* What is the mean memory IQ of children older than 5?
+  * Hint, need to use both $ and a logical statement
+  * Logical statements: ==, >, <, !=
+  * 6==7
+  * 6<7
+
+---
+## Read in night.dta
+* Florence Nightingale's data on deaths from various causes in the Crimean War
+* See https://vincentarelbundock.github.io/Rdatasets/doc/HistData/Nightingale.html
+* How many people died of Wounds?
+* How many people died of Disease?
+* Try the following:
+  * Create a vector that holds the sum of Wounds, sum of Disease, sum of Other
+  * Create a vector that holds "Wounds","Disease,"Other"
+  * Use pie() to create a pie chart
+  * Can you do this in one line?
+

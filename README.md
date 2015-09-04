@@ -48,7 +48,8 @@ Email: y.lelkes@uva.nl
 			* [An Introduction to R, Chapter 1](https://cran.r-project.org/doc/manuals/R-intro.pdf)
 	
 	* Session 2
-		*[Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week1-b/index.html)
+	
+		* [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week1-b/index.html)
 		* Introduction to R objects
 		* Using R for arithmetic
 		* Getting data into R

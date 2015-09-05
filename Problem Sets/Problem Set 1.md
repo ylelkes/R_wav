@@ -15,7 +15,7 @@ For now, copy and paste your commands and results (including figures) into a wor
 	
 	* Install the HistData package and load Nightingale. Read about it [here](https://vincentarelbundock.github.io/Rdatasets/doc/HistData/Nightingale.html)
 	* How many people died of Wounds? How many people died of Disease?
-	* Create a piechart using the pie() command. Make sure to label all the slices. Give your graph a title. If you wish, change the colors. 
+	* Create a piechart using the pie() command. You should have a slice for # of ppl dying of wounds, # of ppl dying of disease, # of ppl dying of other. Make sure to label all the slices. Give your graph a title. If you wish, change the colors. 
 		
 3. Loading data into R
 	* We didn't get to this in class, but loading data into R will be central to your life as a data analysist. 

@@ -302,16 +302,14 @@ boxplot(mtcars$mpg,mtcars$cyl)
 
 <slide class="" id="slide-12" style="background:;">
   <hgroup>
-    <h2>Introductory exercises</h2>
+    <h2>Exercises (1)</h2>
   </hgroup>
   <article data-timings="">
-    <p>###Work together
-1. What is this showing? </p>
-
-<pre><code>ggplot(mpg, aes(model, manufacturer)) + geom_point() 
-</code></pre>
-
-<ol>
+    <ol>
+<li>What is this showing? 
+<code>
+ggplot(mpg, aes(model, manufacturer)) + geom_point() 
+</code></li>
 <li><p>Can you make it more informative?</p></li>
 <li><p>Describe the data, aesthetic mappings and layers used for each of the following plots. See if you can predict what the plot will look like before running the code.</p></li>
 </ol>
@@ -322,6 +320,52 @@ ggplot(economics, aes(date, unemploy)) + geom_line()
 ggplot(mpg, aes(cty)) + geom_histogram()
 </code></pre>
 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Aesthetics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>aes(displ, hwy, colour = class)
+aes(displ, hwy, shape = drv)
+aes(displ, hwy, size = cyl)
+</code></pre>
+
+<pre><code>ggplot(mpg, aes(displ, cty)) + 
+  geom_point()
+ggplot(mpg, aes(displ, cty, colour = class)) + 
+  geom_point()
+ggplot(mpg, aes(displ, cty, colour = class)) +  geom_point(color=&quot;blue&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Experiment with the colour, shape and size aesthetics. What happens when you map them to continuous values? What about categorical values? </p></li>
+<li><p>What happens when you use more than one aesthetic in a plot?</p></li>
+<li><p>What happens if you map a continuous variable to shape? Why? What happens if you map trans to shape? Why?</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Plot the graphs found here:</h2>
+  </hgroup>
+  <article data-timings="">
+    
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -398,8 +442,26 @@ ggplot(mpg, aes(cty)) + geom_histogram()
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Introductory exercises'>
+        data-slide=12 title='Exercises (1)'>
          12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Aesthetics'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Exercises'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Plot the graphs found here:'>
+         15
       </a>
     </li>
   </ul>

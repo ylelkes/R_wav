@@ -199,8 +199,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +geom_point()
 ```
 
 ---
-## Introductory exercises
-###Work together
+## Exercises (1)
 1. What is this showing? 
 ```
 ggplot(mpg, aes(model, manufacturer)) + geom_point() 
@@ -215,3 +214,34 @@ ggplot(diamonds, aes(carat, price)) + geom_point()
 ggplot(economics, aes(date, unemploy)) + geom_line()
 ggplot(mpg, aes(cty)) + geom_histogram()
 ```
+
+---
+## Aesthetics
+
+```
+aes(displ, hwy, colour = class)
+aes(displ, hwy, shape = drv)
+aes(displ, hwy, size = cyl)
+```
+
+```
+ggplot(mpg, aes(displ, cty)) + 
+  geom_point()
+ggplot(mpg, aes(displ, cty, colour = class)) + 
+  geom_point()
+ggplot(mpg, aes(displ, cty, colour = class)) +  geom_point(color="blue")
+```
+
+---
+## Exercises
+1. Experiment with the colour, shape and size aesthetics. What happens when you map them to continuous values? What about categorical values? 
+
+2. What happens when you use more than one aesthetic in a plot?
+
+3. What happens if you map a continuous variable to shape? Why? What happens if you map trans to shape? Why?
+
+---
+## Plot the graphs found here:
+
+
+

@@ -2,14 +2,15 @@
 title: "Make these plots"
 author: "ylelkes"
 date: "September 7, 2015"
-output: html_document
+output: pdf_document
 ---
 
 ## Make these plots
+
 Use the Fair data in the Ecdat package
 [Read about it here](https://cran.r-project.org/web/packages/Ecdat/Ecdat.pdf)
 
-```{r,echo=F,message=F}
+```{r,echo=F,warning=F,message=F}
 library(ggplot2)
 library(Ecdat)
 ggplot(Star,aes(tmathssk))+geom_histogram()
@@ -20,4 +21,3 @@ ggplot(Star,aes(x=sex,y=tmathssk))+geom_boxplot()
 ggplot(Star,aes(x=totexpk,y=tmathssk))+geom_smooth()
 ggplot(Star,aes(x=totexpk,y=tmathssk))+geom_smooth()+geom_point()
 ```
-

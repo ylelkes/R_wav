@@ -1,0 +1,193 @@
+---
+title: "Using R for Data Wrangling, Analysis, and Visualization"
+author: "Dr. Yphtach Lelkes"
+highlighter: highlight.js
+output: pdf_document
+job: null
+knit: slidify::knit2slides
+mode: selfcontained
+hitheme: tomorrow
+subtitle: 'Lecture 3: Wrapping up datasets, starting some graphics'
+framework: io2012
+widgets: []
+---
+
+---
+## Matrices
+* matrices are indexed by x and y coordinates [x,y]
+* Indexing matrices: 
+  * mtcars
+  * What value is in the 6th row, 2nd column of mtcars?
+
+
+---
+## Matrices
+* matrices are indexed by x and y coordinates [x,y]
+* Indexing matrices: 
+  * What element is in the 6th row, 2nd column of m3?
+
+---
+## Download the following to your working directory
+* Download the following to your working directory (http://heather.cs.ucdavis.edu/~matloff/mtrush1.pgm) (hint getwd())
+
+
+```
+library(pixmap)
+mtrush2 <- read.pnm("mtrush1.pgm")
+mtrush2
+str(mtrush2)
+plot(mtrush2)
+mtrush2@grey
+dim(mtrush2@grey)
+mtrush2@grey[84:163,135:177]
+mtrush2@grey[,104:164]=0
+plot(mtrush2)
+
+<- 1
+plot(mtrush2)
+mtrush2@grey[84:163,135:177] <- 0
+plot(mtrush2)
+```
+
+---
+## data.frames
+* Type of class you'll (probably) use most
+* Like a matrix, but each column can be any type of class
+
+```
+x <- 10:1
+y <- -4:5
+first10letters <- letters[1:10] 
+df <- data.frame(x,y,first10letters)
+```
+
+* Columns have to be the same length
+```
+first11letters <- letters[1:11] 
+data.frame(x,y,first11letters)
+```
+
+---
+## The object names are the column names
+
+```
+names(df)
+athroughj <- letters[1:10] 
+df <- data.frame(x,y,athroughj)
+names(df)
+names(df) <- c("a1","a2","column3")
+names(df)
+```
+
+---
+## Learning about your data.frame
+
+```
+nrow(df)
+ncol(df)
+dim(df)
+names(df)[3]
+head(df)
+tail(df)
+df[1:3,3]
+class(df[,3])
+class(df[,1])
+df$column3
+df$ 
+```
+
+```
+## Subsetting your data
+newdf <- subset(df,x==1)
+newdf <- df[df$x==1,]
+```
+
+```
+## With the Titanic dataset in datasets package
+* Using subset, what was the mean age of children?
+* Using indices to filter, what was the mean age of adults?
+* Using table(): what percentage on board were 1st class, 2nd class, and 3rd class passengers
+* Adding an additional variable and the prop.table command,what percentage of 1st class, 2nd class, 3rd class?
+* Using a $\chi^2$ test, was the survival rate significantly different between men and women?
+
+--
+## Lists
+
+rf <- list(mtcars,letters)
+list[[3]]
+
+
+
+---
+## Download the following to your working directory
+* Download the following to your working directory (http://heather.cs.ucdavis.edu/~matloff/mtrush1.pgm) (hint getwd())
+* Inside mtrush2 is a matrix that is [y,x] dimensions (note, for whatever reason the matrix is flipped)
+library("ggmap")
+library("mapproj")
+map <- get_map(location = 'Europe', zoom = 4)
+ggmap(map)
+```
+library(pixmap)
+mtrush2 <- read.pnm("mtrush1.pgm")
+```
+
+
+
+```{r}
+img3 <- readJPEG("data examples/The_Nightwatch_by_Rembrandt.jpg")
+titanic <- read.csv("data examples/titanic3.csv")
+prop.table(table(titanic$pclass,titanic$survived),1)
+```
+
+---
+## R base graphics
+```
+hist(mtcars$mpg)
+plot(mtcars$mpg~mtcars$hp)
+boxplot(mtcars$mpg,mtcars$cyl)
+```
+
+---
+## R base graphics
+* Generally ugly
+* Enter Hadley Wickham
+* ![Hadley Wickham](http://www.statistics.rice.edu/uploadedImages/Faculty/hadley-rice%201.JPG)
+* ggplot2: The grammar of graphics
+* Easy to start with, but you can end up with complex figures. 
+* Today will do part 1. In a few weeks we'll do part. 
+
+---
+## ggplot2
+
+```
+install.packages(ggplot2)
+```
+
+### Every ggplot2 object has three components
+1. data,
+
+2. A set of aesthetic mappings between variables in the data and visual properties, and
+
+3. At least one geom, geometric object, which describes how to render each observation.
+
+```
+ggplot(mpg, aes(x = displ, y = hwy)) +geom_point()
+```
+
+---
+## Introductory exercises
+###Work together
+1. What is this showing? 
+```
+ggplot(mpg, aes(model, manufacturer)) + geom_point() 
+```
+2. Can you make it more informative?
+
+3. Describe the data, aesthetic mappings and layers used for each of the following plots. See if you can predict what the plot will look like before running the code.
+
+```
+ggplot(mpg, aes(cty, hwy)) + geom_point()
+ggplot(diamonds, aes(carat, price)) + geom_point()
+ggplot(economics, aes(date, unemploy)) + geom_line()
+ggplot(mpg, aes(cty)) + geom_histogram()
+```

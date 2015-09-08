@@ -67,7 +67,7 @@ Email: y.lelkes@uva.nl
     * Getting your data into shape
 		* Factors
 		* Dates
-		* Strings			
+		* Strings		s	
 
 * Week 3
  	* Session 1

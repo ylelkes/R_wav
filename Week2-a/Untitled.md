@@ -257,6 +257,7 @@ ggplot(mpg, aes(displ, hwy)) + geom_point() +facet_wrap(~class)
 ## Facetting 
 Make the graphs found in Part 2. Hint, need a different facet function for the second graph
 
+
 ---
 ## Building a plot layer by layer
 ```

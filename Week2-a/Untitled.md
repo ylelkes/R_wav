@@ -11,6 +11,28 @@ subtitle: 'Lecture 3: Wrapping up datasets, starting some graphics'
 framework: io2012
 widgets: []
 ---
+## How's the problem set?
+
+---
+## Today
+1. Finishing up data objects
+2. Starting with graphs
+
+---
+## Matrices
+* A matrix is a two-dimensional vector
+* An array is k dimensions
+* Can be numeric OR string, not both
+
+```
+m1 <- matrix(c(1,2,3,4),nrow=2)
+m1
+m2 <- matrix(c(1,2,3,4,5,6),ncol=2)
+class(m2)
+str(m2)
+m3 <- matrix(letters,ncol=2)
+str(m3)
+```
 
 ---
 ## Matrices
@@ -18,36 +40,28 @@ widgets: []
 * Indexing matrices: 
   * mtcars
   * What value is in the 6th row, 2nd column of mtcars?
-
-
----
-## Matrices
-* matrices are indexed by x and y coordinates [x,y]
-* Indexing matrices: 
-  * What element is in the 6th row, 2nd column of m3?
+  * What values are in the 6:8th row, 2,5,7th columns
+  * Why does the first work and the second not?: 
+    a. letters[c(1,2)] 
+    b. letters[1,2]
 
 ---
-## Download the following to your working directory
-* Download the following to your working directory (http://heather.cs.ucdavis.edu/~matloff/mtrush1.pgm) (hint getwd())
-
+## Wiping out Teddy Roosevelt
 
 ```
 library(pixmap)
-mtrush2 <- read.pnm("mtrush1.pgm")
+mtrush2 <- read.pnm("data examples/mtrush1.pgm")
 mtrush2
 str(mtrush2)
 plot(mtrush2)
 mtrush2@grey
 dim(mtrush2@grey)
-mtrush2@grey[84:163,135:177]
-mtrush2@grey[,104:164]=0
-plot(mtrush2)
-
-<- 1
-plot(mtrush2)
-mtrush2@grey[84:163,135:177] <- 0
-plot(mtrush2)
 ```
+
+* values are a continuum on the grey scale from 0 to 1.
+* The pixels representing Teddy's face are in rows: 84:163 and in the columns: 135:177
+* Can you white out Teddy?
+
 
 ---
 ## data.frames
@@ -62,6 +76,7 @@ df <- data.frame(x,y,first10letters)
 ```
 
 * Columns have to be the same length
+
 ```
 first11letters <- letters[1:11] 
 data.frame(x,y,first11letters)
@@ -88,80 +103,63 @@ ncol(df)
 dim(df)
 names(df)[3]
 head(df)
-tail(df)
+tail(df,10)
 df[1:3,3]
 class(df[,3])
 class(df[,1])
 df$column3
-df$ 
+df[,"column3"]
 ```
 
-```
+
+---
 ## Subsetting your data
+
+```
 newdf <- subset(df,x==1)
 newdf <- df[df$x==1,]
 ```
 
+* Like everything else, can have multiple logical operators
+
 ```
+newdf <- subset(df,x==1|y==2)
+newdf <- subset(df,(x==1|y==2) & z!=3)
+```
+
+* Can also have R just spit out the columns we want
+```
+subset(df,select==c("x","y"),subset=z<3)
+```
+
+---
 ## With the Titanic dataset in datasets package
 * Using subset, what was the mean age of children?
 * Using indices to filter, what was the mean age of adults?
+* Get R to give you two new datasets, one with "survivor" and "name" for those only in 1st class
 * Using table(): what percentage on board were 1st class, 2nd class, and 3rd class passengers
 * Adding an additional variable and the prop.table command,what percentage of 1st class, 2nd class, 3rd class?
-* Using a $\chi^2$ test, was the survival rate significantly different between men and women?
-
---
-## Lists
-
-rf <- list(mtcars,letters)
-list[[3]]
-
-
+* Using a X^2 test, was the survival rate significantly different between men and women?
 
 ---
-## Download the following to your working directory
-* Download the following to your working directory (http://heather.cs.ucdavis.edu/~matloff/mtrush1.pgm) (hint getwd())
-* Inside mtrush2 is a matrix that is [y,x] dimensions (note, for whatever reason the matrix is flipped)
-library("ggmap")
-library("mapproj")
-map <- get_map(location = 'Europe', zoom = 4)
-ggmap(map)
-```
-library(pixmap)
-mtrush2 <- read.pnm("mtrush1.pgm")
-```
+## Various functions you perform on the entire dataset (or subsets)
+* colSums(), rowSums(), colMeans(), rowMeans()
+* Use the USArrests dataset in the dataset package. What was the total # of violent crimes by state?
+* What was the average number of each violent crime across all states?
+* For states where more than 70 percent of the population lives in cities, what is the average number of attacks, by crime?
 
-
-
-
-```r
-img3 <- readJPEG("data examples/The_Nightwatch_by_Rembrandt.jpg")
-```
+---
+## Lists
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "readJPEG"
+newlist <- list(mtcars,letters,mtrush2)
+newlist[[3]]
 ```
 
-```r
-titanic <- read.csv("data examples/titanic3.csv")
-```
-
-```
-## Warning in file(file, "rt"): cannot open file 'data
-## examples/titanic3.csv': No such file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
-prop.table(table(titanic$pclass,titanic$survived),1)
-```
-
-```
-## Error in table(titanic$pclass, titanic$survived): object 'titanic' not found
-```
+* Will become much more useful down the road. 
+* Try the following:
+  * Generate the mean score for each dataset in load("experiment_list.RData")
+  * Try this lapply(experiment_list,function(x)mean(x$score))
 
 ---
 ## R base graphics
@@ -178,7 +176,7 @@ boxplot(mtcars$mpg,mtcars$cyl)
 * ![Hadley Wickham](http://www.statistics.rice.edu/uploadedImages/Faculty/hadley-rice%201.JPG)
 * ggplot2: The grammar of graphics
 * Easy to start with, but you can end up with complex figures. 
-* Today will do part 1. In a few weeks we'll do part. 
+* Today will do part 1. In a few weeks we'll do part 2. 
 
 ---
 ## ggplot2
@@ -241,7 +239,44 @@ ggplot(mpg, aes(displ, cty, colour = class)) +  geom_point(color="blue")
 3. What happens if you map a continuous variable to shape? Why? What happens if you map trans to shape? Why?
 
 ---
-## Plot the graphs found here:
+##
+[Plot the graphs found in part 1, found here:](https://github.com/ylelkes/R_wav/blob/master/Week2-a/makethesegraphs.pdf)
+
+---
+## Facetting :Tables of graphics
+
+
+```r
+library(ggplot2)
+ggplot(mpg, aes(displ, hwy)) + geom_point() +facet_wrap(~class)
+```
+
+![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1-1.png) 
+
+---
+## Facetting 
+Make the graphs found in Part 2. Hint, need a different facet function for the second graph
+
+---
+## Building a plot layer by layer
+```
+p <- ggplot(mpg, aes(displ, hwy))
+p
+r <- p+geom_point()
+r
+j <- r+geom_smooth()
+j
+j+geom_text(aes(label=manufacturer))
+
+---
+## Saving your graphs
+ggsave()
+
+---
+## Lots more customization available
+
+
+
 
 
 

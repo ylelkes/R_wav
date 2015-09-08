@@ -10,6 +10,7 @@ output: pdf_document
 Use the Fair data in the Ecdat package
 [Read about it here](https://cran.r-project.org/web/packages/Ecdat/Ecdat.pdf)
 
+## Part 1
 ```{r,echo=F,warning=F,message=F}
 library(ggplot2)
 library(Ecdat)
@@ -21,3 +22,14 @@ ggplot(Star,aes(x=sex,y=tmathssk))+geom_boxplot()
 ggplot(Star,aes(x=totexpk,y=tmathssk))+geom_smooth()
 ggplot(Star,aes(x=totexpk,y=tmathssk))+geom_smooth()+geom_point()
 ```
+
+## Part 2
+```{r,echo=F,warning=F,message=F}
+ggplot(Star,aes(x=tmathssk,y=treadssk,colour=race))+geom_point()+facet_wrap(~sex)
+ggplot(Star,aes(x=tmathssk,y=treadssk))+geom_point()+facet_grid(race~classk)
+ggplot(Star,aes(x=tmathssk,y=treadssk,colour=sex))+geom_point()+facet_grid(race~classk)+geom_smooth(method=lm,colour="black")
+
+ggplot(Star,aes(x=tmathssk,y=treadssk,shape=sex,colour=freelunk))+geom_point()+facet_grid(race~classk)+geom_smooth(method=lm)
+```
+
+Still have time? Change the axis labels, add a title, change the theme. Start exploring scales, and change the colours of the points. Change the y-axis to go from the minimum to the maximum. Can you change the title of the legend? 

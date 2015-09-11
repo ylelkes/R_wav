@@ -17,6 +17,7 @@ widgets: []
 ## Today
 1. Lists
 2. Starting with graphs
+3. You'll need to follow along on the slides posted here: https://github.com/ylelkes/R_wav
 
 ---
 ## Various functions you perform on the entire dataset (or subsets)
@@ -73,7 +74,7 @@ newlist[[1]][,6]
   ```
   </sub>
   
-  * Generate the mean score for each dataset
+  * Generate the mean score for Treatment and Control for each dataset
   * When you're done try the following:
   
   ```

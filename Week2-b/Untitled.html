@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Using R for Data Wrangling, Analysis, and Visualization</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Using R for Data Wrangling, Analysis, and Visualization">
+  <meta name="author" content="Dr. Yphtach Lelkes">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Using R for Data Wrangling, Analysis, and Visualization</h1>
+    <h2>Lecture 3: Last things about data structures, starting some graphics</h2>
+    <p>Dr. Yphtach Lelkes<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>How was the problem set?</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Today</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Lists</li>
+<li>Starting with graphs</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Various functions you perform on the entire dataset (or subsets)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>colSums(), rowSums(), colMeans(), rowMeans()</li>
+<li>Use the USArrests dataset in the datasets package (data(datasets::USArrests). </li>
+<li>What was the total # of violent crimes by state?</li>
+<li>What was the average number of each violent crime across all states?</li>
+<li>For states where more than 70 percent of the population lives in cities, what is the average number of attacks, by crime?</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>What was the total # of violent crimes by state?</li>
+</ul>
+
+<pre><code class="r">head(rowSums(USArrests[,c(1,2,4)]))
+</code></pre>
+
+<pre><code>##    Alabama     Alaska    Arizona   Arkansas California   Colorado 
+##      270.4      317.5      333.1      218.3      325.6      250.6
+</code></pre>
+
+<ul>
+<li>What was the average number of each violent crime across all states?</li>
+</ul>
+
+<pre><code class="r">colMeans(USArrests[,c(1,2,4)])
+</code></pre>
+
+<pre><code>##  Murder Assault    Rape 
+##   7.788 170.760  21.232
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>For states where more than 70 percent of the population lives in cities, what is the average number of attacks, by crime?</li>
+</ul>
+
+<pre><code class="r">colMeans(subset(USArrests,USArrests$UrbanPop&gt;70)[,c(1,2,4)])
+</code></pre>
+
+<pre><code>##     Murder    Assault       Rape 
+##   7.863158 194.052632  24.989474
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Lists</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A list is a type of object that can hold any other object
+<code>
+newlist &lt;- list(mtcars,letters,6)
+newlist[[2]]
+</code></li>
+<li>Index or subset within a list
+<code>
+newlist[[1]][,6]
+</code></li>
+<li>Will become much more useful down the road. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <article data-timings="">
+    <ul>
+<li><p>Try the following:</p>
+
+<ul>
+<li>Run the following code:</li>
+</ul>
+
+<p><sub></p>
+
+<pre><code>listexample &lt;-  
+list(experiment1=data.frame(condition=c(&quot;Control&quot;,&quot;Treat&quot;),score=rnorm(100)),
+experiment2=data.frame(condition=c(&quot;Control&quot;,&quot;Treat&quot;),score=rnorm(100)),
+experiment3=data.frame(condition=c(&quot;Control&quot;,&quot;Treat&quot;),score=rnorm(100)))
+</code></pre>
+
+<p></sub></p>
+
+<ul>
+<li>Generate the mean score for each dataset</li>
+<li>When you&#39;re done try the following:</li>
+</ul>
+
+<pre><code>lapply(listexample,function(x)c(Treatment=mean(subset(x,condition==&quot;Treat&quot;)$score),
+Control=mean(subset(x,condition==&quot;Control&quot;)$score)))
+</code></pre></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>R base graphics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>hist(mtcars$mpg)
+plot(mtcars$mpg~mtcars$hp)
+boxplot(mtcars$mpg,mtcars$cyl)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>R base graphics</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Generally ugly</li>
+<li>Enter Hadley Wickham</li>
+<li><img src="http://www.statistics.rice.edu/uploadedImages/Faculty/hadley-rice%201.JPG" alt="Hadley Wickham"></li>
+<li>ggplot2: The grammar of graphics</li>
+<li>Easy to start with, but you can end up with complex figures. </li>
+<li>Today will do part 1. In a few weeks we&#39;ll do part 2. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>install.packages(ggplot2)
+</code></pre>
+
+<h3>Every ggplot2 object has three components</h3>
+
+<ol>
+<li><p>data,</p></li>
+<li><p>A set of aesthetic mappings between variables in the data and visual properties, and</p></li>
+<li><p>At least one geom, geometric object (or later), which describes how to render each observation.</p></li>
+</ol>
+
+<pre><code>library(ggplot2)
+ggplot(mpg, aes(x = displ, y = hwy)) +geom_point()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Exercises (1)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>What is this showing? 
+<code>
+ggplot(mpg, aes(model, manufacturer)) + geom_point() 
+</code></li>
+<li><p>Can you make it more informative?</p></li>
+<li><p>Describe the data, aesthetic mappings and layers used for each of the following plots. See if you can predict what the plot will look like before running the code.</p></li>
+</ol>
+
+<pre><code>ggplot(mpg, aes(cty, hwy)) + geom_point()
+ggplot(diamonds, aes(carat, price)) + geom_point()
+ggplot(economics, aes(date, unemploy)) + geom_line()
+ggplot(mpg, aes(cty)) + geom_histogram()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Aesthetics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>aes(displ, hwy, colour = class)
+aes(displ, hwy, shape = drv)
+aes(displ, hwy, size = cyl)
+</code></pre>
+
+<pre><code>ggplot(mpg, aes(displ, cty)) + 
+  geom_point()
+ggplot(mpg, aes(displ, cty, colour = class)) + 
+  geom_point()
+ggplot(mpg, aes(displ, cty)) +  geom_point(color=&quot;blue&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Experiment with the colour, shape and size aesthetics. What happens when you map them to continuous values? What about categorical values? </p></li>
+<li><p>What happens when you use more than one aesthetic in a plot?</p></li>
+<li><p>What happens if you map a continuous variable to shape? Why? What happens if you map trans to shape? Why?</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <article data-timings="">
+    <p>##
+<a href="https://github.com/ylelkes/R_wav/blob/master/Week2-a/makethesegraphs.pdf">Plot the graphs found in part 1, found here:</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Saving your graphs</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>ggsave(filename=&quot;x.pdf&quot;,width=8,height=8)
+ggsave(filename=&quot;x.png&quot;,width=8,height=8)
+etc</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Facetting :Tables of graphics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(ggplot2)
+ggplot(mpg, aes(displ, hwy)) + geom_point() +facet_wrap(~class)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Facetting</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Make the graphs found in Part 2. Hint, need a different facet function for the second graph</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Plotting errors</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>In most plots, we want to display uncertainty</li>
+</ul>
+
+<pre><code class="r">df &lt;- data.frame(
+  trt = factor(c(1, 1, 2, 2)), 
+  resp = c(1, 5, 3, 4), 
+  group = factor(c(1, 2, 1, 2)), 
+  se = c(0.1, 0.3, 0.3, 0.2)
+)
+df2 &lt;- df[c(1,3),]
+
+# Define the top and bottom of the errorbars
+limits &lt;- aes(ymax = resp + se, ymin=resp - se)
+
+p &lt;- ggplot(df, aes(fill=group, y=resp, x=trt))
+p + geom_bar(position=&quot;dodge&quot;, stat=&quot;identity&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+
+<pre><code class="r"># Because the bars and errorbars have different widths
+# we need to specify how wide the objects we are dodging are
+dodge &lt;- position_dodge(width=0.9)
+p + geom_bar(position=dodge) + geom_errorbar(limits, position=dodge, width=0.25)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5-2.png" alt="plot of chunk unnamed-chunk-5"> </p>
+
+<pre><code class="r">p &lt;- ggplot(df, aes(colour=group, y=resp, x=trt))
+
+# If we want to draw lines, we need to manually set the
+# groups which define the lines - here the groups in the 
+# original dataframe
+p + geom_line(aes(group=group)) + geom_errorbar(limits, width=0.2)    
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5-3.png" alt="plot of chunk unnamed-chunk-5"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Building a plot layer by layer</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>p &lt;- ggplot(as.data.frame(state.x77), aes(Illiteracy, Murder))
+p
+r &lt;- p+geom_point()
+r
+j &lt;- r+geom_smooth(method=&quot;lm&quot;)
+j
+j+geom_text(aes(label=rownames(as.data.frame(state.x77))))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Annotate your graphics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>library(devtools)
+source_gist(&quot;524eade46135f6348140&quot;)
+
+p &lt;- ggplot(as.data.frame(state.x77), aes(x=Illiteracy,y= Murder))+geom_smooth(method=&quot;lm&quot;,se=F)+geom_text(x =1, y = 10, label = lm_eqn(df), parse = TRUE)
+ggplot(data = as.data.frame(state.x77), aes(x = Illiteracy, y = Murder, label=Murder)) +
+  stat_smooth_func(geom=&quot;text&quot;,method=&quot;lm&quot;,hjust=0,parse=TRUE) +
+  geom_smooth(method=&quot;lm&quot;,se=FALSE) +
+  geom_point() 
+
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Lots more customization available</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Learn about colour brewer scale_colour_brewer and </li>
+<li>Learn about <a href="https://github.com/cttobin/ggthemr">ggthemr</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='How was the problem set?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Today'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Various functions you perform on the entire dataset (or subsets)'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title=''>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title=''>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Lists'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title=''>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='R base graphics'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='R base graphics'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='ggplot2'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Exercises (1)'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Aesthetics'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Exercises'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title=''>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Saving your graphs'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Facetting :Tables of graphics'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Facetting'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Plotting errors'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Building a plot layer by layer'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Annotate your graphics'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Lots more customization available'>
+         21
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

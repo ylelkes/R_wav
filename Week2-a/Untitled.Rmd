@@ -54,7 +54,8 @@ mtrush2 <- read.pnm("data examples/mtrush1.pgm")
 mtrush2
 str(mtrush2)
 plot(mtrush2)
-mtrush2@grey
+mtrush2@grey[84:163,135:177] <- 1
+plot(mtrush2)
 dim(mtrush2@grey)
 ```
 

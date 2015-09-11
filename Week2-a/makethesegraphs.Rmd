@@ -18,7 +18,7 @@ ggplot(Star,aes(tmathssk))+geom_histogram()
 ggplot(Star,aes(tmathssk))+geom_density()
 ggplot(Star,aes(tmathssk,fill=sex))+geom_density()
 ggplot(Star,aes(tmathssk,fill=sex))+geom_density(alpha=.5)
-ggplot(Star,aes(x=sex,y=tmathssk))+geom_boxplot()
+ggplot(Star,aes(x=sex,y=tmathssk,fill=sex))+geom_boxplot(colour="purple")
 ggplot(Star,aes(x=totexpk,y=tmathssk))+geom_smooth()
 ggplot(Star,aes(x=totexpk,y=tmathssk))+geom_smooth()+geom_point()
 ```
@@ -28,8 +28,21 @@ ggplot(Star,aes(x=totexpk,y=tmathssk))+geom_smooth()+geom_point()
 ggplot(Star,aes(x=tmathssk,y=treadssk,colour=race))+geom_point()+facet_wrap(~sex)
 ggplot(Star,aes(x=tmathssk,y=treadssk))+geom_point()+facet_grid(race~classk)
 ggplot(Star,aes(x=tmathssk,y=treadssk,colour=sex))+geom_point()+facet_grid(race~classk)+geom_smooth(method=lm,colour="black")
-
 ggplot(Star,aes(x=tmathssk,y=treadssk,shape=sex,colour=freelunk))+geom_point()+facet_grid(race~classk)+geom_smooth(method=lm)
 ```
 
-Still have time? Change the axis labels, add a title, change the theme. Start exploring scales, and change the colours of the points. Change the y-axis to go from the minimum to the maximum. Can you change the title of the legend? 
+Still have time? Change the axis labels, add a title
+
+## Part 3
+
+The file climatetemperatures.RData is a list with two data frames. Temperature_by_year is used in the first plot; futureeuropetemp is based off of 15 or so climate models predicting the temperature of european countries in the end of the 21st centure. Hint: The 95 percent confidence intervals (which are plotted below are 1.96 times the standard error over/under the mean)
+
+```{r,echo=F,warning=F,message=F}
+load("../data examples/climatetemperatures.RData")
+ggplot(temperature_by_year,aes(x=year,ymin=min,ymax=max,y=temperature))+geom_ribbon(alpha=.5,fill="red")+geom_line()
+ggplot(futurepast,aes(x=temperature,xmin=temperature-1.96*se,xmax=temperature+1.96*se,y=locator,colour=time))+geom_point()+geom_errorbarh()
+```
+
+
+Have more time? 
+Change the theme. Start exploring scales, and change the colours of the points. Change the y-axis to go from the minimum to the maximum. Can you change the title of the legend? 

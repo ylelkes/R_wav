@@ -183,9 +183,11 @@ ggplot(mpg, aes(displ, cty)) +  geom_point(color="blue")
 
 ---
 ## Saving your graphs
-ggsave(filename="x.pdf",width=8,height=8)
-ggsave(filename="x.png",width=8,height=8)
-etc
+* ggsave(filename="x.pdf",width=8,height=8)
+
+* ggsave(filename="x.png",width=8,height=8)
+
+* etc
 
 
 
@@ -209,45 +211,11 @@ Make the graphs found in Part 2. Hint, need a different facet function for the s
 ## Plotting errors
 
 * In most plots, we want to display uncertainty
-
-
-```r
-df <- data.frame(
-  trt = factor(c(1, 1, 2, 2)), 
-  resp = c(1, 5, 3, 4), 
-  group = factor(c(1, 2, 1, 2)), 
-  se = c(0.1, 0.3, 0.3, 0.2)
-)
-df2 <- df[c(1,3),]
-
-# Define the top and bottom of the errorbars
-limits <- aes(ymax = resp + se, ymin=resp - se)
-
-p <- ggplot(df, aes(fill=group, y=resp, x=trt))
-p + geom_bar(position="dodge", stat="identity")
-```
+* Here need to display a xmin and xmax OR a ymin and a ymax within the geom
 
 ![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png) 
 
-```r
-# Because the bars and errorbars have different widths
-# we need to specify how wide the objects we are dodging are
-dodge <- position_dodge(width=0.9)
-p + geom_bar(position=dodge) + geom_errorbar(limits, position=dodge, width=0.25)
-```
-
-![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-2.png) 
-
-```r
-p <- ggplot(df, aes(colour=group, y=resp, x=trt))
-
-# If we want to draw lines, we need to manually set the
-# groups which define the lines - here the groups in the 
-# original dataframe
-p + geom_line(aes(group=group)) + geom_errorbar(limits, width=0.2)    
-```
-
-![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-3.png) 
+* Work on part 3 in the graphs section.
 
 ---
 ## Building a plot layer by layer

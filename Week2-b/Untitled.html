@@ -311,9 +311,11 @@ ggplot(mpg, aes(displ, cty)) +  geom_point(color=&quot;blue&quot;)
     <h2>Saving your graphs</h2>
   </hgroup>
   <article data-timings="">
-    <p>ggsave(filename=&quot;x.pdf&quot;,width=8,height=8)
-ggsave(filename=&quot;x.png&quot;,width=8,height=8)
-etc</p>
+    <ul>
+<li><p>ggsave(filename=&quot;x.pdf&quot;,width=8,height=8)</p></li>
+<li><p>ggsave(filename=&quot;x.png&quot;,width=8,height=8)</p></li>
+<li><p>etc</p></li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -352,42 +354,14 @@ ggplot(mpg, aes(displ, hwy)) + geom_point() +facet_wrap(~class)
   <article data-timings="">
     <ul>
 <li>In most plots, we want to display uncertainty</li>
+<li>Here need to display a xmin and xmax OR a ymin and a ymax within the geom</li>
 </ul>
-
-<pre><code class="r">df &lt;- data.frame(
-  trt = factor(c(1, 1, 2, 2)), 
-  resp = c(1, 5, 3, 4), 
-  group = factor(c(1, 2, 1, 2)), 
-  se = c(0.1, 0.3, 0.3, 0.2)
-)
-df2 &lt;- df[c(1,3),]
-
-# Define the top and bottom of the errorbars
-limits &lt;- aes(ymax = resp + se, ymin=resp - se)
-
-p &lt;- ggplot(df, aes(fill=group, y=resp, x=trt))
-p + geom_bar(position=&quot;dodge&quot;, stat=&quot;identity&quot;)
-</code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
 
-<pre><code class="r"># Because the bars and errorbars have different widths
-# we need to specify how wide the objects we are dodging are
-dodge &lt;- position_dodge(width=0.9)
-p + geom_bar(position=dodge) + geom_errorbar(limits, position=dodge, width=0.25)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-5-2.png" alt="plot of chunk unnamed-chunk-5"> </p>
-
-<pre><code class="r">p &lt;- ggplot(df, aes(colour=group, y=resp, x=trt))
-
-# If we want to draw lines, we need to manually set the
-# groups which define the lines - here the groups in the 
-# original dataframe
-p + geom_line(aes(group=group)) + geom_errorbar(limits, width=0.2)    
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-5-3.png" alt="plot of chunk unnamed-chunk-5"> </p>
+<ul>
+<li>Work on part 3 in the graphs section.</li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->

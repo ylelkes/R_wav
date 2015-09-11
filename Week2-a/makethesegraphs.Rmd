@@ -35,7 +35,7 @@ Still have time? Change the axis labels, add a title
 
 ## Part 3
 
-The file climatetemperatures.RData is a list with two data frames. Temperature_by_year is used in the first plot; futureeuropetemp is based off of 15 or so climate models predicting the temperature of european countries in the end of the 21st centure. Hint: The 95 percent confidence intervals (which are plotted below are 1.96 times the standard error over/under the mean)
+The file [climatetemperatures.RData](https://github.com/ylelkes/R_wav/blob/master/data%20examples/climatetemperatures.RData?raw=true) is a list with two data frames. Temperature_by_year is used in the first plot; futureeuropetemp is based off of 15 or so climate models predicting the temperature of european countries in the end of the 21st centure. Hint: The 95 percent confidence intervals (which are plotted below are 1.96 times the standard error over/under the mean)
 
 ```{r,echo=F,warning=F,message=F}
 load("../data examples/climatetemperatures.RData")

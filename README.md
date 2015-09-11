@@ -63,14 +63,22 @@ Email: y.lelkes@uva.nl
     * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week2-a/Untitled.html)
 		* Finishing up data structures.
 		* Intro to graphs
-	* Session 2
+  * Session 2
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week2-b/Untitled.html)
+		* Finishing up data structures.
+		* Intro to graphs
+    
+    
+
+* Week 3
+  * Session 2
     * Getting your data into shape
 		* Factors
 		* Dates
-		* Strings		s	
+		* Strings	
 
-* Week 3
- 	* Session 1
+
+* Session 1
 		* Managing and manipulating data frames (data wrangling) 
 		* dplyr 
 	* Session 2	

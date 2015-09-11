@@ -162,6 +162,7 @@ ggplot(mpg, aes(displ, cty)) +  geom_point(color="blue")
 ---
 ##
 [Plot the graphs found in part 1, found here:](https://github.com/ylelkes/R_wav/blob/master/Week2-a/makethesegraphs.pdf)
+* If you finish early, start exploring ggplot--change the x-axis, rotate labels, label scales, change the x-y limits, check out themes (e.g., theme_bw)
 
 ---
 ## Saving your graphs

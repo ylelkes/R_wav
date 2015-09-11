@@ -21,7 +21,7 @@ widgets: []
 ---
 ## Various functions you perform on the entire dataset (or subsets)
 * colSums(), rowSums(), colMeans(), rowMeans()
-* Use the USArrests dataset in the datasets package (data(datasets::USArrests). 
+* Use the USArrests dataset in the datasets package data(datasets::USArrests). 
 * What was the total # of violent crimes by state?
 * What was the average number of each violent crime across all states?
 * For states where more than 70 percent of the population lives in cities, what is the average number of attacks, by crime?
@@ -180,6 +180,7 @@ ggplot(mpg, aes(displ, cty)) +  geom_point(color="blue")
 ---
 ##
 [Plot the graphs found in part 1, found here:](https://github.com/ylelkes/R_wav/blob/master/Week2-a/makethesegraphs.pdf)
+* If you finish early, start exploring ggplot--change the x-axis, rotate labels, label scales, change the x-y limits, check out themes (e.g., theme_bw)
 
 ---
 ## Saving your graphs

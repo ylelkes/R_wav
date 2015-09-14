@@ -225,17 +225,17 @@ j+geom_text(aes(label=rownames(as.data.frame(state.x77))))
 ---
 ## Annotate your graphics
 
-```
+
+```{r}
 library(devtools)
 source_gist("524eade46135f6348140")
-
-p <- ggplot(as.data.frame(state.x77), aes(x=Illiteracy,y= Murder))+geom_smooth(method="lm",se=F)+geom_text(x =1, y = 10, label = lm_eqn(df), parse = TRUE)
+library(ggplot2)
 ggplot(data = as.data.frame(state.x77), aes(x = Illiteracy, y = Murder, label=Murder)) +
   stat_smooth_func(geom="text",method="lm",hjust=0,parse=TRUE) +
   geom_smooth(method="lm",se=FALSE) +
   geom_point() 
-
 ```
+
 
 ---
 ## Lots more customization available

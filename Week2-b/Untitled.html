@@ -426,7 +426,7 @@ p1 &lt;- ggplot(data = state.x77, aes(x = Illiteracy, y = Murder, label=Murder))
   </hgroup>
   <article data-timings="">
     <ol>
-<li>Write code to figure out the state with the highest murder rate (not just by looking at the matrix), hint</li>
+<li>Write code to figure out the state with the highest murder rate (not just by looking at the matrix)</li>
 <li>using the annotate command and ggplot, create a scatterplot and label that point with the state&#39;s name.</li>
 </ol>
 
@@ -470,7 +470,9 @@ colour = &quot;red&quot;)+geom_point()
 
 <slide class="" id="slide-25" style="background:;">
   <article data-timings="">
-    <pre><code class="r">ggplot(msleep, aes(log(bodywt),awake)) + geom_point()+xlab(&quot;Body Weight (logged)&quot;)+scale_y_continuous(breaks=seq(0,25,by=1),&quot;Hours Awake&quot;)
+    <pre><code class="r">ggplot(msleep, aes(log(bodywt),awake)) + 
+  geom_point()+xlab(&quot;Body Weight (logged)&quot;)+
+  scale_y_continuous(breaks=seq(0,25,by=1),&quot;Hours Awake&quot;)
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
@@ -481,28 +483,32 @@ colour = &quot;red&quot;)+geom_point()
 
 <slide class="" id="slide-26" style="background:;">
   <article data-timings="">
-    <pre><code class="r"> ggplot(msleep, aes(log(bodywt),awake,colour=vore,shape=vore,lty=vore)) + geom_point()+scale_y_continuous(breaks=seq(0,25,by=1),&quot;Hours Awake&quot;)+scale_color_manual(values=c(&quot;red&quot;,&quot;blue&quot;,&quot;black&quot;,&quot;green&quot;))+scale_shape_manual(values = c(0, 5, 6, 15))+theme_classic()+ggtitle(&quot;Mammals, body weight, and sleep&quot;)+geom_smooth(method=&quot;lm&quot;,se=F)
+    <pre><code class="r"> p2 &lt;- ggplot(msleep, aes(log(bodywt),awake,colour=vore,shape=vore,lty=vore)) +
+  geom_point()+scale_y_continuous(breaks=seq(0,25,by=1),&quot;Hours Awake&quot;)+
+  scale_color_manual(values=c(&quot;red&quot;,&quot;blue&quot;,&quot;black&quot;,&quot;green&quot;))+
+  scale_shape_manual(values = c(0, 5, 6, 15))+theme_classic()+
+  ggtitle(&quot;Mammals, body weight, and sleep&quot;)+geom_smooth(method=&quot;lm&quot;,se=F)
 </code></pre>
-
-<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-27" style="background:;">
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-12-1.png" alt="plot of chunk unnamed-chunk-12"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h2>Starting to reshape data</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li>Enter Hadley Wickham again</li>
-</ul>
-
-<pre><code class="r">widedata &lt;- data.frame(RID=1:100,T1=rnorm(100),T2=rnorm(100),T3=rnorm(100),gender=c(&quot;Male&quot;,&quot;Female&quot;))
+    <pre><code class="r">widedata &lt;- data.frame(RID=1:100,T1=rnorm(100),T2=rnorm(100),
+                       T3=rnorm(100),gender=c(&quot;Male&quot;,&quot;Female&quot;))
 head(widedata)
 </code></pre>
 
@@ -515,7 +521,13 @@ head(widedata)
 ## 6   6  1.2359535 -0.5283758 -1.0879701 Female
 </code></pre>
 
-<pre><code class="r">library(reshape2)
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">library(reshape2)
 longdata &lt;- melt(widedata,id.vars = c(&quot;RID&quot;,&quot;gender&quot;),measure.vars = c(&quot;T1&quot;,&quot;T2&quot;,&quot;T3&quot;))
 head(longdata[order(longdata$RID),])
 </code></pre>
@@ -529,9 +541,15 @@ head(longdata[order(longdata$RID),])
 ## 202   2 Female       T3  1.9697835
 </code></pre>
 
-<ul>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <article data-timings="">
+    <ul>
 <li>Melt the asylum data into long form. Create a time series plot where you choose a subset of refugees from 4-5 countries and track their flows over the 4 quarters. Use scales to set the linetypes and colors. </li>
-<li>Try the directlabels package (geom_dl) and label the endpoints with the country of origin of each country. </li>
+<li>Try the directlabels package (geom_dl) and label the endpoints with the country of origin of each country. Might need to use the expand_limits() function. </li>
 </ul>
 
   </article>
@@ -700,8 +718,26 @@ head(longdata[order(longdata$RID),])
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Starting to reshape data'>
+        data-slide=27 title=''>
          27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Starting to reshape data'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title=''>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title=''>
+         30
       </a>
     </li>
   </ul>

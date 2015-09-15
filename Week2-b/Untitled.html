@@ -395,10 +395,11 @@ j+geom_text(aes(label=rownames(as.data.frame(state.x77))))
     <h2>Annotate your graphics</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code>library(devtools)
+    <pre><code class="r">library(devtools)
 source_gist(&quot;524eade46135f6348140&quot;)
 library(ggplot2)
-ggplot(data = as.data.frame(state.x77), aes(x = Illiteracy, y = Murder, label=Murder)) +
+state.x77 &lt;- as.data.frame(state.x77)
+p1 &lt;- ggplot(data = state.x77, aes(x = Illiteracy, y = Murder, label=Murder)) +
   stat_smooth_func(geom=&quot;text&quot;,method=&quot;lm&quot;,hjust=0,parse=TRUE) +
   geom_smooth(method=&quot;lm&quot;,se=FALSE) +
   geom_point() 
@@ -409,13 +410,128 @@ ggplot(data = as.data.frame(state.x77), aes(x = Illiteracy, y = Murder, label=Mu
 </slide>
 
 <slide class="" id="slide-21" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">p1
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
   <hgroup>
-    <h2>Lots more customization available</h2>
+    <h2>Try this:</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Write code to figure out the state with the highest murder rate (not just by looking at the matrix), hint</li>
+<li>using the annotate command and ggplot, create a scatterplot and label that point with the state&#39;s name.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <article data-timings="">
+    <p>##</p>
+
+<pre><code class="r">murderhi &lt;- as.data.frame(state.x77)[as.data.frame(state.x77)$Murder==max(as.data.frame(state.x77)$Murder),]
+ggplot(data = state.x77, aes(x = Illiteracy, y = Murder, label=Murder)) +
+  geom_smooth(method=&quot;lm&quot;,se=FALSE) + 
+  geom_point()+annotate(&quot;text&quot;, label = rownames(murderhi),
+  y = murderhi$Murder, x = murderhi$Illiteracy, size = 5,
+colour = &quot;red&quot;)+geom_point()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Scales</h2>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>Learn about colour brewer scale_colour_brewer and </li>
-<li>Learn about <a href="https://github.com/cttobin/ggthemr">ggthemr</a></li>
+<li>Scales control the mapping from data to aesthetics. They take your data and turn it into something that you can see, like size, colour, position or shape. </li>
+</ul>
+
+<pre><code class="r">ggplot(msleep, aes(bodywt,awake)) + geom_point()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">ggplot(msleep, aes(log(bodywt),awake)) + geom_point()+xlab(&quot;Body Weight (logged)&quot;)+scale_y_continuous(breaks=seq(0,25,by=1),&quot;Hours Awake&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <article data-timings="">
+    <pre><code class="r"> ggplot(msleep, aes(log(bodywt),awake,colour=vore,shape=vore,lty=vore)) + geom_point()+scale_y_continuous(breaks=seq(0,25,by=1),&quot;Hours Awake&quot;)+scale_color_manual(values=c(&quot;red&quot;,&quot;blue&quot;,&quot;black&quot;,&quot;green&quot;))+scale_shape_manual(values = c(0, 5, 6, 15))+theme_classic()+ggtitle(&quot;Mammals, body weight, and sleep&quot;)+geom_smooth(method=&quot;lm&quot;,se=F)
+</code></pre>
+
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>Starting to reshape data</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Enter Hadley Wickham again</li>
+</ul>
+
+<pre><code class="r">widedata &lt;- data.frame(RID=1:100,T1=rnorm(100),T2=rnorm(100),T3=rnorm(100),gender=c(&quot;Male&quot;,&quot;Female&quot;))
+head(widedata)
+</code></pre>
+
+<pre><code>##   RID         T1         T2         T3 gender
+## 1   1 -0.2233425  1.3978480  2.0581137   Male
+## 2   2 -0.9860396 -1.7519849  1.9697835 Female
+## 3   3 -0.8443850  0.2926781 -0.1614779   Male
+## 4   4  0.7535063 -1.3679396 -2.1342240 Female
+## 5   5  1.8617856 -0.6797770 -0.5867648   Male
+## 6   6  1.2359535 -0.5283758 -1.0879701 Female
+</code></pre>
+
+<pre><code class="r">library(reshape2)
+longdata &lt;- melt(widedata,id.vars = c(&quot;RID&quot;,&quot;gender&quot;),measure.vars = c(&quot;T1&quot;,&quot;T2&quot;,&quot;T3&quot;))
+head(longdata[order(longdata$RID),])
+</code></pre>
+
+<pre><code>##     RID gender variable      value
+## 1     1   Male       T1 -0.2233425
+## 101   1   Male       T2  1.3978480
+## 201   1   Male       T3  2.0581137
+## 2     2 Female       T1 -0.9860396
+## 102   2 Female       T2 -1.7519849
+## 202   2 Female       T3  1.9697835
+</code></pre>
+
+<ul>
+<li>Melt the asylum data into long form. Create a time series plot where you choose a subset of refugees from 4-5 countries and track their flows over the 4 quarters. Use scales to set the linetypes and colors. </li>
+<li>Try the directlabels package (geom_dl) and label the endpoints with the country of origin of each country. </li>
 </ul>
 
   </article>
@@ -548,8 +664,44 @@ ggplot(data = as.data.frame(state.x77), aes(x = Illiteracy, y = Murder, label=Mu
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Lots more customization available'>
+        data-slide=21 title=''>
          21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Try this:'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title=''>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Scales'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title=''>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title=''>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Starting to reshape data'>
+         27
       </a>
     </li>
   </ul>

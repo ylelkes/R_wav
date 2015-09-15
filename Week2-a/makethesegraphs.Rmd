@@ -34,15 +34,54 @@ ggplot(Star,aes(x=tmathssk,y=treadssk,shape=sex,colour=freelunk))+geom_point()+f
 Still have time? Change the axis labels, add a title
 
 ## Part 3
+Here are two datasets:
 
-The file [climatetemperatures.RData](https://github.com/ylelkes/R_wav/blob/master/data%20examples/climatetemperatures.RData?raw=true) is a list with two data frames. Temperature_by_year is used in the first plot; futureeuropetemp is based off of 15 or so climate models predicting the temperature of european countries in the end of the 21st centure. Hint: The 95 percent confidence intervals (which are plotted below are 1.96 times the standard error over/under the mean)
 
-```{r,echo=F,warning=F,message=F}
-load("../data examples/climatetemperatures.RData")
+```{r}
+temperature_by_year <- rio::import("https://rawgit.com/ylelkes/R_wav/master/data%20examples/temperature_by_year.RData")
+
+futurepast <- rio::import("https://rawgit.com/ylelkes/R_wav/master/data%20examples/climatetemperatures.RData")
+```
+
+The file [climatetemperatures.RData](https://github.com/ylelkes/R_wav/blob/master/data%20examples/climatetemperatures.RData?raw=true) . Temperature_by_year is used in the first plot; futurepast is based off of 15 or so climate models predicting the temperature of european countries in the end of the 21st centure. Hint: The 95 percent confidence intervals (which are plotted below are 1.96 times the standard error over/under the mean)
+
+```{r,echo=F,warning=F,message=F,fig.width=8}
 ggplot(temperature_by_year,aes(x=year,ymin=min,ymax=max,y=temperature))+geom_ribbon(alpha=.5,fill="red")+geom_line()
+```
+
+```{r,echo=F,warning=F,message=F,fig.height=8}
 ggplot(futurepast,aes(x=temperature,xmin=temperature-1.96*se,xmax=temperature+1.96*se,y=locator,colour=time))+geom_point()+geom_errorbarh()
 ```
 
 
-Have more time? 
-Change the theme. Start exploring scales, and change the colours of the points. Change the y-axis to go from the minimum to the maximum. Can you change the title of the legend? 
+## Part 4 
+Scales
+```{r}
+drv_labels <- c("4" = "4wd", "f" = "fwd", "r" = "rwd")
+ggplot(mpg, aes(displ, hwy)) + 
+  geom_point(aes(colour = drv)) +  
+  scale_colour_manual(labels = drv_labels,values = c("purple","orange","grey","pink"))
+```
+
+
+## RColor Brewer and ggthemr
+
+* How close to this graph can you get?
+* some hints: 
+  * to order, try reorder(Origin, Total)
+  * Use coord_flip()
+  * You'll need RColorBrewer and ggthemes
+
+```{r}
+futurepast <- rio::import("https://rawgit.com/ylelkes/R_wav/master/data%20examples/asylumdata.csv")
+```
+
+
+
+```{r,echo=F}
+library("RColorBrewer")
+library(ggthemes)
+colourCount = length(unique(asylumdata$Origin))
+getPalette = colorRampPalette(brewer.pal(3, "YlGnBu"))
+ggplot(asylumdata, aes(reorder(Origin, Total),Total,fill=(reorder(Origin, Total))))+geom_bar(stat="identity")+coord_flip()+ylab("Number of Asylum Seekers")+xlab("Country of Origin")+theme_economist()+theme(legend.position="none")+scale_fill_manual(values = getPalette(colourCount))
+```

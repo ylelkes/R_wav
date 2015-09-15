@@ -1,2 +1,5 @@
 base
 ggplot2
+devtools
+proto
+reshape2

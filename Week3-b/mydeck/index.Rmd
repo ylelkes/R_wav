@@ -56,16 +56,25 @@ head(melt(x,id.vars = c("Code","Country")))
 ## Stacking dataframes with rbind
 
 1. Try the following:
-load: 
+```
+load(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/rbindexercises.RData"))
+```
 
+2. First, use colnames to look at the names of df1,df2,df3.
+3. use rbind to stack df1, df2, and df3 into one dataframe. 
+4. Now try to add df4 to the stacked dataframe. How do we fix it?
+5. Now add df5. Doesn't work? Try plyr::rbind.fill
+6. What does the variables third and fourth look like for the df1:df4?
 
 ```{r}
-df1 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 100,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),score=rnorm(1:100))
-df2 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 100,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),score=rnorm(1:100))
-df3 <- data.frame(race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),score=rnorm(1:100),gender=sample(rep(c("Male","Female"),100),size = 100,replace = T))
+df1 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 1000,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 1000,replace = T),score=rnorm(1:1000))
+df2 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 200,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 200,replace = T),score=rnorm(1:200))
+df3 <- data.frame(race=sample(rep(c("Black","White","Asian"),100),size = 300,replace = T),score=rnorm(1:300),gender=sample(rep(c("Male","Female"),100),size = 300,replace = T))
 df4 <- data.frame(sex=sample(rep(c("Male","Female"),100),size = 100,replace = T),Race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),score=rnorm(1:100))
-
-save(list = c("df1","df2","df3"),file="../../data/rbindexercises.RData")
+df5 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 100,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),third=rnorm(1:100),fourth=rnorm(1:100))
+rbind(df1,df2,df3,df5)
+save(list = c("df1","df2","df3","df4","df5"),file="../../data/rbindexercises.RData")
+library(plyr)
 ```
 
 

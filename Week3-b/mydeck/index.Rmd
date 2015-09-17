@@ -51,3 +51,21 @@ head(x)
 library(reshape2)
 head(melt(x,id.vars = c("Code","Country")))
 ```
+
+---
+## Stacking dataframes with rbind
+
+1. Try the following:
+load: 
+
+
+```{r}
+df1 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 100,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),score=rnorm(1:100))
+df2 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 100,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),score=rnorm(1:100))
+df3 <- data.frame(race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),score=rnorm(1:100),gender=sample(rep(c("Male","Female"),100),size = 100,replace = T))
+df4 <- data.frame(sex=sample(rep(c("Male","Female"),100),size = 100,replace = T),Race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),score=rnorm(1:100))
+
+save(list = c("df1","df2","df3"),file="../../data/rbindexercises.RData")
+```
+
+

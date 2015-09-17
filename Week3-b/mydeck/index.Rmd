@@ -77,21 +77,6 @@ save(list = c("df1","df2","df3","df4","df5"),file="../data/rbindexercises.RData"
 library(plyr)
 ```
 
-require(stringr)
-
-theFiles <- dir(".",pattern="\\.csv")
- for(a in theFiles)
- {
-     # build a good name to assign to the data
-     nameToUse <- str_sub(string=a, start=12, end=18)
-     # read in the csv using read.table
-     # file.path is a convenient way to specify a folder and file name
-     temp <- read.table(file=file.path(".", a),
-                        header=TRUE, sep=",", stringsAsFactors=FALSE)
-     # assign them into the workspace
-     assign(x=nameToUse, value=temp)
- }
-
 ---
 ## Merging dataframes
 
@@ -113,5 +98,6 @@ load(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/anes.RData"))
 ## Sometimes you want to merge based on multiple keys
 
 ```
-Ai
+load(url("https://cdn.rawgit.com/ylelkes/R_wav/tree/master/data/foreignaid.RData"))
+
 ```

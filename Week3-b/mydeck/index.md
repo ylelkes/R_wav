@@ -56,3 +56,56 @@ knit        : slidify::knit2slides
 ## 5  AFG Afghanistan    X1952 22,532
 ## 6  ALB     Albania    X1952 10,058
 ```
+
+---
+## Stacking dataframes with rbind
+
+1. Try the following:
+```
+load(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/rbindexercises.RData"))
+```
+
+2. First, use colnames to look at the names of df1,df2,df3.
+3. use rbind to stack df1, df2, and df3 into one dataframe. 
+4. Now try to add df4 to the stacked dataframe. How do we fix it?
+5. Now add df5. Doesn't work? Try plyr::rbind.fill
+6. What does the variables third and fourth look like for the df1:df4?
+
+---
+## Merging dataframes
+
+1. Merging in R is *usually* pretty simple with the merge command. 
+2. Example from R
+
+---
+## Exercise
+1. Let's start with merging two dataframes
+3. You always need a key that links data.frames, individual, country, etc.
+3. Merge the US state characteristic files state.x77 with this, with the variable Obamafeelings indicating a score on a feeling thermometer from 0=cold to 100=hot 
+```
+load(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/anes.RData"))
+```
+4. Hint: state.x77 needs to be converted to a dataframe
+5. What state characteristics predict liking Obama?
+
+---
+## Sometimes you want to merge based on multiple keys
+
+1. See what happens, and what your answers look like if you merge two of the datasets in the following file, first by country.name only, then by program.name only, then by both country.name and program.name. Note the dimensions, number of variables. 
+
+```
+load(url("https://rawgit.com/ylelkes/R_wav/master/data/foreignaid.RData"))
+```
+
+---
+## Sometimes we want to merge more than two datasets.
+
+1. Use the following function to merge all the Aid_XXX datasets
+  * reshape::merge_all
+  
+  
+---
+## Reshaping data
+
+![Hadley Wickham](http://pix-media.s3.amazonaws.com/blog/1001/HadleyObama2.png)
+

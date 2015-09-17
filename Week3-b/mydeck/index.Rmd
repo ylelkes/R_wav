@@ -66,17 +66,6 @@ load(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/rbindexercises.RData"
 5. Now add df5. Doesn't work? Try plyr::rbind.fill
 6. What does the variables third and fourth look like for the df1:df4?
 
-```{r,eval=F}
-df1 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 1000,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 1000,replace = T),score=rnorm(1:1000))
-df2 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 200,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 200,replace = T),score=rnorm(1:200))
-df3 <- data.frame(race=sample(rep(c("Black","White","Asian"),100),size = 300,replace = T),score=rnorm(1:300),gender=sample(rep(c("Male","Female"),100),size = 300,replace = T))
-df4 <- data.frame(sex=sample(rep(c("Male","Female"),100),size = 100,replace = T),Race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),score=rnorm(1:100))
-df5 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 100,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),third=rnorm(1:100),fourth=rnorm(1:100))
-rbind(df1,df2,df3,df5)
-save(list = c("df1","df2","df3","df4","df5"),file="../data/rbindexercises.RData")
-library(plyr)
-```
-
 ---
 ## Merging dataframes
 
@@ -97,7 +86,24 @@ load(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/anes.RData"))
 ---
 ## Sometimes you want to merge based on multiple keys
 
-```
-load(url("https://cdn.rawgit.com/ylelkes/R_wav/tree/master/data/foreignaid.RData"))
+1. See what happens, and what your answers look like if you merge two of the datasets in the following file, first by country.name only, then by program.name only, then by both country.name and program.name. Note the dimensions, number of variables. 
 
 ```
+load(url("https://rawgit.com/ylelkes/R_wav/master/data/foreignaid.RData"))
+```
+
+---
+## Sometimes we want to merge more than two datasets.
+
+1. Use the following function to merge all the Aid_XXX datasets
+  * reshape::merge_all
+2. Note, there are other ways of merging data. With really big datasets (N=millions), we probably want to use data.table or plyr.   
+  
+---
+## Reshaping data
+
+![Hadley Wickham](http://pix-media.s3.amazonaws.com/blog/1001/HadleyObama2.png)
+
+---
+## reshape2 package
+

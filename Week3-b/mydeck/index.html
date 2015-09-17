@@ -109,6 +109,100 @@
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Stacking dataframes with rbind</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Try the following:</p>
+
+<pre><code>load(url(&quot;https://cdn.rawgit.com/ylelkes/R_wav/master/data/rbindexercises.RData&quot;))
+</code></pre></li>
+<li><p>First, use colnames to look at the names of df1,df2,df3.</p></li>
+<li><p>use rbind to stack df1, df2, and df3 into one dataframe. </p></li>
+<li><p>Now try to add df4 to the stacked dataframe. How do we fix it?</p></li>
+<li><p>Now add df5. Doesn&#39;t work? Try plyr::rbind.fill</p></li>
+<li><p>What does the variables third and fourth look like for the df1:df4?</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Merging dataframes</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Merging in R is <em>usually</em> pretty simple with the merge command. </li>
+<li>Example from R</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Exercise</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Let&#39;s start with merging two dataframes</li>
+<li>You always need a key that links data.frames, individual, country, etc.</li>
+<li>Merge the US state characteristic files state.x77 with this, with the variable Obamafeelings indicating a score on a feeling thermometer from 0=cold to 100=hot 
+<code>
+load(url(&quot;https://cdn.rawgit.com/ylelkes/R_wav/master/data/anes.RData&quot;))
+</code></li>
+<li>Hint: state.x77 needs to be converted to a dataframe</li>
+<li>What state characteristics predict liking Obama?</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Sometimes you want to merge based on multiple keys</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>See what happens, and what your answers look like if you merge two of the datasets in the following file, first by country.name only, then by program.name only, then by both country.name and program.name. Note the dimensions, number of variables. </li>
+</ol>
+
+<pre><code>load(url(&quot;https://rawgit.com/ylelkes/R_wav/master/data/foreignaid.RData&quot;))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Sometimes we want to merge more than two datasets.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Use the following function to merge all the Aid_XXX datasets
+
+<ul>
+<li>reshape::merge_all</li>
+</ul></li>
+</ol>
+
+<hr>
+
+<h2>Reshaping data</h2>
+
+<p><img src="http://pix-media.s3.amazonaws.com/blog/1001/HadleyObama2.png" alt="Hadley Wickham"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -129,6 +223,36 @@
       <a href="#" target="_self" rel='tooltip' 
         data-slide=3 title='Getting data into shape'>
          3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Stacking dataframes with rbind'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Merging dataframes'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Exercise'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Sometimes you want to merge based on multiple keys'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Sometimes we want to merge more than two datasets.'>
+         8
       </a>
     </li>
   </ul>

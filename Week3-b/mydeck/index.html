@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Markdown, Getting Data into Shape</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Markdown, Getting Data into Shape">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Markdown, Getting Data into Shape</h1>
+    <h2></h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Markdown</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Markdown is an easy way to combine data and writing for html and pdf reports. </li>
+<li>All the slides in this class and the github page were written in markdown.</li>
+<li>Rstudio is awesome because it has been developed to generate markdown reports. </li>
+<li>I would like you to start submitting your problem sets in markdown. </li>
+<li>First thing that needs to be done is install knitr. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Some markdown exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Create a new markdown document. </li>
+<li>Create a ggplot graph with a regression line using the ToothGrowth datalength (Guinea Pigs tooth lengs for different doses of either vitamin c or orange juice and doses), with different facets for type of supplement.
+, plotting a different facet for each diet. Add it to your markdown document and give it a width of 4 inches and a height of 4 inches. Don&#39;t show any of the code. </li>
+<li>Next, run three regressions, the first regresses length on dose for the guinea pigs in the VC condition, the second regresses length on dose for the OJ condition, the third looks at the interaction between supp and dose on length. </li>
+<li>Use the htmlreg function in the texreg package to create a table of these three regressionn models (in one table). Give the columns new names and a nice caption. HINT: you&#39;ll have to change the result command within the chunk to make this work.</li>
+<li>You&#39;re writing up your results, and want to report the interaction effect from the third model. Write a sentence that reports the b coefficient and standard error from that model. HINT: use summary(modelname)$coefficients to get the matrix.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Getting data into shape</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Ran 10 experiments, now want to do a meta-analysis. </li>
+<li>I want to match my country level data with my individual-level data.</li>
+<li>I have time series data that looks like this:</li>
+</ol>
+
+<pre><code>##   Code     Country  X1950  X1951  X1952  X1953  X1954
+## 1  AFG Afghanistan 20,249 21,352 22,532 23,557 24,555
+## 2  ALB     Albania  8,097  8,986 10,058 11,123 12,246
+</code></pre>
+
+<ol>
+<li>I want it to look like this:</li>
+</ol>
+
+<pre><code>##   Code     Country variable  value
+## 1  AFG Afghanistan    X1950 20,249
+## 2  ALB     Albania    X1950  8,097
+## 3  AFG Afghanistan    X1951 21,352
+## 4  ALB     Albania    X1951  8,986
+## 5  AFG Afghanistan    X1952 22,532
+## 6  ALB     Albania    X1952 10,058
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Markdown'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Some markdown exercises'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Getting data into shape'>
+         3
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

@@ -73,7 +73,7 @@ df3 <- data.frame(race=sample(rep(c("Black","White","Asian"),100),size = 300,rep
 df4 <- data.frame(sex=sample(rep(c("Male","Female"),100),size = 100,replace = T),Race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),score=rnorm(1:100))
 df5 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 100,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 100,replace = T),third=rnorm(1:100),fourth=rnorm(1:100))
 rbind(df1,df2,df3,df5)
-save(list = c("df1","df2","df3","df4","df5"),file="../../data/rbindexercises.RData")
+save(list = c("df1","df2","df3","df4","df5"),file="../data/rbindexercises.RData")
 library(plyr)
 ```
 

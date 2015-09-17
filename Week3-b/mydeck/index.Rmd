@@ -66,7 +66,7 @@ load(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/rbindexercises.RData"
 5. Now add df5. Doesn't work? Try plyr::rbind.fill
 6. What does the variables third and fourth look like for the df1:df4?
 
-```{r}
+```{r,eval=F}
 df1 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 1000,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 1000,replace = T),score=rnorm(1:1000))
 df2 <- data.frame(gender=sample(rep(c("Male","Female"),100),size = 200,replace = T),race=sample(rep(c("Black","White","Asian"),100),size = 200,replace = T),score=rnorm(1:200))
 df3 <- data.frame(race=sample(rep(c("Black","White","Asian"),100),size = 300,replace = T),score=rnorm(1:300),gender=sample(rep(c("Male","Female"),100),size = 300,replace = T))
@@ -77,4 +77,41 @@ save(list = c("df1","df2","df3","df4","df5"),file="../data/rbindexercises.RData"
 library(plyr)
 ```
 
+require(stringr)
 
+theFiles <- dir(".",pattern="\\.csv")
+ for(a in theFiles)
+ {
+     # build a good name to assign to the data
+     nameToUse <- str_sub(string=a, start=12, end=18)
+     # read in the csv using read.table
+     # file.path is a convenient way to specify a folder and file name
+     temp <- read.table(file=file.path(".", a),
+                        header=TRUE, sep=",", stringsAsFactors=FALSE)
+     # assign them into the workspace
+     assign(x=nameToUse, value=temp)
+ }
+
+---
+## Merging dataframes
+
+1. Merging in R is *usually* pretty simple with the merge command. 
+2. Example from R
+
+---
+## Exercise
+1. Let's start with merging two dataframes
+3. You always need a key that links data.frames, individual, country, etc.
+3. Merge the US state characteristic files state.x77 with this, with the variable Obamafeelings indicating a score on a feeling thermometer from 0=cold to 100=hot 
+```
+load(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/anes.RData"))
+```
+4. Hint: state.x77 needs to be converted to a dataframe
+5. What state characteristics predict liking Obama?
+
+---
+## Sometimes you want to merge based on multiple keys
+
+```
+Ai
+```

@@ -45,7 +45,8 @@ ALB  Albania        8,097   8,986   10,058  11,123  12,246"), header=TRUE)
 head(x)
 ```
 
-4. I want it to look like this:
+---
+## I want it to look like this:
 
 ```{r,echo=FALSE,warning=F,message=F}
 library(reshape2)
@@ -95,15 +96,93 @@ load(url("https://rawgit.com/ylelkes/R_wav/master/data/foreignaid.RData"))
 ---
 ## Sometimes we want to merge more than two datasets.
 
-1. Use the following function to merge all the Aid_XXX datasets
-  * reshape::merge_all
-2. Note, there are other ways of merging data. With really big datasets (N=millions), we probably want to use data.table or plyr.   
-  
+1. Use the following function to merge all the Aid datasets: `reshape::merge_all`
+2. Note, there are other ways of merging data. With really big datasets (N=millions), we probably want to use data.table or plyr.  
+
 ---
 ## Reshaping data
 
 ![Hadley Wickham](http://pix-media.s3.amazonaws.com/blog/1001/HadleyObama2.png)
 
 ---
-## reshape2 package
+## What makes data wide or long?
 
+```{r,results='markup',echo=F,warning=F}
+library(datasets)
+library(reshape2)
+data(UKLungDeaths)
+library(data.table)
+yr <- floor(tt <- time(mdeaths))
+date=paste(month.abb[12*(tt - yr)],yr)
+library(stringr)
+month <- sapply(strsplit(as.character(date), " "), "[", 1)
+month = factor(month,levels=c(month.abb))
+year <- sapply(strsplit(as.character(date), " "), "[", 2)
+UKLung <- data.table(data.frame(ldeaths,mdeaths,fdeaths,month,year))
+head(UKLung)
+```
+
+---
+## What makes data wide or long?
+```{r,echo=FALSE}
+meltedlungs <- melt(UKLung,id.vars = c("month","year"))
+meltedlungs
+```
+
+---
+## Why is this useful?
+
+---
+## Why is this useful?
+```{r,message=FALSE}
+library(dplyr)
+meltedlungs %>% group_by(year) %>% summarise(average=mean(value),sd=sd(value),N=n())
+```
+
+---
+## Why is this useful?
+```{r}
+library(dplyr)
+meltedlungs %>% group_by(year,variable) %>% summarise(average=mean(value),sd=sd(value),N=n())
+```
+
+## Why is this useful?
+```{r}
+library(ggplot2)
+ggplot(meltedlungs,aes(x=year,y=value,group=variable,colour=variable))+geom_smooth() 
+```
+
+---
+## reshape2 package
+* Reshape2 is based on two functions
+* melt takes wide-format data and melts it into long-format data.
+* cast takes long-format data and casts it into wide-format data.
+
+---
+## melting data
+
+```{r}
+melt(UKLung,id.vars=c("month","year"))
+```
+
+---
+## melting data
+
+```{r}
+meltedlungs <- melt(UKLung,id.vars=c("month","year"),
+                    variable.name = "Gender",value.name = "Deaths")
+meltedlungs
+```
+
+---
+## Getting data from long to wide
+
+```{r}
+head(dcast(meltedlungs,year+month~Gender,value.var = "Deaths",fun.aggregate=mean,na.rm=T))
+```
+
+---
+## Exercises 
+1. Melt the `airquality` data into long form, so that each of the measurements are in one column.
+2. create a ggplot that tracks each measurement in a different facet.
+3. cast the new data frame so you get yearly measurements in wide format. 

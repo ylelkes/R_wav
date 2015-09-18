@@ -75,6 +75,7 @@ Email: y.lelkes@uva.nl
     * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week2-b/Untitled.html)
     * Finishing graphs.
   * Session 2
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week3-b/mydeck/index.html)
     * Markdown
     * Getting your data into shape
     * Reshaping data

@@ -185,4 +185,4 @@ head(dcast(meltedlungs,year+month~Gender,value.var = "Deaths",fun.aggregate=mean
 ## Exercises 
 1. Melt the `airquality` data into long form, so that each of the measurements are in one column.
 2. create a ggplot that tracks each measurement in a different facet.
-3. cast the new data frame so you get yearly measurements in wide format. 
+3. cast the new data frame so you get yearly measurements in wide format.

@@ -46,7 +46,9 @@
     <h2>Markdown</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
+    <p>six plus six is 12</p>
+
+<ul>
 <li>Markdown is an easy way to combine data and writing for html and pdf reports. </li>
 <li>All the slides in this class and the github page were written in markdown.</li>
 <li>Rstudio is awesome because it has been developed to generate markdown reports. </li>
@@ -68,7 +70,7 @@
 <li>Create a ggplot graph with a regression line using the ToothGrowth datalength (Guinea Pigs tooth lengs for different doses of either vitamin c or orange juice and doses), with different facets for type of supplement.
 , plotting a different facet for each diet. Add it to your markdown document and give it a width of 4 inches and a height of 4 inches. Don&#39;t show any of the code. </li>
 <li>Next, run three regressions, the first regresses length on dose for the guinea pigs in the VC condition, the second regresses length on dose for the OJ condition, the third looks at the interaction between supp and dose on length. </li>
-<li>Use the htmlreg function in the texreg package to create a table of these three regressionn models (in one table). Give the columns new names and a nice caption. HINT: you&#39;ll have to change the result command within the chunk to make this work.</li>
+<li>Use the texreg (or htmlreg if you want an html doc) function in the texreg package to create a table of these three regressionn models (in one table). Give the columns new names and a nice caption. HINT: you&#39;ll have to change the result command within the chunk to make this work.</li>
 <li>You&#39;re writing up your results, and want to report the interaction effect from the third model. Write a sentence that reports the b coefficient and standard error from that model. HINT: use summary(modelname)$coefficients to get the matrix.</li>
 </ol>
 
@@ -437,7 +439,7 @@ meltedlungs
     <ol>
 <li>Melt the <code>airquality</code> data into long form, so that each of the measurements are in one column.</li>
 <li>create a ggplot that tracks each measurement in a different facet.</li>
-<li>cast the new data frame so you get yearly measurements in wide format. </li>
+<li>cast the new data frame so you get yearly measurements in wide format.</li>
 </ol>
 
   </article>

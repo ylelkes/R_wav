@@ -152,7 +152,6 @@ melt(UKLung,id.vars=c("month","year"))
 ```{r}
 meltedlungs <- melt(UKLung,id.vars=c("month","year"),
                     variable.name = "Gender",value.name = "Deaths")
-meltedlungs$Gende
 ```
 
 ---
@@ -170,4 +169,178 @@ head(dcast(meltedlungs,year+month~Gender,value.var = "Deaths",fun.aggregate=mean
 4. cast the new data frame so you get yearly measurements in wide format.
 
 ---
-## 
+## dplyr
+```
+install.packages("dplyr")
+flights <- tbl_df(read.csv(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/flights.csv")))
+```
+```{r,echo=FALSE,warning=F,results=F,cache=TRUE}
+library(dplyr)
+flights <- tbl_df(read.csv(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/flights.csv")))
+
+```
+
+
+1. Most useful package (for me) in R. 
+2. Another St. Wickham creation. 
+3. A tool for data exploration and transformation
+
+---
+## 5 verbs
+* filter: keep rows matching criteria
+* select: pick columns by name
+* arrange: reorder rows 
+* mutate: add new variables
+* summarise: reduce variables to values
+
+--- 
+## What is our general m.o. if wanted rows 1,3, & 4?
+```{r}
+df <- data.frame(   color = c("blue", "black", "blue", "blue", "black"),    value = 1:5)
+head(df)
+```
+
+--- 
+## What if we just wanted the "color" column
+
+--- 
+## What if we just wanted the "color" column
+```{r}
+select(df,color)
+```
+
+--- 
+## Or if we didn't want the "color" column
+
+--- 
+## Or if we didn't want the "color" column
+```{r}
+select(df,-color)
+```
+
+--- 
+## Take a look at the handout
+```{r}
+names(flights)
+```
+* What are some ways of selecting columns "dep_delay" and "arr_delay"
+
+---
+## Selecting _delay
+
+```
+select(flights, arr_delay, dep_delay)
+select(flights, arr_delay:dep_delay)
+select(flights, ends_with("delay"))
+select(flights, contains("delay"))
+```
+
+---
+## Arrange 
+
+```{r}
+arrange(df,value)
+```
+
+---
+## Arrange 
+
+```{r}
+arrange(df,desc(value))
+```
+
+---
+## Exercises 
+* Order the flights by departure date and time.
+* Which flights were most delayed?
+* Which flights caught up the most time during the flight?
+
+---
+## Exercises
+* arrange(flights, date, hour, minute) 
+* arrange(flights, desc(dep_delay))
+* arrange(flights, desc(arr_delay))
+* arrange(flights, desc(dep_delay - arr_delay))
+
+
+---
+## Arrange 
+
+```{r}
+mutate(df,double= 2* value)
+```
+
+---
+## Arrange 
+
+```{r}
+mutate(df,double= 2* value,quadruple=2*double)
+```
+
+---
+## Exercises
+* Compute speed in mph from time (in minutes) and distance (in miles).
+* Which flight flew the fastest?
+* Add a new variable that shows how much time was made up or lost in flight.
+
+---
+## Grouped Summaries
+```{r}
+summarise(df,total=sum(value))
+```
+
+---
+## Grouped Summaries
+```{r}
+by_color <- group_by(df,color)
+summarise(by_color,total=sum(value))
+```
+
+---
+## Grouped summaries
+* by_date <- group_by(flights, date)
+* by_hour <- group_by(flights, date, hour)
+* by_plane <- group_by(flights, plane)
+* by_dest <- group_by(flights, dest) 
+
+---
+## Summary functions
+* min(x), median(x), max(x), quantile(x, p)
+* n(), n_distinct(), sum(x), mean(x) 
+* sum(x > 10), mean(x > 10) 
+* sd(x), var(x), iqr(x), mad(x)
+
+---
+## How might you summarise dep_delay for each day? 
+```{r,echo=F}
+library(ggplot2)
+ggplot(flights,aes(dep_delay))+geom_histogram()
+```
+
+---
+## Summarise by date
+
+```
+by_date <- group_by(flights, date)
+delays <- summarise(by_date,   
+mean = mean(dep_delay, na.rm = TRUE), 
+median = median(dep_delay, na.rm = TRUE),
+q75 = quantile(dep_delay, 0.75, na.rm = TRUE),
+over_15 = mean(dep_delay > 15, na.rm = TRUE),
+over_30 = mean(dep_delay > 30, na.rm = TRUE),
+over_60 = mean(dep_delay > 60, na.rm = TRUE)  )
+```
+
+---
+## Summarise by date
+```
+by_date <- group_by(flights, date)
+no_missing <- filter(flights, !is.na(dep))
+delays <- summarise(by_date,   
+mean = mean(dep_delay, na.rm = TRUE), 
+median = median(dep_delay, na.rm = TRUE),
+q75 = quantile(dep_delay, 0.75, na.rm = TRUE),
+over_15 = mean(dep_delay > 15, na.rm = TRUE),
+over_30 = mean(dep_delay > 30, na.rm = TRUE),
+over_60 = mean(dep_delay > 60, na.rm = TRUE)  )
+```

@@ -109,13 +109,10 @@
 
 <slide class="" id="slide-5" style="background:;">
   <hgroup>
-    <h2>Merging dataframes</h2>
+    <h2>Merging in R is <em>usually</em> pretty simple with the merge command.</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Merging in R is <em>usually</em> pretty simple with the merge command. </li>
-<li>Example from R</li>
-</ol>
+    <iframe src="https://stat.ethz.ch/R-manual/R-devel/library/base/html/merge.html"></iframe>
 
   </article>
   <!-- Presenter Notes -->
@@ -358,21 +355,6 @@ meltedlungs %&gt;% group_by(year,variable) %&gt;% summarise(average=mean(value),
   <article data-timings="">
     <pre><code class="r">meltedlungs &lt;- melt(UKLung,id.vars=c(&quot;month&quot;,&quot;year&quot;),
                     variable.name = &quot;Gender&quot;,value.name = &quot;Deaths&quot;)
-meltedlungs
-</code></pre>
-
-<pre><code>##      month year  Gender Deaths
-##   1:   Jan 1974 ldeaths   3035
-##   2:   Feb 1974 ldeaths   2552
-##   3:   Mar 1974 ldeaths   2704
-##   4:   Apr 1974 ldeaths   2554
-##   5:   May 1974 ldeaths   2014
-##  ---                          
-## 212:   Feb 1979 fdeaths    379
-## 213:   Mar 1979 fdeaths    393
-## 214:   Apr 1979 fdeaths    411
-## 215:   May 1979 fdeaths    487
-## 216:   Jun 1979 fdeaths    574
 </code></pre>
 
   </article>
@@ -408,8 +390,409 @@ meltedlungs
     <ol>
 <li>Melt the <code>airquality</code> data into long form, so that each of the measurements are in one column.</li>
 <li>create a ggplot that tracks each measurement in a different facet.</li>
+<li>Recode the variable name with more descriptive labels, and change the order of the variable so that the order that appear in the legend are reversed. One way to do this is with the factor() function.<br></li>
 <li>cast the new data frame so you get yearly measurements in wide format.</li>
 </ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>dplyr</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>install.packages(&quot;dplyr&quot;)
+flights &lt;- tbl_df(read.csv(url(&quot;https://cdn.rawgit.com/ylelkes/R_wav/master/data/flights.csv&quot;)))
+</code></pre>
+
+<ol>
+<li>Most useful package (for me) in R. </li>
+<li>Another St. Wickham creation. </li>
+<li>A tool for data exploration and transformation</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>5 verbs</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>filter: keep rows matching criteria</li>
+<li>select: pick columns by name</li>
+<li>arrange: reorder rows </li>
+<li>mutate: add new variables</li>
+<li>summarise: reduce variables to values</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>What is our general m.o. if wanted rows 1,3, &amp; 4?</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">df &lt;- data.frame(   color = c(&quot;blue&quot;, &quot;black&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;black&quot;),    value = 1:5)
+head(df)
+</code></pre>
+
+<pre><code>##   color value
+## 1  blue     1
+## 2 black     2
+## 3  blue     3
+## 4  blue     4
+## 5 black     5
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>What if we just wanted the &quot;color&quot; column</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>What if we just wanted the &quot;color&quot; column</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">select(df,color)
+</code></pre>
+
+<pre><code>##   color
+## 1  blue
+## 2 black
+## 3  blue
+## 4  blue
+## 5 black
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Or if we didn&#39;t want the &quot;color&quot; column</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>Or if we didn&#39;t want the &quot;color&quot; column</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">select(df,-color)
+</code></pre>
+
+<pre><code>##   value
+## 1     1
+## 2     2
+## 3     3
+## 4     4
+## 5     5
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>Take a look at the handout</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">names(flights)
+</code></pre>
+
+<pre><code>##  [1] &quot;date&quot;      &quot;hour&quot;      &quot;minute&quot;    &quot;dep&quot;       &quot;arr&quot;      
+##  [6] &quot;dep_delay&quot; &quot;arr_delay&quot; &quot;carrier&quot;   &quot;flight&quot;    &quot;dest&quot;     
+## [11] &quot;plane&quot;     &quot;cancelled&quot; &quot;time&quot;      &quot;dist&quot;
+</code></pre>
+
+<ul>
+<li>What are some ways of selecting columns &quot;dep_delay&quot; and &quot;arr_delay&quot;</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>Selecting _delay</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>select(flights, arr_delay, dep_delay)
+select(flights, arr_delay:dep_delay)
+select(flights, ends_with(&quot;delay&quot;))
+select(flights, contains(&quot;delay&quot;))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>Arrange</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">arrange(df,value)
+</code></pre>
+
+<pre><code>##   color value
+## 1  blue     1
+## 2 black     2
+## 3  blue     3
+## 4  blue     4
+## 5 black     5
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Arrange</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">arrange(df,desc(value))
+</code></pre>
+
+<pre><code>##   color value
+## 1 black     5
+## 2  blue     4
+## 3  blue     3
+## 4 black     2
+## 5  blue     1
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Order the flights by departure date and time.</li>
+<li>Which flights were most delayed?</li>
+<li>Which flights caught up the most time during the flight?</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>arrange(flights, date, hour, minute) </li>
+<li>arrange(flights, desc(dep_delay))</li>
+<li>arrange(flights, desc(arr_delay))</li>
+<li>arrange(flights, desc(dep_delay - arr_delay))</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>Arrange</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">mutate(df,double= 2* value)
+</code></pre>
+
+<pre><code>##   color value double
+## 1  blue     1      2
+## 2 black     2      4
+## 3  blue     3      6
+## 4  blue     4      8
+## 5 black     5     10
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>Arrange</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">mutate(df,double= 2* value,quadruple=2*double)
+</code></pre>
+
+<pre><code>##   color value double quadruple
+## 1  blue     1      2         4
+## 2 black     2      4         8
+## 3  blue     3      6        12
+## 4  blue     4      8        16
+## 5 black     5     10        20
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Compute speed in mph from time (in minutes) and distance (in miles).</li>
+<li>Which flight flew the fastest?</li>
+<li>Add a new variable that shows how much time was made up or lost in flight.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>Grouped Summaries</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">summarise(df,total=sum(value))
+</code></pre>
+
+<pre><code>##   total
+## 1    15
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>Grouped Summaries</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">by_color &lt;- group_by(df,color)
+summarise(by_color,total=sum(value))
+</code></pre>
+
+<pre><code>## Source: local data frame [2 x 2]
+## 
+##   color total
+## 1 black     7
+## 2  blue     8
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-38" style="background:;">
+  <hgroup>
+    <h2>Grouped summaries</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>by_date &lt;- group_by(flights, date)</li>
+<li>by_hour &lt;- group_by(flights, date, hour)</li>
+<li>by_plane &lt;- group_by(flights, plane)</li>
+<li>by_dest &lt;- group_by(flights, dest) </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-39" style="background:;">
+  <hgroup>
+    <h2>Summary functions</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>min(x), median(x), max(x), quantile(x, p)</li>
+<li>n(), n_distinct(), sum(x), mean(x) </li>
+<li>sum(x &gt; 10), mean(x &gt; 10) </li>
+<li>sd(x), var(x), iqr(x), mad(x)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-40" style="background:;">
+  <hgroup>
+    <h2>How might you summarise dep_delay for each day?</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-41" style="background:;">
+  <hgroup>
+    <h2>Summarise by date</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>by_date &lt;- group_by(flights, date)
+delays &lt;- summarise(by_date,   
+mean = mean(dep_delay, na.rm = TRUE), 
+median = median(dep_delay, na.rm = TRUE),
+q75 = quantile(dep_delay, 0.75, na.rm = TRUE),
+over_15 = mean(dep_delay &gt; 15, na.rm = TRUE),
+over_30 = mean(dep_delay &gt; 30, na.rm = TRUE),
+over_60 = mean(dep_delay &gt; 60, na.rm = TRUE)  )
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-42" style="background:;">
+  <hgroup>
+    <h2>Summarise by date</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>by_date &lt;- group_by(flights, date)
+no_missing &lt;- filter(flights, !is.na(dep))
+delays &lt;- summarise(by_date,   
+mean = mean(dep_delay, na.rm = TRUE), 
+median = median(dep_delay, na.rm = TRUE),
+q75 = quantile(dep_delay, 0.75, na.rm = TRUE),
+over_15 = mean(dep_delay &gt; 15, na.rm = TRUE),
+over_30 = mean(dep_delay &gt; 30, na.rm = TRUE),
+over_60 = mean(dep_delay &gt; 60, na.rm = TRUE)  )
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -445,7 +828,7 @@ meltedlungs
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Merging dataframes'>
+        data-slide=5 title='Merging in R is <em>usually</em> pretty simple with the merge command.'>
          5
       </a>
     </li>
@@ -531,6 +914,144 @@ meltedlungs
       <a href="#" target="_self" rel='tooltip' 
         data-slide=19 title='Exercises'>
          19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='dplyr'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='5 verbs'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='What is our general m.o. if wanted rows 1,3, &amp; 4?'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='What if we just wanted the &quot;color&quot; column'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='What if we just wanted the &quot;color&quot; column'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Or if we didn&#39;t want the &quot;color&quot; column'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Or if we didn&#39;t want the &quot;color&quot; column'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Take a look at the handout'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Selecting _delay'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Arrange'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Arrange'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Exercises'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Exercises'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Arrange'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Arrange'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Exercises'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Grouped Summaries'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Grouped Summaries'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Grouped summaries'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Summary functions'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='How might you summarise dep_delay for each day?'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Summarise by date'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='Summarise by date'>
+         42
       </a>
     </li>
   </ul>

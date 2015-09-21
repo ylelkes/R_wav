@@ -54,10 +54,10 @@ load(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/rbindexercises.RData"
 6. What does the variables third and fourth look like for the df1:df4?
 
 ---
-## Merging dataframes
+## Merging in R is *usually* pretty simple with the merge command.
+<iframe src="https://stat.ethz.ch/R-manual/R-devel/library/base/html/merge.html"></iframe>
 
-1. Merging in R is *usually* pretty simple with the merge command. 
-2. Example from R
+
 
 ---
 ## Exercise
@@ -234,22 +234,6 @@ melt(UKLung,id.vars=c("month","year"))
 ```r
 meltedlungs <- melt(UKLung,id.vars=c("month","year"),
                     variable.name = "Gender",value.name = "Deaths")
-meltedlungs
-```
-
-```
-##      month year  Gender Deaths
-##   1:   Jan 1974 ldeaths   3035
-##   2:   Feb 1974 ldeaths   2552
-##   3:   Mar 1974 ldeaths   2704
-##   4:   Apr 1974 ldeaths   2554
-##   5:   May 1974 ldeaths   2014
-##  ---                          
-## 212:   Feb 1979 fdeaths    379
-## 213:   Mar 1979 fdeaths    393
-## 214:   Apr 1979 fdeaths    411
-## 215:   May 1979 fdeaths    487
-## 216:   Jun 1979 fdeaths    574
 ```
 
 ---
@@ -274,4 +258,272 @@ head(dcast(meltedlungs,year+month~Gender,value.var = "Deaths",fun.aggregate=mean
 ## Exercises 
 1. Melt the `airquality` data into long form, so that each of the measurements are in one column.
 2. create a ggplot that tracks each measurement in a different facet.
-3. cast the new data frame so you get yearly measurements in wide format.
+3. Recode the variable name with more descriptive labels, and change the order of the variable so that the order that appear in the legend are reversed. One way to do this is with the factor() function.  
+4. cast the new data frame so you get yearly measurements in wide format.
+
+---
+## dplyr
+```
+install.packages("dplyr")
+flights <- tbl_df(read.csv(url("https://cdn.rawgit.com/ylelkes/R_wav/master/data/flights.csv")))
+```
+
+
+
+1. Most useful package (for me) in R. 
+2. Another St. Wickham creation. 
+3. A tool for data exploration and transformation
+
+---
+## 5 verbs
+* filter: keep rows matching criteria
+* select: pick columns by name
+* arrange: reorder rows 
+* mutate: add new variables
+* summarise: reduce variables to values
+
+--- 
+## What is our general m.o. if wanted rows 1,3, & 4?
+
+```r
+df <- data.frame(   color = c("blue", "black", "blue", "blue", "black"),    value = 1:5)
+head(df)
+```
+
+```
+##   color value
+## 1  blue     1
+## 2 black     2
+## 3  blue     3
+## 4  blue     4
+## 5 black     5
+```
+
+--- 
+## What if we just wanted the "color" column
+
+--- 
+## What if we just wanted the "color" column
+
+```r
+select(df,color)
+```
+
+```
+##   color
+## 1  blue
+## 2 black
+## 3  blue
+## 4  blue
+## 5 black
+```
+
+--- 
+## Or if we didn't want the "color" column
+
+--- 
+## Or if we didn't want the "color" column
+
+```r
+select(df,-color)
+```
+
+```
+##   value
+## 1     1
+## 2     2
+## 3     3
+## 4     4
+## 5     5
+```
+
+--- 
+## Take a look at the handout
+
+```r
+names(flights)
+```
+
+```
+##  [1] "date"      "hour"      "minute"    "dep"       "arr"      
+##  [6] "dep_delay" "arr_delay" "carrier"   "flight"    "dest"     
+## [11] "plane"     "cancelled" "time"      "dist"
+```
+* What are some ways of selecting columns "dep_delay" and "arr_delay"
+
+---
+## Selecting _delay
+
+```
+select(flights, arr_delay, dep_delay)
+select(flights, arr_delay:dep_delay)
+select(flights, ends_with("delay"))
+select(flights, contains("delay"))
+```
+
+---
+## Arrange 
+
+
+```r
+arrange(df,value)
+```
+
+```
+##   color value
+## 1  blue     1
+## 2 black     2
+## 3  blue     3
+## 4  blue     4
+## 5 black     5
+```
+
+---
+## Arrange 
+
+
+```r
+arrange(df,desc(value))
+```
+
+```
+##   color value
+## 1 black     5
+## 2  blue     4
+## 3  blue     3
+## 4 black     2
+## 5  blue     1
+```
+
+---
+## Exercises 
+* Order the flights by departure date and time.
+* Which flights were most delayed?
+* Which flights caught up the most time during the flight?
+
+---
+## Exercises
+* arrange(flights, date, hour, minute) 
+* arrange(flights, desc(dep_delay))
+* arrange(flights, desc(arr_delay))
+* arrange(flights, desc(dep_delay - arr_delay))
+
+
+---
+## Arrange 
+
+
+```r
+mutate(df,double= 2* value)
+```
+
+```
+##   color value double
+## 1  blue     1      2
+## 2 black     2      4
+## 3  blue     3      6
+## 4  blue     4      8
+## 5 black     5     10
+```
+
+---
+## Arrange 
+
+
+```r
+mutate(df,double= 2* value,quadruple=2*double)
+```
+
+```
+##   color value double quadruple
+## 1  blue     1      2         4
+## 2 black     2      4         8
+## 3  blue     3      6        12
+## 4  blue     4      8        16
+## 5 black     5     10        20
+```
+
+---
+## Exercises
+* Compute speed in mph from time (in minutes) and distance (in miles).
+* Which flight flew the fastest?
+* Add a new variable that shows how much time was made up or lost in flight.
+
+---
+## Grouped Summaries
+
+```r
+summarise(df,total=sum(value))
+```
+
+```
+##   total
+## 1    15
+```
+
+---
+## Grouped Summaries
+
+```r
+by_color <- group_by(df,color)
+summarise(by_color,total=sum(value))
+```
+
+```
+## Source: local data frame [2 x 2]
+## 
+##   color total
+## 1 black     7
+## 2  blue     8
+```
+
+---
+## Grouped summaries
+* by_date <- group_by(flights, date)
+* by_hour <- group_by(flights, date, hour)
+* by_plane <- group_by(flights, plane)
+* by_dest <- group_by(flights, dest) 
+
+---
+## Summary functions
+* min(x), median(x), max(x), quantile(x, p)
+* n(), n_distinct(), sum(x), mean(x) 
+* sum(x > 10), mean(x > 10) 
+* sd(x), var(x), iqr(x), mad(x)
+
+---
+## How might you summarise dep_delay for each day? 
+
+```
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+```
+
+![plot of chunk unnamed-chunk-22](assets/fig/unnamed-chunk-22-1.png) 
+
+---
+## Summarise by date
+
+```
+by_date <- group_by(flights, date)
+delays <- summarise(by_date,   
+mean = mean(dep_delay, na.rm = TRUE), 
+median = median(dep_delay, na.rm = TRUE),
+q75 = quantile(dep_delay, 0.75, na.rm = TRUE),
+over_15 = mean(dep_delay > 15, na.rm = TRUE),
+over_30 = mean(dep_delay > 30, na.rm = TRUE),
+over_60 = mean(dep_delay > 60, na.rm = TRUE)  )
+```
+
+---
+## Summarise by date
+```
+by_date <- group_by(flights, date)
+no_missing <- filter(flights, !is.na(dep))
+delays <- summarise(by_date,   
+mean = mean(dep_delay, na.rm = TRUE), 
+median = median(dep_delay, na.rm = TRUE),
+q75 = quantile(dep_delay, 0.75, na.rm = TRUE),
+over_15 = mean(dep_delay > 15, na.rm = TRUE),
+over_30 = mean(dep_delay > 30, na.rm = TRUE),
+over_60 = mean(dep_delay > 60, na.rm = TRUE)  )
+```

@@ -1,0 +1,17 @@
+{
+    "contents" : "\n##--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---++\n##           \t\t\t\t\t\t\t\n##\tComScore Providers Graph  \t\n##\tYphtach Lelkes\t\t\t\t\t\t\n## \tLast Edited: 11/07/14 by YL\n##--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---++\n\n## Libraries\nlibrary(ggplot2)\nlibrary(ggthemr)\nrequire(scales)\nggthemr(\"fresh\")\n\n##\n### Read in Comscore Data from Year of Study, and merge the 2 years\ncs2 <- read.csv(\"demographics2004.csv\")\ncs5 <- read.csv(\"demographics2008.csv\")\ncs2$year <- 2004\ncs5$year <- 2008\ncomscore <- rbind(cs2,cs5)\n\n## Read in Zipcode level providersand merge\nzips2004 <- read.csv('providers_ziplevel2004.csv')\nzips2004 <- zips2004[,c(1:3)]\nzip08 <- read.csv(\"providers_ziplevel2008.csv\")\nzip08$year = 2008\nzips2004$year = 2004\nnames(zip08) <- names(zips2004)\nproviders <- rbind(zip08,zips2004)\n\n## Merge providers and comscore\ncomout <- na.omit(merge(providers,comscore,by.x = c(\"zipcode\",\"year\"),by.y =c(\"zip_code\",\"year\")))\n\n## GGPlot\nggplot(comout,aes(x=log(zipproviders),y=connection_speed))+geom_smooth(method='gam',formula=y~s(x,k=3,bs='cs'))+ylab(\"Proportion with \\n High Speed Internet\")+xlab(\"Number of Providers (logged)\")+ylim(0,1)\nggsave(\"comscoreproviderssubscribers.pdf\",width=8,height=6)\n",
+    "created" : 1442832215116.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2877848956",
+    "id" : "D3AAC2A9",
+    "lastKnownWriteTime" : 1442832301,
+    "path" : "C:/Users/Yphtach/Desktop/ajps/figc1.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "---\ntitle       : Markdown, Getting Data into Shape\nsubtitle    : \nauthor      : \njob         : \nframework   : io2012        # {io2012, html5slides, shower, dzslides, ...}\nhighlighter : highlight.js  # {highlight.js, prettify, highlight}\nhitheme     : tomorrow      # \nwidgets     : []            # {mathjax, quiz, bootstrap}\nmode        : selfcontained # {standalone, draft}\nknit        : slidify::knit2slides\n---\n\n## Markdown\n\n* Markdown is an easy way to combine data and writing for html and pdf reports. \n* All the slides in this class and the github page were written in markdown.\n* Rstudio is awesome because it has been developed to generate markdown reports. \n* I would like you to start submitting your problem sets in markdown. \n* First thing that needs to be done is install knitr. \n\n\n---\n## Some markdown exercises\n\n1. Create a new markdown document. \n2. Create a ggplot graph with a regression line using the ToothGrowth datalength (Guinea Pigs tooth lengs for different doses of either vitamin c or orange juice and doses), with different facets for type of supplement.\n, plotting a different facet for each diet. Add it to your markdown document and give it a width of 4 inches and a height of 4 inches. Don't show any of the code. \n3. Next, run three regressions, the first regresses length on dose for the guinea pigs in the VC condition, the second regresses length on dose for the OJ condition, the third looks at the interaction between supp and dose on length. \n4. Use the texreg (or htmlreg if you want an html doc) function in the texreg package to create a table of these three regressionn models (in one table). Give the columns new names and a nice caption. HINT: you'll have to change the result command within the chunk to make this work.\n5. You're writing up your results, and want to report the interaction effect from the third model. Write a sentence that reports the b coefficient and standard error from that model. HINT: use summary(modelname)$coefficients to get the matrix.\n\n",
+    "created" : 1442839639637.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2929637547",
+    "id" : "790ADE5",
+    "lastKnownWriteTime" : 1442835365,
+    "path" : "C:/Users/Yphtach/Dropbox/R_wav/Week3-b/mydeck/index.Rmd",
+    "project_path" : "Week3-b/mydeck/index.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}

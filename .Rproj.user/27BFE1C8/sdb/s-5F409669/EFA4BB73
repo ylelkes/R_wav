@@ -1,0 +1,17 @@
+{
+    "contents" : "con <- file(\"ajps.log\")\nsink(con, append=TRUE)\nsink(con, append=TRUE, type=\"message\")\n\nsource(\"Figure_1_map.R\",echo = T)\nsource(\"Figure_2_providerssubscribers.R\",echo = T)\nsource(\"Table1.R\",echo = T)\nsource(\"Table2.R\",echo = T)\nsource(\"Figure_3_comscoreproviders.R\",echo = T)\nsource(\"Figure_4_nes.R\",echo = T)\nsource(\"FigA1.R\",echo = T)\nsource(\"ROW Validation Checks.R\",echo = T)\nsource(\"figc1.R\",echo = T)\nsource(\"tablec1.R\",echo = T)\nsource(\"tablese3e4.R\",echo = T)\nsink() \nsink(type=\"message\")\n",
+    "created" : 1442832345343.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1730735529",
+    "id" : "EFA4BB73",
+    "lastKnownWriteTime" : 1442832423,
+    "path" : "C:/Users/Yphtach/Desktop/ajps/run_all_scripts.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

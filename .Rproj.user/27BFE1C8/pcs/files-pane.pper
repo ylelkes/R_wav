@@ -1,0 +1,13 @@
+{
+    "path" : "C:/Users/Yphtach/Desktop/ajps",
+    "sortOrder" : [
+        {
+            "ascending" : false,
+            "columnIndex" : 4
+        },
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

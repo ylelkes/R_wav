@@ -1,0 +1,17 @@
+{
+    "contents" : "rm(list=c(ls()))\n##--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---++\n##             \t\t\t\t\t\t\n##\tFigure 3\n##\tfor Hostile Audience, AJPS\n##  Gaurav Sood\t\t\t\t\t\t\n## \tLast Edited: 21/07/14 by yl\n##--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~---++\nload(\"gentzkow.RData\")\n\nif (!require(\"pacman\")) install.packages(\"pacman\")\npacman::p_load( plyr, stargazer,cem,MatchIt,effects,ggthemr,gridExtra)\n\n\n# ggplot\npartmedia \t\t<- lm(sum ~speed + household_size + (hoh_oldest_age) + (household_income) + (children) + (racial_background) + (country_of_origin), data=matched12,weight=weights)\n\n\nc1 <- effect(partmedia,term=\"speed\")\nforggplot <- data.frame(y=c1$fit,speed=c1$x, upper=(c1$upper),lower=(c1$lower),media=\"Selecting \\n Partisan Media\")\n\nggthemr(\"fresh\")\n\np <- ggplot(forggplot,aes(x=speed,y=y))+\n  geom_bar(stat=\"identity\")+\n  geom_linerange(aes(ymin=lower,ymax=upper,y=y))+\n  ylab(\"Minutes\")+\n  xlab(\"Type of Connection at Home\")\np\nggsave(file=\"comScorebbonmedia.pdf\", width = 8, height = 6)\n\n\n",
+    "created" : 1442833316139.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3638029128",
+    "id" : "6733E064",
+    "lastKnownWriteTime" : 1442824277,
+    "path" : "C:/Users/Yphtach/Desktop/ajps/Figure_3_comscoreproviders.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

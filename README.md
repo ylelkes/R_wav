@@ -78,19 +78,17 @@ Email: y.lelkes@uva.nl
     * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week3-b/mydeck/index.html)
     * Markdown
     * Getting your data into shape
-    * Reshaping data
-		* Factors
-		* Dates
-		* Strings	
 
 * Week4
 * Session 1
 		* Managing and manipulating data frames (data wrangling) 
-		* dplyr, chains
+    * Reshaping data
+		* Factors
+		* Dates
+		* Strings	
 	* Session 2	
 		* Basic analytics (regression, anova, clustering, anything else?)
-		* Simulation
-
+    * tidyr
 * Week 4 
 	* Session 1 
 		* Markdown, Latex, knitr

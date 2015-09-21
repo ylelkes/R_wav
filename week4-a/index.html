@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1></h1>
+    <h2></h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Getting data into shape</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Ran 10 experiments, now want to do a meta-analysis. </li>
+<li>I want to match my country level data with my individual-level data.</li>
+<li>I have time series data that looks like this:</li>
+</ol>
+
+<pre><code>##   Code     Country  X1950  X1951  X1952  X1953  X1954
+## 1  AFG Afghanistan 20,249 21,352 22,532 23,557 24,555
+## 2  ALB     Albania  8,097  8,986 10,058 11,123 12,246
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>I want it to look like this:</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>##   Code     Country variable  value
+## 1  AFG Afghanistan    X1950 20,249
+## 2  ALB     Albania    X1950  8,097
+## 3  AFG Afghanistan    X1951 21,352
+## 4  ALB     Albania    X1951  8,986
+## 5  AFG Afghanistan    X1952 22,532
+## 6  ALB     Albania    X1952 10,058
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Stacking dataframes with rbind</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Try the following:</p>
+
+<pre><code>load(url(&quot;https://cdn.rawgit.com/ylelkes/R_wav/master/data/rbindexercises.RData&quot;))
+</code></pre></li>
+<li><p>First, use colnames to look at the names of df1,df2,df3.</p></li>
+<li><p>use rbind to stack df1, df2, and df3 into one dataframe. </p></li>
+<li><p>Now try to add df4 to the stacked dataframe. How do we fix it?</p></li>
+<li><p>Now add df5. Doesn&#39;t work? Try plyr::rbind.fill</p></li>
+<li><p>What does the variables third and fourth look like for the df1:df4?</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Merging dataframes</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Merging in R is <em>usually</em> pretty simple with the merge command. </li>
+<li>Example from R</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Exercise</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Let&#39;s start with merging two dataframes</li>
+<li>You always need a key that links data.frames, individual, country, etc.</li>
+<li>Merge the US state characteristic files state.x77 with this, with the variable Obamafeelings indicating a score on a feeling thermometer from 0=cold to 100=hot 
+<code>
+load(url(&quot;https://cdn.rawgit.com/ylelkes/R_wav/master/data/anes.RData&quot;))
+</code></li>
+<li>Hint: state.x77 needs to be converted to a dataframe</li>
+<li>What state characteristics predict liking Obama?</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Sometimes you want to merge based on multiple keys</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>See what happens, and what your answers look like if you merge two of the datasets in the following file, first by country.name only, then by program.name only, then by both country.name and program.name. Note the dimensions, number of variables. </li>
+</ol>
+
+<pre><code>load(url(&quot;https://rawgit.com/ylelkes/R_wav/master/data/foreignaid.RData&quot;))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Sometimes we want to merge more than two datasets.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Use the following function to merge all the Aid datasets: <code>reshape::merge_all</code></li>
+<li>Note, there are other ways of merging data. With really big datasets (N=millions), we probably want to use data.table or plyr.<br></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Reshaping data</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="http://pix-media.s3.amazonaws.com/blog/1001/HadleyObama2.png" alt="Hadley Wickham"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>What makes data wide or long?</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>##    ldeaths mdeaths fdeaths month year
+## 1:    3035    2134     901   Jan 1974
+## 2:    2552    1863     689   Feb 1974
+## 3:    2704    1877     827   Mar 1974
+## 4:    2554    1877     677   Apr 1974
+## 5:    2014    1492     522   May 1974
+## 6:    1655    1249     406   Jun 1974
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>What makes data wide or long?</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>##      month year variable value
+##   1:   Jan 1974  ldeaths  3035
+##   2:   Feb 1974  ldeaths  2552
+##   3:   Mar 1974  ldeaths  2704
+##   4:   Apr 1974  ldeaths  2554
+##   5:   May 1974  ldeaths  2014
+##  ---                          
+## 212:   Feb 1979  fdeaths   379
+## 213:   Mar 1979  fdeaths   393
+## 214:   Apr 1979  fdeaths   411
+## 215:   May 1979  fdeaths   487
+## 216:   Jun 1979  fdeaths   574
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Why is this useful?</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Why is this useful?</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(dplyr)
+meltedlungs %&gt;% group_by(year) %&gt;% summarise(average=mean(value),sd=sd(value),N=n())
+</code></pre>
+
+<pre><code>## Source: local data table [6 x 4]
+## 
+##   year  average       sd  N
+## 1 1974 1452.222 750.0330 36
+## 2 1975 1450.056 796.4717 36
+## 3 1976 1428.778 876.3478 36
+## 4 1977 1290.500 707.7449 36
+## 5 1978 1330.611 747.4531 36
+## 6 1979 1274.333 700.9802 36
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Why is this useful?</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(dplyr)
+meltedlungs %&gt;% group_by(year,variable) %&gt;% summarise(average=mean(value),sd=sd(value),N=n())
+</code></pre>
+
+<pre><code>## Source: local data table [18 x 5]
+## Groups: year
+## 
+##    year variable   average       sd  N
+## 1  1974  ldeaths 2178.3333 494.5983 12
+## 2  1975  ldeaths 2175.0833 602.2528 12
+## 3  1976  ldeaths 2143.1667 831.8715 12
+## 4  1977  ldeaths 1935.7500 552.0763 12
+## 5  1978  ldeaths 1995.9167 621.5696 12
+## 6  1979  ldeaths 1911.5000 572.2454 12
+## 7  1974  mdeaths 1589.2500 328.7890 12
+## 8  1975  mdeaths 1603.9167 427.5011 12
+## 9  1976  mdeaths 1558.0833 579.8723 12
+## 10 1977  mdeaths 1410.5833 391.8700 12
+## 11 1978  mdeaths 1444.0833 451.1524 12
+## 12 1979  mdeaths 1369.7500 414.8553 12
+## 13 1974  fdeaths  589.0833 169.7412 12
+## 14 1975  fdeaths  571.1667 176.1502 12
+## 15 1976  fdeaths  585.0833 252.6066 12
+## 16 1977  fdeaths  525.1667 162.8479 12
+## 17 1978  fdeaths  551.8333 170.8869 12
+## 18 1979  fdeaths  541.7500 160.0080 12
+</code></pre>
+
+<h2>Why is this useful?</h2>
+
+<pre><code class="r">library(ggplot2)
+</code></pre>
+
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.2.2
+</code></pre>
+
+<pre><code class="r">ggplot(meltedlungs,aes(x=year,y=value,group=variable,colour=variable))+geom_smooth() 
+</code></pre>
+
+<pre><code>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>reshape2 package</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Reshape2 is based on two functions</li>
+<li>melt takes wide-format data and melts it into long-format data.</li>
+<li>cast takes long-format data and casts it into wide-format data.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>melting data</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">melt(UKLung,id.vars=c(&quot;month&quot;,&quot;year&quot;))
+</code></pre>
+
+<pre><code>##      month year variable value
+##   1:   Jan 1974  ldeaths  3035
+##   2:   Feb 1974  ldeaths  2552
+##   3:   Mar 1974  ldeaths  2704
+##   4:   Apr 1974  ldeaths  2554
+##   5:   May 1974  ldeaths  2014
+##  ---                          
+## 212:   Feb 1979  fdeaths   379
+## 213:   Mar 1979  fdeaths   393
+## 214:   Apr 1979  fdeaths   411
+## 215:   May 1979  fdeaths   487
+## 216:   Jun 1979  fdeaths   574
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>melting data</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">meltedlungs &lt;- melt(UKLung,id.vars=c(&quot;month&quot;,&quot;year&quot;),
+                    variable.name = &quot;Gender&quot;,value.name = &quot;Deaths&quot;)
+meltedlungs
+</code></pre>
+
+<pre><code>##      month year  Gender Deaths
+##   1:   Jan 1974 ldeaths   3035
+##   2:   Feb 1974 ldeaths   2552
+##   3:   Mar 1974 ldeaths   2704
+##   4:   Apr 1974 ldeaths   2554
+##   5:   May 1974 ldeaths   2014
+##  ---                          
+## 212:   Feb 1979 fdeaths    379
+## 213:   Mar 1979 fdeaths    393
+## 214:   Apr 1979 fdeaths    411
+## 215:   May 1979 fdeaths    487
+## 216:   Jun 1979 fdeaths    574
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Getting data from long to wide</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">head(dcast(meltedlungs,year+month~Gender,value.var = &quot;Deaths&quot;,fun.aggregate=mean,na.rm=T))
+</code></pre>
+
+<pre><code>##   year month ldeaths mdeaths fdeaths
+## 1 1974   Jan  2773.5    1990   783.5
+## 2 1974   Feb  2552.0    1863   689.0
+## 3 1974   Mar  2704.0    1877   827.0
+## 4 1974   Apr  2554.0    1877   677.0
+## 5 1974   May  2014.0    1492   522.0
+## 6 1974   Jun  1655.0    1249   406.0
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Melt the <code>airquality</code> data into long form, so that each of the measurements are in one column.</li>
+<li>create a ggplot that tracks each measurement in a different facet.</li>
+<li>cast the new data frame so you get yearly measurements in wide format.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Getting data into shape'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='I want it to look like this:'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Stacking dataframes with rbind'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Merging dataframes'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Exercise'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Sometimes you want to merge based on multiple keys'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Sometimes we want to merge more than two datasets.'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Reshaping data'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='What makes data wide or long?'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='What makes data wide or long?'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Why is this useful?'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Why is this useful?'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Why is this useful?'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='reshape2 package'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='melting data'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='melting data'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Getting data from long to wide'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Exercises'>
+         19
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

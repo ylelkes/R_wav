@@ -1,0 +1,17 @@
+{
+    "contents" : "---\ntitle: \"Untitled\"\nauthor: \"ylelkes\"\ndate: \"September 18, 2015\"\noutput: html_document\n---\n\n---\n## Reshaping data\n* Reshape2 is based on two functions\n  * melt takes wide-format data and melts it into long-format data.\n  * cast takes long-format data and casts it into wide-format data.\n\n\n\n```{r}\n\n```\n\n",
+    "created" : 1442554123917.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1798605953",
+    "id" : "61D784C7",
+    "lastKnownWriteTime" : 399431958528,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled6"
+    },
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}

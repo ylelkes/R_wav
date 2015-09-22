@@ -22,7 +22,7 @@ In the data folder on the course website there is a file called immigrantattitud
 * Create a barplot that is facetted by country of origin, and plot the percentage that chose each value as their first choice. Make sure that there are no NAs. The following code will help, but make sure you understand what it is doing. 
 
 ```
-geom_bar(aes(y = ..density..,fill = ka13a109)) +   scale_y_continuous(labels = percent_format())
+geom_bar(aes(y = ..density..,group = ka13a109)) +   scale_y_continuous(labels = percent_format())
 ```
 
 Also, rotate the x-labels so that they're not on top of each other. Change the theme using ggthemes or ggthemr. Give it a title and print it into your file. Have it echo your code as well.

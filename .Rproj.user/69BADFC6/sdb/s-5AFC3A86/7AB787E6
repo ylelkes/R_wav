@@ -1,0 +1,17 @@
+{
+    "contents" : "---\ntitle: \"Untitled\"\nauthor: \"ylelkes\"\ndate: \"September 18, 2015\"\noutput: pdf_document\n---\n\nThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.\n\nWhen you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\n```{r,echo=F,results='asis'}\nlibrary(xtable)\noptions(xtable.comment = FALSE)\ndata(ToothGrowth)\nToothGrowth$len\nprint(xtable(prop.table(table(mtcars$cyl,mtcars$gear),2),caption=\"gears\"),caption.placement = \"top\")\n\n```\n\nYou can also embed plots, for example:\n\n```{r, echo=FALSE}\nplot(cars)\n```\n\nNote that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.\n",
+    "created" : 1442570853116.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "146901424",
+    "id" : "7AB787E6",
+    "lastKnownWriteTime" : 1442586287,
+    "path" : "~/Dropbox/R_wav/Untitled.Rmd",
+    "project_path" : "Untitled.Rmd",
+    "properties" : {
+        "tempName" : "Untitled10"
+    },
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}

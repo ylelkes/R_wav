@@ -1,0 +1,17 @@
+{
+    "contents" : "immigrants <- haven::read_dta(\"~/Desktop/avars_201412_EN_1.0p 2/avars_201412_EN_1.0p.dta\")\nimmigrants2 <- haven::read_dta(\"~/Desktop/ka13a_EN_1.0p.dta\")\nimmdat <- merge(immigrants,immigrants2,by=\"nomem_encr\")\nggplot(immdat,aes(as.factor(ka13a109),group=herkomstland))+         geom_bar(aes(y = ..density..,fill = ka13a109)) +   scale_y_continuous(labels = percent_format())+facet_wrap(~herkomstland)\nimmdat$ka13a109\n\nggplot(test, aes(x= test2, group = test1)) + \n\n\n  ggplot(dat, aes(x=factor(ANGLE))) +\n  geom_bar(aes(y = ..density..,group = SHOW,fill = NETWORK)) +\n  facet_wrap(~SHOW) + \n  opts(legend.position = \"top\") +\n\n  immdat$ka13a109\nimmigrants2$nomem_encr\nimmigrants$lftdcat <- factor(immigrants$lftdcat,labels=names(attr(immigrants$lftdcat,\"labels\"))) \nimmigrants$herkomstland <- factor(immigrants$herkomstland,labels=names(attr(immigrants$herkomstland,\"labels\"))) \nimmigrants$unemployed <- car::recode(immigrants$belbezig,\"1=1;else=0\")\n\nstat_sum_single <- function(fun, geom=\"point\", ...) {\n  stat_summary(fun.y=fun, colour=\"red\", geom=geom, size = 3, ...)      \n}\n\nc + stat_sum_single(mean)\n\nlibrary(ggplot2)\nggplot(immigrants,aes(y=unemployed,x=lftdcat))+facet_wrap(~herkomstland,ncol=1)+ stat_sum_single(\"mean\")+coord_flip()\nimmigrants$herkomstland\n\ncar::recode(immigrants$lftdcat,\n            label(immigrants$lftdcat) = lapply(names(var.labels), \n                                 function(x) label(data[,x]) = var.labels[x])\n            ",
+    "created" : 1442661306556.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2478742438",
+    "id" : "9A41BAB1",
+    "lastKnownWriteTime" : 4298826688,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled13"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

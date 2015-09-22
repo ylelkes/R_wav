@@ -95,7 +95,8 @@ median(europe$population)
 
 ```{r}
 mean(europe$population/europe[,7])
-mean(europe$population/europe$land)
+mean(europe$population/europe$pop)
+names(europe)
 ```
 
 
@@ -118,6 +119,11 @@ europe$name[europe$population==max(europe$population)]
 ```{r}
 fatherchild <- cor(galton$childHeight,galton$father)
 motherchild <- cor(galton$childHeight,galton$mother)
+
+cortab <- cor(childdata) <- cor(data.frame(galton$childHeight,galton$mother,galton$father))
+
+out <- summary(lm(childHeight~mother+father,galton))
+out$coefficients[2,c(1,4)]
 ```
 		* Use a logical statement, get R to confirm that the first correlation does not equal the second correlation.
 ```{r}

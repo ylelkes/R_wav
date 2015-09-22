@@ -1,0 +1,17 @@
+{
+    "contents" : "read.csv(\"\")\n\nlibrary(haven)\nlibrary(HistData)\ndata(data(GaltonFamilies))\ndata(GaltonFamilies)\n\ncor(GaltonFamilies$father,GaltonFamilies$childHeight)\ncor(GaltonFamilies$mother,GaltonFamilies$childHeight)\ncor(GaltonFamilies$mother,GaltonFamilies$father)\nplot(GaltonFamilies$father,GaltonFamilies$childHeight)\n?plot\nplot(GaltonFamilies$gender,GaltonFamilie)\ndata(Minard.cities)\nMinard.troops$latlong <- paste(Minard.troops$long,Minard.troops$lat)\nmean(Minard.troops$survivors[Minard.troops$direction=='A'])\nMinard.cities$latlong <- paste(Minard.cities$long,Minard.cities$lat)\n\nmerge(Minard.cities,Minard.troops,by=\"long\")\nMinard.cities$city\nforeign::write.dta(DrinksWages,file = \"drinkswages.dta\")\neurope <- read.csv(\"data examples/Countries-Europe.csv\")\ntable(GaltonFamilies$gender\nalpha <- cor(cbind(GaltonFamilies$childHeight,GaltonFamilies$father,GaltonFamilies$mother))\nplot(GaltonFamilies)\n(lm(GaltonFamilies$father~GaltonFamilies$childNum))\n[]\n(DrinksWages$class,DrinksWages$drinks)\n\ncs <- foreign::read.spss(\"data examples/child_data.sav\",to.data.frame=T)\n\nsummary(cs)\ncs$MEM_SPAN[cs$IQ==max(cs$IQ)]\ncor(cs)\n   ",
+    "created" : 1441370581429.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2791431549",
+    "id" : "D1B92F9",
+    "lastKnownWriteTime" : 0,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

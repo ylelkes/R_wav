@@ -156,7 +156,7 @@ ggplot(meltedlungs,aes(x=year,y=value,group=variable,colour=variable))+geom_smoo
 ## reshape2 package
 * Reshape2 is based on two functions
 * melt takes wide-format data and melts it into long-format data.
-* cast takes long-format data and casts it into wide-format data.
+* dcast takes long-format data and casts it into wide-format data.
 
 ---
 ## melting data

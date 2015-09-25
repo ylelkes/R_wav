@@ -83,12 +83,10 @@ Email: y.lelkes@uva.nl
 * Session 1
 		* Managing and manipulating data frames (data wrangling) 
     * Reshaping data
-		* Factors
-		* Dates
-		* Strings	
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/week4-a/index.html)
 	* Session 2	
-		* Basic analytics (regression, anova, clustering, anything else?)
-    * tidyr
+    * Dplyr 
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week4-b/index.html)
 * Week 4 
 	* Session 1 
 		* Markdown, Latex, knitr

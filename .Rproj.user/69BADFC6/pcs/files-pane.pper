@@ -1,8 +1,8 @@
 {
-    "path" : "~/Dropbox/R_wav/data examples",
+    "path" : "~/Dropbox/R_wav/Problem Sets",
     "sortOrder" : [
         {
-            "ascending" : false,
+            "ascending" : true,
             "columnIndex" : 4
         },
         {

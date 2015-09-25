@@ -80,14 +80,15 @@ Email: y.lelkes@uva.nl
     * Getting your data into shape
 
 * Week4
-* Session 1
+  * Session 1
 		* Managing and manipulating data frames (data wrangling) 
     * Reshaping data
     * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/week4-a/index.html)
-	* Session 2	
+  * Session 2	
     * Dplyr 
     * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week4-b/index.html)
-* Week 4 
+
+* Week 5
 	* Session 1 
 		* Markdown, Latex, knitr
 		* Publishable documents (xtable, stargazer)

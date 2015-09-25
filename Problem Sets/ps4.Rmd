@@ -1,0 +1,40 @@
+---
+title: "Problem Set 4"
+author: "ylelkes"
+date: "September 25, 2015"
+output: pdf_document
+---
+
+We'll be using dplyr and reshape2 for this exercise. 
+
+[Here's a recent study that was run examining the effects of media portrayals of victim suffering on attitudes towards gays.](http://www.tessexperiments.org/data/goldman507.html)
+
+Download the study material. As before, use markdown for this problem set, but this time print it to pdf. We are interested in Goldman's key dependent measures.
+
+Among heterosexual respondents, there are four dependent variables: sympathy toward the victim (Q2); overall favorability toward gays and lesbians (Q17); support for gay rights policies (Q16); and pity toward gays and lesbians (Q18_2). 
+
+1. First, let's select only the columns we're interested in with dplyr (the experimental condition, the four dependent measures) reshape or melt the dataframe so that the four dependent measures that were asked among heterosexuals are "stacked.
+
+2. Next, use the various functions in dplyr to first filter out rows so that we only have data among heterosexuals. You'll need to take a look at the codebook here.
+
+3. Next, using dplyr, generate a table that contains the mean, standard deviation, and N for each condition and dependent measures. Print this table using xtable. 
+
+4. Now mutate the table to include the standard errors and upper and lower 95 percent confidence intervals. 
+
+5. Finally, create a plot where you illustrate these results. Have a facet for each dependent measure, the y-axis should index condition, the x-axis the score on the dependent measure. Include the 95 percent confidence intervals. Allow the scales on the x-axis to be "free", i.e., vary by dependent measures. 
+
+6. Write up a few lines explaining the results of this experiment. 
+
+7. Next let's see if sympathy for the victim in the story depends on the sexual orientation of the subject, which you can find out by looking at XTESS163. Run a t-test to see if Q2 varies between gay and straight people. Report these results in APA format, i.e., the mean among straight people is X, the mean among gay people is X. But report the numbers dynamically--i.e., extract them from the t-test output and embed them with inline R code. Someone from the psych department at the UVA made a neat package that allows us to automatically print out some of this information with the st() function. 
+
+```
+devtools::install_github(repo = "staTeX",username = "SachaEpskamp")
+library(staTeX)
+```
+
+8. Let's see if there is an interaction between condition and being straight on Q2. You'll have to create variables indicating if a respondent was gay or straight, and a variable indicating if they saw the hero story or the victim story (ignore other conditions as missing.) Go back to the original dataset, and create a table which reports the means deviations which groups by sexual orientation and by condition.
+
+9. Finally, transform that table into a two x two table using dcast, which presents the means for each combination. Remove NAs, and again present the table using xtable. 
+
+10. Finally, using st() again, report the results from a 2x2 anova in APA style. HINT: To report one statistic at a time you'll have to do st(X)[1], st(X)[2], etc. 
+

@@ -66,10 +66,25 @@ backtowide_byraceses
 datasets:EuStockMarkets is a dataset in wide format that lists the closing prices for 4 EU stock markets
   - Create a plot with 4 lines that tracks closing prices by date.
 
+```{r}
+library(reshape2)
+data(EuStockMarkets)
+melted <- melt(EuStockMarkets)
+head(melted)
+```
+
 datasets::airquality is a dataset that tracks 4 variables of climate by month and day.
   - melt the data so that measurements are stacked
   - cast so that you get a mean monthly measurement by outcome measure.
   
+```{r}
+library(reshape2)
+data(airquality)
+names(airquality)
+melted <- melt(airquality,id.vars = c("Month","Day"))
+subset(melted,Month==5 & Day==2)
+dcast(melted,formula = Month~variable,fun.aggregate = mean,na.rm=T)
+```  
 ---
 
 ---

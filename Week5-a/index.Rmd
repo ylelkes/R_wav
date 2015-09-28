@@ -1,0 +1,13 @@
+---
+title: "index.Rmd"
+author: "ylelkes"
+date: "September 28, 2015"
+output: html_document
+---
+
+Let's start by going through Problem Set 3.
+
+---
+## More on dplyr
+- Pipes
+-

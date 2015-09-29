@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Week 5a Pipes, Graphing Regression Results</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Week 5a Pipes, Graphing Regression Results">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Week 5a Pipes, Graphing Regression Results</h1>
+    <h2></h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>PS 3</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Let&#39;s start by going through Problem Set 3.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>More on dplyr</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Let&#39;s refresh all using dplyr</li>
+<li>Create a new variable that calculates the time caught up inflight.</li>
+<li>For each carrier, calculate the mean amount of time caught up inflight.</li>
+<li>Arrange this output in order from most caught up times to least.</li>
+</ul>
+
+<pre><code class="r">library(dplyr)
+flights &lt;- tbl_df(read.csv(&quot;~/Dropbox/R_wav/data/flights.csv&quot;))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>The inefficient way</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ob1 &lt;- mutate(flights,caughtup=dep_delay-arr_delay)
+ob2 &lt;- group_by(ob1,carrier)
+ob3 &lt;- summarise(ob2,mean_caughtup=mean(caughtup,na.rm=T))
+ob4 &lt;- arrange(ob3,desc(mean_caughtup))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Pipes</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>%&gt;%</li>
+<li>read `then&#39;</li>
+<li>x then y then z </li>
+</ul>
+
+<pre><code class="r">flights %&gt;% 
+  mutate(caughtup=dep_delay-arr_delay) %&gt;% 
+  group_by(carrier) %&gt;%
+  summarise(mean_caughtup=mean(caughtup,na.rm=T)) %&gt;%
+  arrange(desc(mean_caughtup)) -&gt; carrierscaughtup
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Pipes</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">head(carrierscaughtup)
+</code></pre>
+
+<pre><code>## Source: local data frame [6 x 2]
+## 
+##   carrier mean_caughtup
+## 1      WN      5.849313
+## 2      AA      5.516048
+## 3      EV      5.074493
+## 4      MQ      3.902753
+## 5      B6      3.542348
+## 6      DL      3.191818
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Try it</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>A dataset of mammal life-history, geography, and ecology traits from the PanTHERIA database</li>
+</ul>
+
+<pre><code class="r">load(url(&quot;http://cdn.rawgit.com/ylelkes/R_wav/master/data/mammals.RData&quot;))
+</code></pre>
+
+<ul>
+<li>Create a new object that has two columns, one for species and one indicating mass-to-length ratio. Order the columns so that the highest ratios are on top. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s put merging, reshaping, and wrangling all together.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>We have one dataset that has average internet speed by county (what is called a fipscode) and city (cbsa) and year</p></li>
+<li><p>Start by using dcast to reshape the data to remove any data that does not have complete data, i.e., is missing data for some years. Hint: Years will be your column data, and use na.omit.</p></li>
+<li><p>The melt the data back to long format.</p></li>
+<li><p>Now merge it with a dataset that has county level demographic information. One problem with the county-level data is that the county indicator (fips) is numeric and therefore does not include the leading zeros that are included in the speedfips data. Using nchar() find out length of the fipscode in speedfips, then use stringr::str_pad to add leading zeros to the county-level demographic data. </p></li>
+<li><p>Now aggregate the data up to the cbsa-level. You can use either dcast or dplyr for this</p></li>
+<li><p>Calculate a new variable that indicates the population per square mile using mutate.</p></li>
+<li><p>Finally, calculate a multilevel model predicting internet speed by demographic characteristics. For multileveling models we tend to use the following format:</p></li>
+</ol>
+
+<pre><code>library(lme4)
+lmer(y~x1+x2+x3+as.factor(year)+(1|cbsa),data)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Short respite from plyr</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>How should we present our findings?</li>
+<li>A move away from tables into figures.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Coefficient plots</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(coefplot)
+reg1 &lt;- lm(cty~cyl+class+as.factor(year),mpg)
+coefplot(reg1,intercept = F)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Effects package</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(effects)
+library(Ecdat)
+data(Icecream)
+r1 &lt;- lm(formula = cons ~ price * income, data = Icecream)  
+eff1 &lt;- effect(r1,term=&quot;price*income&quot;)
+plot(eff1)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
+
+<pre><code class="r">plot(eff1,multiline=T)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-7-2.png" alt="plot of chunk unnamed-chunk-7"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Effects package</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Create a coefplot of the effect of main effects of price and income on icecreame consumption</li>
+<li>Extract the output from effects:effect, and replot the 2 way interaction effects and 95 percent confidence intervals in ggplot</li>
+<li>Let&#39;s try three-way interactions use threeway.sav in the data folder, which is a three factorial experiment (a,b,c) on some dependent variable y. First plot it with the built in plot, but extract the output and plot it in ggplot. To make this work, you&#39;ll probably have to reshape the data so it&#39;s in long format. </li>
+</ol>
+
+<pre><code class="r">data &lt;- foreign::read.spss(&quot;~/Dropbox/R_wav/data/threeway.sav&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='PS 3'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='More on dplyr'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='The inefficient way'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Pipes'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Pipes'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Try it'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Let&#39;s put merging, reshaping, and wrangling all together.'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Short respite from plyr'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Coefficient plots'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Effects package'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Effects package'>
+         11
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

@@ -1,13 +1,126 @@
 ---
-title: "index.Rmd"
-author: "ylelkes"
-date: "September 28, 2015"
-output: html_document
+title       : Week 5a Pipes, Graphing Regression Results
+subtitle    : 
+author      : 
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
 ---
-
+## PS 3
 Let's start by going through Problem Set 3.
 
 ---
 ## More on dplyr
-- Pipes
--
+* Let's refresh all using dplyr
+* Create a new variable that calculates the time caught up inflight.
+* For each carrier, calculate the mean amount of time caught up inflight.
+* Arrange this output in order from most caught up times to least.
+
+```{r,echo=T,warning=FALSE,message=F}
+library(dplyr)
+flights <- tbl_df(read.csv("~/Dropbox/R_wav/data/flights.csv"))
+```
+
+---
+## The inefficient way
+```{r}
+ob1 <- mutate(flights,caughtup=dep_delay-arr_delay)
+ob2 <- group_by(ob1,carrier)
+ob3 <- summarise(ob2,mean_caughtup=mean(caughtup,na.rm=T))
+ob4 <- arrange(ob3,desc(mean_caughtup))
+```
+
+---
+## Pipes
+* %>%
+* read `then'
+* x then y then z 
+
+```{r}
+flights %>% 
+  mutate(caughtup=dep_delay-arr_delay) %>% 
+  group_by(carrier) %>%
+  summarise(mean_caughtup=mean(caughtup,na.rm=T)) %>%
+  arrange(desc(mean_caughtup)) -> carrierscaughtup
+```
+
+---
+## Pipes
+
+```{r}
+head(carrierscaughtup)
+```
+
+---
+## Try it
+
+- A dataset of mammal life-history, geography, and ecology traits from the PanTHERIA database
+
+```{r}
+load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/mammals.RData"))
+```
+* Create a new object that has two columns, one for species and one indicating mass-to-length ratio. Order the columns so that the highest ratios are on top. 
+
+---
+## Let's put merging, reshaping, and wrangling all together. 
+1. We have one dataset that has average internet speed by county (what is called a fipscode) and city (cbsa) and year
+
+2. Start by using dcast to reshape the data to remove any data that does not have complete data, i.e., is missing data for some years. Hint: Years will be your column data, and use na.omit.
+
+3. The melt the data back to long format.
+
+4. Now merge it with a dataset that has county level demographic information. One problem with the county-level data is that the county indicator (fips) is numeric and therefore does not include the leading zeros that are included in the speedfips data. Using nchar() find out length of the fipscode in speedfips, then use stringr::str_pad to add leading zeros to the county-level demographic data. 
+
+---
+## Let's put merging, reshaping, and wrangling all together. 
+
+5. Now aggregate the data up to the cbsa-level. You can use either dcast or dplyr for this
+
+6. Calculate a new variable that indicates the population per square mile using mutate.
+
+7. Finally, calculate a multilevel model predicting internet speed by demographic characteristics. For multileveling models we tend to use the following format:
+
+```
+library(lme4)
+lmer(y~x1+x2+x3+as.factor(year)+(1|cbsa),data)
+```
+
+---
+## Short respite from plyr
+
+1. How should we present our findings?
+2. A move away from tables into figures.
+
+---
+## Coefficient plots
+```{r}
+library(coefplot)
+reg1 <- lm(cty~cyl+class+as.factor(year),mpg)
+coefplot(reg1,intercept = F)
+```
+
+---
+## Effects package
+```{r}
+library(effects)
+library(Ecdat)
+data(Icecream)
+r1 <- lm(formula = cons ~ price * income, data = Icecream)  
+eff1 <- effect(r1,term="price*income")
+plot(eff1)
+plot(eff1,multiline=T)
+```
+
+---
+## Effects package
+1. Create a coefplot of the effect of main effects of price and income on icecreame consumption
+2. Extract the output from effects:effect, and replot the 2 way interaction effects and 95 percent confidence intervals in ggplot
+3. Let's try three-way interactions use threeway.sav in the data folder, which is a three factorial experiment (a,b,c) on some dependent variable y. First plot it with the built in plot, but extract the output and plot it in ggplot. To make this work, you'll probably have to reshape the data so it's in long format. 
+
+```{r}
+data <- foreign::read.spss("~/Dropbox/R_wav/data/threeway.sav")
+```

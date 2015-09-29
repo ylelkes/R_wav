@@ -89,10 +89,13 @@ Email: y.lelkes@uva.nl
     * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week4-b/index.html)
 
 * Week 5
-	* Session 1 
-		* Markdown, Latex, knitr
-		* Publishable documents (xtable, stargazer)
+	* Session 1
+    * Finishing dplyr
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week5-a/mydeck/index.html)
+
+
   * Session 2
+    * Latex
 		* Advanced ggplot: maps, network plots
 
 * Week 5
@@ -106,15 +109,11 @@ Email: y.lelkes@uva.nl
 		* Automating pipelines 
 
 * Week 7
- 	* Session 1
- 		* Getting data from the web
- 		* Handling large datasets in R  
-    * Session 2
-    	* Shiny 
+NO CLASS
 
 
 * Week 8
 	* Session 1
-		* Slidify, Odds and Ends 	
+		* Presentations 	
    * Session 2 
     	* Presentations

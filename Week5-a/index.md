@@ -163,13 +163,3 @@ plot(eff1,multiline=T)
 ```r
 load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData"))
 ```
-
-```
-## Warning in
-## load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData")):
-## cannot open: HTTP status was '404 Not Found'
-```
-
-```
-## Error in load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData")): cannot open the connection
-```

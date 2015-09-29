@@ -67,20 +67,30 @@ load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/mammals.RData"))
 
 ---
 ## Let's put merging, reshaping, and wrangling all together. 
-1. We have one dataset that has average internet speed by county (what is called a fipscode) and city (cbsa) and year
+1. We have one dataset that has average internet speed by county (what is called a fipscode) and city (cbsa) and year in the US
 
+```{r}
+load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/speedcbsa.RData"))
+```
 2. Start by using dcast to reshape the data to remove any data that does not have complete data, i.e., is missing data for some years. Hint: Years will be your column data, and use na.omit.
 
 3. The melt the data back to long format.
 
-4. Now merge it with a dataset that has county level demographic information. One problem with the county-level data is that the county indicator (fips) is numeric and therefore does not include the leading zeros that are included in the speedfips data. Using nchar() find out length of the fipscode in speedfips, then use stringr::str_pad to add leading zeros to the county-level demographic data. 
-
 ---
 ## Let's put merging, reshaping, and wrangling all together. 
+
+4. Now merge it with a dataset that has county level demographic information. One problem with the county-level data is that the county indicator (fips) is numeric and therefore does not include the leading zeros that are included in the speedfips data. Using nchar() find out length of the fipscode in speedfips, then use stringr::str_pad to add leading zeros to the county-level demographic data. 
+
+```{r,echo=T,warning=F,error=F,eval=F}
+load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/countydems.RData"))
+```
 
 5. Now aggregate the data up to the cbsa-level. You can use either dcast or dplyr for this
 
 6. Calculate a new variable that indicates the population per square mile using mutate.
+
+---
+## Let's put merging, reshaping, and wrangling all together. 
 
 7. Finally, calculate a multilevel model predicting internet speed by demographic characteristics. For multileveling models we tend to use the following format:
 
@@ -97,7 +107,7 @@ lmer(y~x1+x2+x3+as.factor(year)+(1|cbsa),data)
 
 ---
 ## Coefficient plots
-```{r}
+```{r,fig.height=4}
 library(coefplot)
 reg1 <- lm(cty~cyl+class+as.factor(year),mpg)
 coefplot(reg1,intercept = F)
@@ -105,7 +115,7 @@ coefplot(reg1,intercept = F)
 
 ---
 ## Effects package
-```{r}
+```{r,eval=FALSE}
 library(effects)
 library(Ecdat)
 data(Icecream)
@@ -117,10 +127,23 @@ plot(eff1,multiline=T)
 
 ---
 ## Effects package
+```{r,echo=F}
+library(effects)
+library(Ecdat)
+data(Icecream)
+r1 <- lm(formula = cons ~ price * income, data = Icecream)  
+eff1 <- effect(r1,term="price*income")
+plot(eff1)
+plot(eff1,multiline=T)
+```
+
+
+---
+## Effects package
 1. Create a coefplot of the effect of main effects of price and income on icecreame consumption
 2. Extract the output from effects:effect, and replot the 2 way interaction effects and 95 percent confidence intervals in ggplot
 3. Let's try three-way interactions use threeway.sav in the data folder, which is a three factorial experiment (a,b,c) on some dependent variable y. First plot it with the built in plot, but extract the output and plot it in ggplot. To make this work, you'll probably have to reshape the data so it's in long format. 
 
-```{r}
-data <- foreign::read.spss("~/Dropbox/R_wav/data/threeway.sav")
+```{r,eval=F}
+load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData"))
 ```

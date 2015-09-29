@@ -157,13 +157,49 @@ ob4 &lt;- arrange(ob3,desc(mean_caughtup))
   </hgroup>
   <article data-timings="">
     <ol>
-<li><p>We have one dataset that has average internet speed by county (what is called a fipscode) and city (cbsa) and year</p></li>
+<li>We have one dataset that has average internet speed by county (what is called a fipscode) and city (cbsa) and year in the US</li>
+</ol>
+
+<pre><code class="r">load(url(&quot;http://cdn.rawgit.com/ylelkes/R_wav/master/data/speedcbsa.RData&quot;))
+</code></pre>
+
+<ol>
 <li><p>Start by using dcast to reshape the data to remove any data that does not have complete data, i.e., is missing data for some years. Hint: Years will be your column data, and use na.omit.</p></li>
 <li><p>The melt the data back to long format.</p></li>
-<li><p>Now merge it with a dataset that has county level demographic information. One problem with the county-level data is that the county indicator (fips) is numeric and therefore does not include the leading zeros that are included in the speedfips data. Using nchar() find out length of the fipscode in speedfips, then use stringr::str_pad to add leading zeros to the county-level demographic data. </p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s put merging, reshaping, and wrangling all together.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Now merge it with a dataset that has county level demographic information. One problem with the county-level data is that the county indicator (fips) is numeric and therefore does not include the leading zeros that are included in the speedfips data. Using nchar() find out length of the fipscode in speedfips, then use stringr::str_pad to add leading zeros to the county-level demographic data. </li>
+</ol>
+
+<pre><code class="r">load(url(&quot;http://cdn.rawgit.com/ylelkes/R_wav/master/data/countydems.RData&quot;))
+</code></pre>
+
+<ol>
 <li><p>Now aggregate the data up to the cbsa-level. You can use either dcast or dplyr for this</p></li>
 <li><p>Calculate a new variable that indicates the population per square mile using mutate.</p></li>
-<li><p>Finally, calculate a multilevel model predicting internet speed by demographic characteristics. For multileveling models we tend to use the following format:</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s put merging, reshaping, and wrangling all together.</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Finally, calculate a multilevel model predicting internet speed by demographic characteristics. For multileveling models we tend to use the following format:</li>
 </ol>
 
 <pre><code>library(lme4)
@@ -174,7 +210,7 @@ lmer(y~x1+x2+x3+as.factor(year)+(1|cbsa),data)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-8" style="background:;">
+<slide class="" id="slide-10" style="background:;">
   <hgroup>
     <h2>Short respite from plyr</h2>
   </hgroup>
@@ -188,7 +224,7 @@ lmer(y~x1+x2+x3+as.factor(year)+(1|cbsa),data)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-9" style="background:;">
+<slide class="" id="slide-11" style="background:;">
   <hgroup>
     <h2>Coefficient plots</h2>
   </hgroup>
@@ -198,13 +234,13 @@ reg1 &lt;- lm(cty~cyl+class+as.factor(year),mpg)
 coefplot(reg1,intercept = F)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
+<p><img src="assets/fig/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8"> </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-10" style="background:;">
+<slide class="" id="slide-12" style="background:;">
   <hgroup>
     <h2>Effects package</h2>
   </hgroup>
@@ -215,20 +251,25 @@ data(Icecream)
 r1 &lt;- lm(formula = cons ~ price * income, data = Icecream)  
 eff1 &lt;- effect(r1,term=&quot;price*income&quot;)
 plot(eff1)
+plot(eff1,multiline=T)
 </code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7"> </p>
-
-<pre><code class="r">plot(eff1,multiline=T)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-7-2.png" alt="plot of chunk unnamed-chunk-7"> </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-11" style="background:;">
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Effects package</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"> <img src="assets/fig/unnamed-chunk-10-2.png" alt="plot of chunk unnamed-chunk-10"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
   <hgroup>
     <h2>Effects package</h2>
   </hgroup>
@@ -239,7 +280,15 @@ plot(eff1)
 <li>Let&#39;s try three-way interactions use threeway.sav in the data folder, which is a three factorial experiment (a,b,c) on some dependent variable y. First plot it with the built in plot, but extract the output and plot it in ggplot. To make this work, you&#39;ll probably have to reshape the data so it&#39;s in long format. </li>
 </ol>
 
-<pre><code class="r">data &lt;- foreign::read.spss(&quot;~/Dropbox/R_wav/data/threeway.sav&quot;)
+<pre><code class="r">load(url(&quot;http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData&quot;))
+</code></pre>
+
+<pre><code>## Warning in
+## load(url(&quot;http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData&quot;)):
+## cannot open: HTTP status was &#39;404 Not Found&#39;
+</code></pre>
+
+<pre><code>## Error in load(url(&quot;http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData&quot;)): cannot open the connection
 </code></pre>
 
   </article>
@@ -294,26 +343,44 @@ plot(eff1)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Short respite from plyr'>
+        data-slide=8 title='Let&#39;s put merging, reshaping, and wrangling all together.'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Coefficient plots'>
+        data-slide=9 title='Let&#39;s put merging, reshaping, and wrangling all together.'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='Effects package'>
+        data-slide=10 title='Short respite from plyr'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='Effects package'>
+        data-slide=11 title='Coefficient plots'>
          11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Effects package'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Effects package'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Effects package'>
+         14
       </a>
     </li>
   </ul>

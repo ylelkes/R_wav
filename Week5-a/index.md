@@ -84,17 +84,32 @@ load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/mammals.RData"))
 
 ---
 ## Let's put merging, reshaping, and wrangling all together. 
-1. We have one dataset that has average internet speed by county (what is called a fipscode) and city (cbsa) and year
+1. We have one dataset that has average internet speed by county (what is called a fipscode) and city (cbsa) and year in the US
 
+
+```r
+load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/speedcbsa.RData"))
+```
 2. Start by using dcast to reshape the data to remove any data that does not have complete data, i.e., is missing data for some years. Hint: Years will be your column data, and use na.omit.
 
 3. The melt the data back to long format.
 
+---
+## Let's put merging, reshaping, and wrangling all together. 
+
 4. Now merge it with a dataset that has county level demographic information. One problem with the county-level data is that the county indicator (fips) is numeric and therefore does not include the leading zeros that are included in the speedfips data. Using nchar() find out length of the fipscode in speedfips, then use stringr::str_pad to add leading zeros to the county-level demographic data. 
+
+
+```r
+load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/countydems.RData"))
+```
 
 5. Now aggregate the data up to the cbsa-level. You can use either dcast or dplyr for this
 
 6. Calculate a new variable that indicates the population per square mile using mutate.
+
+---
+## Let's put merging, reshaping, and wrangling all together. 
 
 7. Finally, calculate a multilevel model predicting internet speed by demographic characteristics. For multileveling models we tend to use the following format:
 
@@ -118,7 +133,7 @@ reg1 <- lm(cty~cyl+class+as.factor(year),mpg)
 coefplot(reg1,intercept = F)
 ```
 
-![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png) 
 
 ---
 ## Effects package
@@ -130,15 +145,13 @@ data(Icecream)
 r1 <- lm(formula = cons ~ price * income, data = Icecream)  
 eff1 <- effect(r1,term="price*income")
 plot(eff1)
-```
-
-![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-1.png) 
-
-```r
 plot(eff1,multiline=T)
 ```
 
-![plot of chunk unnamed-chunk-7](assets/fig/unnamed-chunk-7-2.png) 
+---
+## Effects package
+![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png) ![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-2.png) 
+
 
 ---
 ## Effects package
@@ -148,5 +161,15 @@ plot(eff1,multiline=T)
 
 
 ```r
-data <- foreign::read.spss("~/Dropbox/R_wav/data/threeway.sav")
+load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData"))
+```
+
+```
+## Warning in
+## load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData")):
+## cannot open: HTTP status was '404 Not Found'
+```
+
+```
+## Error in load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData")): cannot open the connection
 ```

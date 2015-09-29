@@ -22,8 +22,7 @@ Let's start by going through Problem Set 3.
 
 
 ```r
-library(dplyr)
-flights <- tbl_df(read.csv("~/Dropbox/R_wav/data/flights.csv"))
+flights <- tbl_df(read.csv(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/flights.csv")))
 ```
 
 ---

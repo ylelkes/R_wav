@@ -20,9 +20,9 @@ Let's start by going through Problem Set 3.
 * For each carrier, calculate the mean amount of time caught up inflight.
 * Arrange this output in order from most caught up times to least.
 
-```{r,echo=T,warning=FALSE,message=F}
-library(dplyr)
-flights <- tbl_df(read.csv("~/Dropbox/R_wav/data/flights.csv"))
+```{r,eval=F}
+flights <- tbl_df(read.csv(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/flights.csv")))
+
 ```
 
 ---

@@ -91,7 +91,7 @@ Email: y.lelkes@uva.nl
 * Week 5
 	* Session 1
     * Finishing dplyr
-    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week5-a/mydeck/index.html)
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week5-a/index.html)
 
 
   * Session 2

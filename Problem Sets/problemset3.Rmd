@@ -18,7 +18,7 @@ In the data folder on the course website there is a file called immigrantattitud
 * Recode the variable that indicates the respondents country of origin wtih country names. Maybe with car::recode.
 
 ```{r}
-load("../data/immigrantattitudes.RData")
+load("~/Dropbox/R_wav//data/immigrantattitudes.RData")
 immdat$herkomstland <- car::recode(immdat$herkomstland,
                                    "0='Netherlands';1='Turkey';2='Morocco';
                                    3='Netherlands Antilles';4='Suriname';
@@ -59,8 +59,9 @@ Let's create some scales from some of the items about attitudes about the proper
 * Create an object that holds the results of that function.
 
 ```{r}
+names(immdat)
 relvals <- psych::alpha(immdat[,146:152])
-
+relvals
 ```
 
 
@@ -73,7 +74,7 @@ immdat$values <- rowMeans(immdat[,146:152])
 
 * Next, write up the results from objectname$total. In regular prose with inline R code, report the std.alpha, mean, and sd. Use the round function to limit the number of digits to two. 
 
-The standardized alpha of the scale was ```r round(relvals$total[1],2) ```. The mean of this scale was ```r round(relvals$total[7],2)``` and the standard deviation was ```r round(relvals$total[8],2)```.
+The standardized alpha of the scale was `r round(relvals$total[1],2)`.  `r relvals$total` The mean of this scale was ```r round(relvals$total[7],2)``` and the standard deviation was ```r round(relvals$total[8],2)```.
 
 
 * Regress that attitude scale on immigrant group, i.e.,

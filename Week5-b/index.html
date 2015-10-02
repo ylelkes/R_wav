@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Functions, fitted results</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Functions, fitted results">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Functions, fitted results</h1>
+    <h2></h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Plotting coefficients</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>How should we present our findings?</li>
+<li>A move away from tables into figures.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Coefficient plots</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(coefplot)
+reg1 &lt;- lm(cty~cyl+class+as.factor(year),mpg)
+coefplot(reg1,intercept = F)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Coefficient plots</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Effects package</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(effects)
+library(Ecdat)
+data(Icecream)
+r1 &lt;- lm(formula = cons ~ price * income, data = Icecream)  
+eff1 &lt;- effect(r1,term=&quot;price*income&quot;)
+plot(eff1)
+plot(eff1,multiline=T)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Effects package</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Effects package</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Create a coefplot of the effect of main effects of price and income on icecreame consumption</li>
+<li>Extract the output from effects::effect, and replot the 2 way interaction effects and 95 percent confidence intervals in ggplot, so that you can combine confidence intervals and 2 lines in 1 plot</li>
+<li>Let&#39;s try three-way interactions use threeway.sav in the data folder, which is a three factorial experiment (a,b,c) on some dependent variable y. First plot it with the built in plot, but extract the output and plot it in ggplot. To make this work, you&#39;ll probably have to reshape the data so it&#39;s in long format. </li>
+</ol>
+
+<pre><code class="r">load(url(&quot;http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData&quot;))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Generating predicting values</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>A number of ways to get a predicted value (and error)</li>
+<li>predict(), effects()</li>
+<li>Zelig is useful b/c it can handle a bunch of different models</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">library(Zelig)
+library(Ecdat)
+z1 &lt;- zelig(formula =cons ~ price * income, data = Icecream,model = &quot;normal&quot;)
+setz1 &lt;- setx(z1,price=.5)
+s.out &lt;- sim(z1, x = setz1)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">z1 &lt;- zelig(formula =cons ~ price * income, data = Icecream,model = &quot;normal&quot;)
+setz1 &lt;- setx(z1,price=.5,income=40:50)
+s.out &lt;- sim(z1, x = setz1)
+summary(s.out)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">library(Zelig)
+library(Ecdat)
+z1 &lt;- zelig(formula =cons ~ price * income, data = Icecream,model = &quot;normal&quot;)
+setx1 &lt;- setx(z1,price=.5)
+setx2 &lt;- setx(z1,price=.75)
+s.out &lt;- sim(z1, x =  setx1,x1 = setx2)
+summary(s.out)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Download the following data, which looks at the relationship between cancer remssion and a variety of variables</li>
+</ol>
+
+<pre><code class="r">hdp &lt;- read.csv(&quot;http://www.ats.ucla.edu/stat/data/hdp.csv&quot;)
+</code></pre>
+
+<ol>
+<li> Using a logit model, regress remission on a variety of variables, including age and smoking habits. </li>
+<li>Calculate predicted probabilites of remission for the youngest and oldest people in the dataset who are current smokers, former smokers, and never smokers, respectively. </li>
+<li>Extract and plot the predicted probabilities and 95 percent confidence intervals. </li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Writing functions</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Sometimes we find ourselves rewriting code over and over again. </li>
+<li>We can use functions to make plyr and other packages do what we want. </li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>for instance:</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">square.it &lt;- function(x) {
+    square &lt;- x * x
+    return(square)
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">square.it(6)
+</code></pre>
+
+<pre><code>## [1] 36
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">xy &lt;- function(x,y) {
+    xy &lt;- x * y
+    return(xy)
+}
+</code></pre>
+
+<hr>
+
+<pre><code class="r">xy(6,4)
+</code></pre>
+
+<pre><code>## [1] 24
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>One function I use all the time  recodes all the values in a vector to lie between 0 and 1, where 0 indicates the lowest score in that vector, 1 indicates the highest. To calculate this, we substract the minimum of the vector X from X and divide that score  by the maximimum score of X minus the minimum of X. Write a zero1 function and apply it to mtcars$disp and mtcars$cyl. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>Dplyr works with user-defined functions. The input into a function need not be a vector or a number, but it can also be a dataframe. Remember that dplyr pushes an object forward. </li>
+<li>With the ToothGrowth data, write a function that takes a dataset (x), and regresses length (len) on dose, and keeps the estimate and standard error for the dose coefficient.</li>
+<li>Stick that function into dplyr so that you get different output based on supplement type, and plot the coefficients and 95 percent confidence intervals.</li>
+</ul>
+
+<hr>
+
+<ol>
+<li>Let&#39;s create a list of 10 dataframes with x and y in each:</li>
+</ol>
+
+<pre><code class="r">sim_list = replicate(n = 10,                  
+expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
+</code></pre>
+
+<ol>
+<li>Write a function, that, given a dataframe regresses y on x and z (y=x+z).</li>
+<li>Input that function and dataframe into lapply(), which performs a function on each element in a list. The result will be a list of regressions.<br></li>
+<li>Put the output into stargazer,screenreg, or another regression to table function, so you have a regression table that is 10 columns long.<br></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title=''>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Plotting coefficients'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Coefficient plots'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Coefficient plots'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Effects package'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Effects package'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title=''>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Effects package'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Generating predicting values'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title=''>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title=''>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title=''>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Exercises'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Writing functions'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='for instance:'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title=''>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title=''>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title=''>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title=''>
+         19
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

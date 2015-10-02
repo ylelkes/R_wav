@@ -98,7 +98,8 @@ reg3 <- lm(ka13a085~herkomstland,immdat)
 
 ```{r}
 immdat$voted <- car::recode(immdat$ka13a056,"1=1;else=0")
-reg4 <- glm(voted~herkomstland+as.factor(oplzon)+leeftijd,immdat,family="binomial")
+as.factor(immdat$oplzon)
+reg4 <- glm(ka13a056==1~herkomstland+as.factor(oplzon)+leeftijd,immdat,family="binomial")
 ```
 
 
@@ -106,7 +107,16 @@ reg4 <- glm(voted~herkomstland+as.factor(oplzon)+leeftijd,immdat,family="binomia
 
 ```{r,results='asis'}
 library(texreg)
-htmlreg(l = list(reg1,reg2,reg3,reg4),custom.coef.names = c("Intercept",levels(as.factor(immdat$herkomstland))[2:8],"vmbo","havo","mbo","hbo","wo","other","none","Age"))
+?htmlreg
+screenreg(l = list(reg1,reg2,reg3,reg4))
+
+lm()
+
+,custom.coef.names = c("Intercept",levels(as.factor(immdat$herkomstland))[2:8],"vmbo","havo","mbo","hbo","wo","other","none","Age"))
+
+reg3 <- lm(ka13a085~-1+herkomstland,immdat)
+summary(reg3)
+
 ```
 
 * Finally, write up the results of the table as you would in an article. Use inline r code to extract coefficients, standard errors, and p-values.  

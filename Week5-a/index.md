@@ -23,6 +23,7 @@ Let's start by going through Problem Set 3.
 
 ```r
 flights <- tbl_df(read.csv(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/flights.csv")))
+http://cdn.rawgit.com/ylelkes/R_wav/master/data/flights.csv
 ```
 
 ---

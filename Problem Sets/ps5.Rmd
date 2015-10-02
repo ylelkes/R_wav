@@ -19,7 +19,7 @@ mnl2 <- zelig(formula = as.factor(vote) ~ female+persfinance, model="mlogit", da
 
 3. Plot these values using a bargraph or points+errorbar plot.
 
-4. Sometimes people use ternary plots when they have 3 categories in a DV. Read about ternary plots first. Then model vote choice as an interaction between gender and personal finances. Use ggtern to generate a ternary plot all 6 groups represented (e.g., females whose finances got worse, females whose finances stayed the same, females whose finances got better, males whose finances got worse, males whose finances stayed the same, males whose finances got better). Write up a few lines explaining these results. 
+4. Sometimes people use ternary plots when they have 3 categories in a DV. Read about ternary plots first. Then model vote choice as an interaction between gender and personal finances. Use library(ggtern) to generate a ternary plot all 6 groups represented (e.g., females whose finances got worse, females whose finances stayed the same, females whose finances got better, males whose finances got worse, males whose finances stayed the same, males whose finances got better). Write up a few lines explaining these results. 
 
 5.  Read in this data from an experiment on the effect of three variables (biofeed, diet, drug) on a respondents score, and using OLS, regress score on the threeway interaction between diet x drug x biofeed. 
 

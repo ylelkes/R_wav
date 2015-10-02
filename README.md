@@ -98,16 +98,12 @@ Email: y.lelkes@uva.nl
     * Functions, prediction
     * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week5-b/index.html)
 
-
-* Week 6
-	* Session 2
-		* Github and reproducible research
-		
+	
 * Week 6
 	* Session 1
-		* R programing: Writing functions  
+		* Latex, Beamer, Knitr  
 	* Session 2
-		* Automating pipelines 
+		* Maps in ggplot, maybe github 
 
 * Week 7
 NO CLASS

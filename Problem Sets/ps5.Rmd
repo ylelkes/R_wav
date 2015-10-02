@@ -1,0 +1,31 @@
+---
+title: "PS5"
+author: "ylelkes"
+date: "October 2, 2015"
+output: html_document
+---
+
+1. When we're trying to predict outcomes with more than 2 categories, we often use multinomial logistic regression, which, compared to baseline, gives us the probability of being in a category. With the following packages loaded and data(vote92), model the probability of voting for Perot, Clinton or Bush based on whether a person is a democrat, republicans, or independent (you'll need to create a party ID variable indicating this from the available variables), their gender, and their personal finances (no interactions). Also, convert persfinance to a factor first, or Zelig will complain. You'll have to put the dv in as.factor() for zelig to behave.
+
+```
+library(Zelig)
+library(pscl)
+library(ZeligChoice)
+vote92$persfinance <- as.factor(vote92$persfinance)
+mnl2 <- zelig(formula = as.factor(vote) ~ female+persfinance, model="mlogit", data=vote92)
+```
+
+2. Generate predicted probabilities and 95 percent confidence intervals of voting for each category depending on whether the respondents personal financial situation has gotten worse, improved, or gotten better.  
+
+3. Plot these values using a bargraph or points+errorbar plot.
+
+4. Sometimes people use ternary plots when they have 3 categories in a DV. Read about ternary plots first. Then model vote choice as an interaction between gender and personal finances. Use ggtern to generate a ternary plot all 6 groups represented (e.g., females whose finances got worse, females whose finances stayed the same, females whose finances got better, males whose finances got worse, males whose finances stayed the same, males whose finances got better). Write up a few lines explaining these results. 
+
+5.  Read in this data from an experiment on the effect of three variables (biofeed, diet, drug) on a respondents score, and using OLS, regress score on the threeway interaction between diet x drug x biofeed. 
+
+```
+threeway<-data.frame(score=c(170,175,165,180,160,158,161,173,157,152,181,190,186,194,201,215,219,209,164,166,159,182,187,174,180,187,199,170,204,194,162,184,183,156,180,173,173,194,197,190,176,198,164,190,169,164,176,175,187,194,217,206,199,195,171,173,196,199,180,203,202,228,190,206,224,204,205,199,170,160,179,179), biofeed=rep(c("yes", "no"), each=36), diet=rep(rep(c("absent", "present"), each=6), 6), drug=rep(rep(c("X", "Y", "Z"), each=12), 2))
+```
+
+6. Plot and interpret the threeway interaction effects in a way that makes sense to you, and interpret the results. 
+

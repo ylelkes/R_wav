@@ -56,7 +56,7 @@ plot(eff1,multiline=T)
 ---
 ## Effects package
 1. Create a coefplot of the effect of main effects of price and income on icecreame consumption
-2. Extract the output from effects::effect, and replot the 2 way interaction effects and 95 percent confidence intervals in ggplot, so that you can combine confidence intervals and 2 lines in 1 plot
+2. For a model with the interaction effects of price*consumption, Extract the output from effects::effect, and replot the 2 way interaction effects and 95 percent confidence intervals in ggplot, so that you can combine confidence intervals and 2 lines in 1 plot
 3. Let's try three-way interactions use threeway.sav in the data folder, which is a three factorial experiment (a,b,c) on some dependent variable y. First plot it with the built in plot, but extract the output and plot it in ggplot. To make this work, you'll probably have to reshape the data so it's in long format. 
 
 

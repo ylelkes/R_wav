@@ -95,10 +95,11 @@ Email: y.lelkes@uva.nl
 
 
   * Session 2
-    * Latex
-		* Advanced ggplot: maps, network plots
+    * Functions, prediction
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week5-b/index.html)
 
-* Week 5
+
+* Week 6
 	* Session 2
 		* Github and reproducible research
 		

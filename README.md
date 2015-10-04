@@ -79,38 +79,42 @@ Email: y.lelkes@uva.nl
     * Markdown
     * Getting your data into shape
 
-* Week4
-  * Session 1
+* We
 		* Managing and manipulating data frames (data wrangling) 
     * Reshaping data
-    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/week4-a/index.html)
-  * Session 2	
-    * Dplyr 
-    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week4-b/index.html)
+		* Factors
+		* Dates
+		* Strings	
+	* Session 2	
+		* Basic analytics (regression, anova, clustering, anything else?)
+    * tidyr
+* Week 4 
+	* Session 1 
+		* Markdown, Latex, knitr
+		* Publishable documents (xtable, stargazer)
+  * Session 2
+		* Advanced ggplot: maps, network plots
 
 * Week 5
-	* Session 1
-    * Finishing dplyr
-    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week5-a/index.html)
-
-
-  * Session 2
-    * Functions, prediction
-    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week5-b/index.html)
-
-	
+	* Session 2
+		* Github and reproducible research
+		
 * Week 6
 	* Session 1
-		* Latex, Beamer, Knitr  
+		* R programing: Writing functions  
 	* Session 2
-		* Maps in ggplot, maybe github 
+		* Automating pipelines 
 
 * Week 7
-NO CLASS
+ 	* Session 1
+ 		* Getting data from the web
+ 		* Handling large datasets in R  
+    * Session 2
+    	* Shiny 
 
 
 * Week 8
 	* Session 1
-		* Presentations 	
+		* Slidify, Odds and Ends 	
    * Session 2 
     	* Presentations

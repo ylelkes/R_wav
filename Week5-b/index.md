@@ -1,14 +1,15 @@
 ---
-title       : Functions, fitted results
-subtitle    : 
-author      : 
-job         : 
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
-highlighter : highlight.js  # {highlight.js, prettify, highlight}
-hitheme     : tomorrow      # 
-widgets     : []            # {mathjax, quiz, bootstrap}
-mode        : selfcontained # {standalone, draft}
-knit        : slidify::knit2slides
+title: "Functions, fitted results"
+author: "null"
+highlighter: highlight.js
+output: pdf_document
+job: null
+knit: slidify::knit2slides
+mode: selfcontained
+hitheme: tomorrow
+subtitle: null
+framework: io2012
+widgets: []
 ---
 
 
@@ -51,7 +52,41 @@ plot(eff1,multiline=T)
 
 ---
 
+
+```
+##  [1] "term"                       "formula"                   
+##  [3] "response"                   "variables"                 
+##  [5] "fit"                        "x"                         
+##  [7] "x.all"                      "model.matrix"              
+##  [9] "mod.matrix.all"             "data"                      
+## [11] "discrepancy"                "offset"                    
+## [13] "fitted.rounded"             "fitted"                    
+## [15] "partial.residuals.raw"      "partial.residuals.adjusted"
+## [17] "x.var"                      "vcov"                      
+## [19] "se"                         "lower"                     
+## [21] "upper"                      "confidence.level"          
+## [23] "transformation"
+```
+
 ![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png) 
+
+---
+## Three way plot
+```
+out <-   lm(y~a*b*c,threeway)
+r <- effects::effect(out,term="a*b*c")
+r1 <- data.frame(r)
+ggplot(r1,aes(x=a,y=fit,group=as.factor(b)))+facet_wrap(~c)+geom_line()+geom_ribbon(aes(ymax=upper,ymin=lower,fill=as.factor(b)),alpha=.3)
+```
+
+---
+## Three way plot
+```
+out <-   lm(y~a*b*c,threeway)
+r <- effects::effect(out,term="a*b*c")
+r1 <- data.frame(r)
+ggplot(r1,aes(x=a,y=fit))+facet_wrap(~c)+geom_line()+geom_ribbon(aes(ymax=upper,ymin=lower),alpha=.3)+facet_grid(b~c)
+```
 
 ---
 ## Effects package
@@ -63,6 +98,52 @@ plot(eff1,multiline=T)
 ```r
 load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData"))
 ```
+
+---
+## Effects package
+1. Create a coefplot of the effect of main effects of price and income on icecreame consumption
+
+
+```r
+r1 <- lm(formula = cons ~ price * income, data = Icecream)  
+library(coefplot)
+coefplot(r1)
+```
+
+---
+## Effects package
+2. For a model with the interaction effects of price*consumption, Extract the output from effects::effect, and replot the 2 way interaction effects and 95 percent confidence intervals in ggplot, so that you can combine confidence intervals and 2 lines in 1 plot
+
+
+
+```r
+r1 <- lm(formula = cons ~ price * income, data = Icecream)  
+library(effects)
+ef1 <- effects::effect(r1,term="price * income")
+df1 <- data.frame(ef1)
+library(ggplot2)
+ggplot(df1,aes(x=price,y=fit,lty=as.factor(income),fill=as.factor(income)))+geom_line()+geom_ribbon(aes(x=price,ymin=lower,ymax=upper),alpha=.3)
+```
+
+
+---
+## Effects package
+
+3. Let's try three-way interactions use threeway.sav in the data folder, which is a three factorial experiment (a,b,c) on some dependent variable y. First plot it with the built in plot, but extract the output and plot it in ggplot. To make this work, you'll probably have to reshape the data so it's in long format. 
+
+
+```r
+load(url("http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData"))
+r1 <- lm(formula = y ~ a * b * c, data = threeway)  
+library(effects)
+ef1 <- effects::effect(r1,term="a*b*c")
+df1 <- data.frame(ef1)
+df1$b
+library(ggplot2)
+ggplot(df1,aes(x=a,y=fit,lty=as.factor(b),fill=as.factor(b)))+geom_line()+geom_ribbon(aes(x=a,ymin=lower,ymax=upper),alpha=.3)+facet_wrap(~c)
+```
+
+
 
 ---
 ## Generating predicting values
@@ -111,78 +192,39 @@ summary(s.out)
 
 1. Download the following data, which looks at the relationship between cancer remssion and a variety of variables
 
-```r
-hdp <- read.csv("http://www.ats.ucla.edu/stat/data/hdp.csv")
-```
 2.  Using a logit model, regress remission on a variety of variables, including age and smoking habits. 
 3. Calculate predicted probabilites of remission for the youngest and oldest people in the dataset who are current smokers, former smokers, and never smokers, respectively. 
 4. Extract and plot the predicted probabilities and 95 percent confidence intervals. 
 
 ---
-## Writing functions
-1. Sometimes we find ourselves rewriting code over and over again. 
-2. We can use functions to make plyr and other packages do what we want. 
+## Exercises
 
----
-##  for instance:
-
-```r
-square.it <- function(x) {
-    square <- x * x
-    return(square)
-}
-```
-
----
-## 
-  
-
-```r
-square.it(6)
-```
-
-```
-## [1] 36
-```
-
----
 
 
 ```r
-xy <- function(x,y) {
-    xy <- x * y
-    return(xy)
-}
+library(Zelig)
+
+
+hdp <- read.csv("http://www.ats.ucla.edu/stat/data/hdp.csv")
+m1 <- zelig(remission~Age*SmokingHx,data = hdp,model = "logit")
+s1 <- setx(m1,Age=c(min(hdp$Age),max(hdp$Age)),SmokingHx=levels(hdp$SmokingHx))
+predprobs <- sim(m1,s1)
+
+forggplot <-
+data.frame(
+  rbind(
+unlist(predprobs[[1]]$stats[1]),
+unlist(predprobs[[2]]$stats[1]),
+unlist(predprobs[[3]]$stats[1]),
+unlist(predprobs[[4]]$stats[1]),
+unlist(predprobs[[5]]$stats[1]),
+unlist(predprobs[[6]]$stats[1])
+)
+)
+colnames(forggplot) <- c("Mean","SD","Median","Lower","Upper")
+forggplot$smoking <- c("Current","Current","Former","Former","Never","Never")
+forggplot$age<- c("Young","Old","Young","Old","Young","Old")
+
+library(ggplot2)
+ggplot(forggplot,aes(x=Mean,y=smoking))+geom_point()+facet_wrap(~age)+geom_errorbarh(aes(y=smoking,xmin=Upper,xmax=Lower))+xlab("Probability of Remission")
 ```
----
-## 
-  
-
-```r
-xy(6,4)
-```
-
-```
-## [1] 24
-```
-
----
-
-* One function I use all the time  recodes all the values in a vector to lie between 0 and 1, where 0 indicates the lowest score in that vector, 1 indicates the highest. To calculate this, we substract the minimum of the vector X from X and divide that score  by the maximimum score of X minus the minimum of X. Write a zero1 function and apply it to mtcars$disp and mtcars$cyl. 
-
----
-* Dplyr works with user-defined functions. The input into a function need not be a vector or a number, but it can also be a dataframe. Remember that dplyr pushes an object forward. 
-* With the ToothGrowth data, write a function that takes a dataset (x), and regresses length (len) on dose, and keeps the estimate and standard error for the dose coefficient.
-* Stick that function into dplyr so that you get different output based on supplement type, and plot the coefficients and 95 percent confidence intervals.
-  
----
-1. Let's create a list of 10 dataframes with x and y in each:
-
-
-```r
-sim_list = replicate(n = 10,                  
-expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
-```
-2. Write a function, that, given a dataframe regresses y on x and z (y=x+z).
-3. Input that function and dataframe into lapply(), which performs a function on each element in a list. The result will be a list of regressions.  
-4. Put the output into stargazer,screenreg, or another regression to table function, so you have a regression table that is 10 columns long.    

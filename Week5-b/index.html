@@ -4,7 +4,7 @@
   <title>Functions, fitted results</title>
   <meta charset="utf-8">
   <meta name="description" content="Functions, fitted results">
-  <meta name="author" content="">
+  <meta name="author" content="null">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -33,7 +33,7 @@
   <hgroup class="auto-fadein">
     <h1>Functions, fitted results</h1>
     <h2></h2>
-    <p><br/></p>
+    <p>null<br/></p>
   </hgroup>
   <article></article>  
 </slide>
@@ -117,13 +117,57 @@ plot(eff1,multiline=T)
 
 <slide class="" id="slide-7" style="background:;">
   <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
+    <pre><code>##  [1] &quot;term&quot;                       &quot;formula&quot;                   
+##  [3] &quot;response&quot;                   &quot;variables&quot;                 
+##  [5] &quot;fit&quot;                        &quot;x&quot;                         
+##  [7] &quot;x.all&quot;                      &quot;model.matrix&quot;              
+##  [9] &quot;mod.matrix.all&quot;             &quot;data&quot;                      
+## [11] &quot;discrepancy&quot;                &quot;offset&quot;                    
+## [13] &quot;fitted.rounded&quot;             &quot;fitted&quot;                    
+## [15] &quot;partial.residuals.raw&quot;      &quot;partial.residuals.adjusted&quot;
+## [17] &quot;x.var&quot;                      &quot;vcov&quot;                      
+## [19] &quot;se&quot;                         &quot;lower&quot;                     
+## [21] &quot;upper&quot;                      &quot;confidence.level&quot;          
+## [23] &quot;transformation&quot;
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Three way plot</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>out &lt;-   lm(y~a*b*c,threeway)
+r &lt;- effects::effect(out,term=&quot;a*b*c&quot;)
+r1 &lt;- data.frame(r)
+ggplot(r1,aes(x=a,y=fit,group=as.factor(b)))+facet_wrap(~c)+geom_line()+geom_ribbon(aes(ymax=upper,ymin=lower,fill=as.factor(b)),alpha=.3)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Three way plot</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>out &lt;-   lm(y~a*b*c,threeway)
+r &lt;- effects::effect(out,term=&quot;a*b*c&quot;)
+r1 &lt;- data.frame(r)
+ggplot(r1,aes(x=a,y=fit))+facet_wrap(~c)+geom_line()+geom_ribbon(aes(ymax=upper,ymin=lower),alpha=.3)+facet_grid(b~c)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
   <hgroup>
     <h2>Effects package</h2>
   </hgroup>
@@ -141,7 +185,69 @@ plot(eff1,multiline=T)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-9" style="background:;">
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Effects package</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Create a coefplot of the effect of main effects of price and income on icecreame consumption</li>
+</ol>
+
+<pre><code class="r">r1 &lt;- lm(formula = cons ~ price * income, data = Icecream)  
+library(coefplot)
+coefplot(r1)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Effects package</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>For a model with the interaction effects of price*consumption, Extract the output from effects::effect, and replot the 2 way interaction effects and 95 percent confidence intervals in ggplot, so that you can combine confidence intervals and 2 lines in 1 plot</li>
+</ol>
+
+<pre><code class="r">r1 &lt;- lm(formula = cons ~ price * income, data = Icecream)  
+library(effects)
+ef1 &lt;- effects::effect(r1,term=&quot;price * income&quot;)
+df1 &lt;- data.frame(ef1)
+library(ggplot2)
+ggplot(df1,aes(x=price,y=fit,lty=as.factor(income),fill=as.factor(income)))+geom_line()+geom_ribbon(aes(x=price,ymin=lower,ymax=upper),alpha=.3)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Effects package</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Let&#39;s try three-way interactions use threeway.sav in the data folder, which is a three factorial experiment (a,b,c) on some dependent variable y. First plot it with the built in plot, but extract the output and plot it in ggplot. To make this work, you&#39;ll probably have to reshape the data so it&#39;s in long format. </li>
+</ol>
+
+<pre><code class="r">load(url(&quot;http://cdn.rawgit.com/ylelkes/R_wav/master/data/threeway.RData&quot;))
+r1 &lt;- lm(formula = y ~ a * b * c, data = threeway)  
+library(effects)
+ef1 &lt;- effects::effect(r1,term=&quot;a*b*c&quot;)
+df1 &lt;- data.frame(ef1)
+df1$b
+library(ggplot2)
+ggplot(df1,aes(x=a,y=fit,lty=as.factor(b),fill=as.factor(b)))+geom_line()+geom_ribbon(aes(x=a,ymin=lower,ymax=upper),alpha=.3)+facet_wrap(~c)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
   <hgroup>
     <h2>Generating predicting values</h2>
   </hgroup>
@@ -156,7 +262,7 @@ plot(eff1,multiline=T)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-10" style="background:;">
+<slide class="" id="slide-15" style="background:;">
   <article data-timings="">
     <pre><code class="r">library(Zelig)
 library(Ecdat)
@@ -169,7 +275,7 @@ s.out &lt;- sim(z1, x = setz1)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-11" style="background:;">
+<slide class="" id="slide-16" style="background:;">
   <article data-timings="">
     <pre><code class="r">z1 &lt;- zelig(formula =cons ~ price * income, data = Icecream,model = &quot;normal&quot;)
 setz1 &lt;- setx(z1,price=.5,income=40:50)
@@ -181,7 +287,7 @@ summary(s.out)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-12" style="background:;">
+<slide class="" id="slide-17" style="background:;">
   <article data-timings="">
     <pre><code class="r">library(Zelig)
 library(Ecdat)
@@ -196,122 +302,53 @@ summary(s.out)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-13" style="background:;">
+<slide class="" id="slide-18" style="background:;">
   <hgroup>
     <h2>Exercises</h2>
   </hgroup>
   <article data-timings="">
     <ol>
-<li>Download the following data, which looks at the relationship between cancer remssion and a variety of variables</li>
+<li><p>Download the following data, which looks at the relationship between cancer remssion and a variety of variables</p></li>
+<li><p>Using a logit model, regress remission on a variety of variables, including age and smoking habits. </p></li>
+<li><p>Calculate predicted probabilites of remission for the youngest and oldest people in the dataset who are current smokers, former smokers, and never smokers, respectively. </p></li>
+<li><p>Extract and plot the predicted probabilities and 95 percent confidence intervals. </p></li>
 </ol>
-
-<pre><code class="r">hdp &lt;- read.csv(&quot;http://www.ats.ucla.edu/stat/data/hdp.csv&quot;)
-</code></pre>
-
-<ol>
-<li> Using a logit model, regress remission on a variety of variables, including age and smoking habits. </li>
-<li>Calculate predicted probabilites of remission for the youngest and oldest people in the dataset who are current smokers, former smokers, and never smokers, respectively. </li>
-<li>Extract and plot the predicted probabilities and 95 percent confidence intervals. </li>
-</ol>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-14" style="background:;">
-  <hgroup>
-    <h2>Writing functions</h2>
-  </hgroup>
-  <article data-timings="">
-    <ol>
-<li>Sometimes we find ourselves rewriting code over and over again. </li>
-<li>We can use functions to make plyr and other packages do what we want. </li>
-</ol>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-15" style="background:;">
-  <hgroup>
-    <h2>for instance:</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">square.it &lt;- function(x) {
-    square &lt;- x * x
-    return(square)
-}
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-16" style="background:;">
-  <article data-timings="">
-    <pre><code class="r">square.it(6)
-</code></pre>
-
-<pre><code>## [1] 36
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-17" style="background:;">
-  <article data-timings="">
-    <pre><code class="r">xy &lt;- function(x,y) {
-    xy &lt;- x * y
-    return(xy)
-}
-</code></pre>
-
-<hr>
-
-<pre><code class="r">xy(6,4)
-</code></pre>
-
-<pre><code>## [1] 24
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-18" style="background:;">
-  <article data-timings="">
-    <ul>
-<li>One function I use all the time  recodes all the values in a vector to lie between 0 and 1, where 0 indicates the lowest score in that vector, 1 indicates the highest. To calculate this, we substract the minimum of the vector X from X and divide that score  by the maximimum score of X minus the minimum of X. Write a zero1 function and apply it to mtcars$disp and mtcars$cyl. </li>
-</ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
   <article data-timings="">
-    <ul>
-<li>Dplyr works with user-defined functions. The input into a function need not be a vector or a number, but it can also be a dataframe. Remember that dplyr pushes an object forward. </li>
-<li>With the ToothGrowth data, write a function that takes a dataset (x), and regresses length (len) on dose, and keeps the estimate and standard error for the dose coefficient.</li>
-<li>Stick that function into dplyr so that you get different output based on supplement type, and plot the coefficients and 95 percent confidence intervals.</li>
-</ul>
+    <pre><code class="r">library(Zelig)
 
-<hr>
 
-<ol>
-<li>Let&#39;s create a list of 10 dataframes with x and y in each:</li>
-</ol>
+hdp &lt;- read.csv(&quot;http://www.ats.ucla.edu/stat/data/hdp.csv&quot;)
+m1 &lt;- zelig(remission~Age*SmokingHx,data = hdp,model = &quot;logit&quot;)
+s1 &lt;- setx(m1,Age=c(min(hdp$Age),max(hdp$Age)),SmokingHx=levels(hdp$SmokingHx))
+predprobs &lt;- sim(m1,s1)
 
-<pre><code class="r">sim_list = replicate(n = 10,                  
-expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
+forggplot &lt;-
+data.frame(
+  rbind(
+unlist(predprobs[[1]]$stats[1]),
+unlist(predprobs[[2]]$stats[1]),
+unlist(predprobs[[3]]$stats[1]),
+unlist(predprobs[[4]]$stats[1]),
+unlist(predprobs[[5]]$stats[1]),
+unlist(predprobs[[6]]$stats[1])
+)
+)
+colnames(forggplot) &lt;- c(&quot;Mean&quot;,&quot;SD&quot;,&quot;Median&quot;,&quot;Lower&quot;,&quot;Upper&quot;)
+forggplot$smoking &lt;- c(&quot;Current&quot;,&quot;Current&quot;,&quot;Former&quot;,&quot;Former&quot;,&quot;Never&quot;,&quot;Never&quot;)
+forggplot$age&lt;- c(&quot;Young&quot;,&quot;Old&quot;,&quot;Young&quot;,&quot;Old&quot;,&quot;Young&quot;,&quot;Old&quot;)
+
+library(ggplot2)
+ggplot(forggplot,aes(x=Mean,y=smoking))+geom_point()+facet_wrap(~age)+geom_errorbarh(aes(y=smoking,xmin=Upper,xmax=Lower))+xlab(&quot;Probability of Remission&quot;)
 </code></pre>
-
-<ol>
-<li>Write a function, that, given a dataframe regresses y on x and z (y=x+z).</li>
-<li>Input that function and dataframe into lapply(), which performs a function on each element in a list. The result will be a list of regressions.<br></li>
-<li>Put the output into stargazer,screenreg, or another regression to table function, so you have a regression table that is 10 columns long.<br></li>
-</ol>
 
   </article>
   <!-- Presenter Notes -->
@@ -365,49 +402,49 @@ expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Effects package'>
+        data-slide=8 title='Three way plot'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Generating predicting values'>
+        data-slide=9 title='Three way plot'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title=''>
+        data-slide=10 title='Effects package'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title=''>
+        data-slide=11 title='Effects package'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title=''>
+        data-slide=12 title='Effects package'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Exercises'>
+        data-slide=13 title='Effects package'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Writing functions'>
+        data-slide=14 title='Generating predicting values'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='for instance:'>
+        data-slide=15 title=''>
          15
       </a>
     </li>
@@ -425,13 +462,13 @@ expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title=''>
+        data-slide=18 title='Exercises'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title=''>
+        data-slide=19 title='Exercises'>
          19
       </a>
     </li>

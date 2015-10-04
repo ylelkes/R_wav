@@ -5,6 +5,19 @@ date: "October 2, 2015"
 output: html_document
 ---
 
+THERE IS A BUG IN THE CURRENT VERSION OF R--THIS DEV VERSION SEEMS TO BE OKAY. PLEASE RESTART R AND DOWNLOAD FROM HERE:
+
+```
+library(devtools)
+
+# This downloads the latest Zelig from the IQSS Github repo
+install_github('IQSS/Zelig')
+install_github('IQSS/ZeligChoice')
+
+
+```
+
+
 1. When we're trying to predict outcomes with more than 2 categories, we often use multinomial logistic regression, which, compared to baseline, gives us the probability of being in a category. With the following packages loaded and data(vote92), model the probability of voting for Perot, Clinton or Bush based on whether a person is a democrat, republicans, or independent (you'll need to create a party ID variable indicating this from the available variables), their gender, and their personal finances (no interactions). Also, convert persfinance to a factor first, or Zelig will complain. You'll have to put the dv in as.factor() for zelig to behave.
 
 ```

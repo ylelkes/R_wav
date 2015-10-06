@@ -37,7 +37,7 @@ Email: y.lelkes@uva.nl
 
 ## Syllabus
 * Week 1
-	* Session 1
+  * Session 1
 		* [Slides](https://dl.dropboxusercontent.com/u/42416194/r_wav_1a/Week1-a/index.html)
 		* Course Introduction
 		* Data hygiene
@@ -79,42 +79,41 @@ Email: y.lelkes@uva.nl
     * Markdown
     * Getting your data into shape
 
-* We
+* Week4
+  * Session 1
 		* Managing and manipulating data frames (data wrangling) 
     * Reshaping data
-		* Factors
-		* Dates
-		* Strings	
-	* Session 2	
-		* Basic analytics (regression, anova, clustering, anything else?)
-    * tidyr
-* Week 4 
-	* Session 1 
-		* Markdown, Latex, knitr
-		* Publishable documents (xtable, stargazer)
-  * Session 2
-		* Advanced ggplot: maps, network plots
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/week4-a/index.html)
+  * Session 2	
+    * Dplyr 
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week4-b/index.html)
 
 * Week 5
-	* Session 2
-		* Github and reproducible research
-		
+	* Session 1
+    * Finishing dplyr
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week5-a/index.html)
+
+
+  * Session 2
+    * Functions, prediction
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week5-b/index.html)
+
+	
 * Week 6
 	* Session 1
-		* R programing: Writing functions  
+		* Latex, Beamer, Knitr  
+    * [Slides](https://dl.dropboxusercontent.com/u/42416194/R_wav/Week6-a/index.html)
+
+
 	* Session 2
-		* Automating pipelines 
+		* Maps in ggplot, maybe github 
 
 * Week 7
- 	* Session 1
- 		* Getting data from the web
- 		* Handling large datasets in R  
-    * Session 2
-    	* Shiny 
+NO CLASS
 
 
 * Week 8
 	* Session 1
-		* Slidify, Odds and Ends 	
+		* Presentations 	
    * Session 2 
     	* Presentations

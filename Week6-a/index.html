@@ -389,7 +389,7 @@ ggplot(mtcars,aes(x=mpg,y=hp))+geom_smooth(method=&quot;lm&quot;)
   </hgroup>
   <article data-timings="">
     <ul>
-<li>Create a 4 slide presentation:
+<li><p>Create a 4 slide presentation:</p>
 
 <ul>
 <li>Title Slide</li>
@@ -397,7 +397,7 @@ ggplot(mtcars,aes(x=mpg,y=hp))+geom_smooth(method=&quot;lm&quot;)
 <li>A plot</li>
 <li>A proportion table (try pander::pander())</li>
 </ul></li>
-<li>Try different frameworks</li>
+<li><p>Try different frameworks</p></li>
 </ul>
 
   </article>
@@ -405,6 +405,39 @@ ggplot(mtcars,aes(x=mpg,y=hp))+geom_smooth(method=&quot;lm&quot;)
 </slide>
 
 <slide class="" id="slide-12" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">n &lt;- 100
+x &lt;- rnorm(n)
+y &lt;- 2*x + rnorm(n)
+out &lt;- lm(y ~ x)
+library(pander)
+panderOptions(&quot;digits&quot;, 2)
+pander(out)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <article data-timings="">
+    <pre><code> &amp;nbsp;        Estimate   Std. Error   t value   Pr(&gt;|t|) 
+</code></pre>
+
+<hr>
+
+<pre><code>  **x**          2.1         0.11        19      4.1e-34  
+</code></pre>
+
+<h2> <strong>(Intercept)</strong>    0.095        0.11       0.85       0.4    </h2>
+
+<p>Table: Fitting linear model: y ~ x</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
   <hgroup>
     <h2>Latex/Knitr</h2>
   </hgroup>
@@ -424,7 +457,7 @@ ggplot(mtcars,aes(x=mpg,y=hp))+geom_smooth(method=&quot;lm&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-13" style="background:;">
+<slide class="" id="slide-15" style="background:;">
   <hgroup>
     <h2>Getting Started</h2>
   </hgroup>
@@ -444,7 +477,7 @@ Hello World!
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-14" style="background:;">
+<slide class="" id="slide-16" style="background:;">
   <article data-timings="">
     <pre><code>\documentclass{article}
 \usepackage{authblk}
@@ -468,7 +501,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-15" style="background:;">
+<slide class="" id="slide-17" style="background:;">
   <article data-timings="">
     <ul>
 <li>With latex, we don&#39;t have to worry about section heads</li>
@@ -494,7 +527,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-16" style="background:;">
+<slide class="" id="slide-18" style="background:;">
   <article data-timings="">
     <ul>
 <li>We also have an easy way to generate and build bibliographies.</li>
@@ -511,7 +544,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-17" style="background:;">
+<slide class="" id="slide-19" style="background:;">
   <article data-timings="">
     <ul>
 <li><p>Can include graphics:</p>
@@ -528,7 +561,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-18" style="background:;">
+<slide class="" id="slide-20" style="background:;">
   <article data-timings="">
     <ul>
 <li>Just like markdown, knitr/sweave uses chunks</li>
@@ -550,7 +583,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-19" style="background:;">
+<slide class="" id="slide-21" style="background:;">
   <article data-timings="">
     <ul>
 <li>If we want to include figures, we can do something like:</li>
@@ -572,7 +605,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-20" style="background:;">
+<slide class="" id="slide-22" style="background:;">
   <article data-timings="">
     <ul>
 <li>If we want to include tables, we can do something like:</li>
@@ -595,7 +628,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-21" style="background:;">
+<slide class="" id="slide-23" style="background:;">
   <hgroup>
     <h2>Let&#39;s try it.</h2>
   </hgroup>
@@ -618,7 +651,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-22" style="background:;">
+<slide class="" id="slide-24" style="background:;">
   <article data-timings="">
     <ul>
 <li>Add title information</li>
@@ -637,7 +670,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-23" style="background:;">
+<slide class="" id="slide-25" style="background:;">
   <hgroup>
     <h2>Put this where you want your bibliography</h2>
   </hgroup>
@@ -652,7 +685,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-24" style="background:;">
+<slide class="" id="slide-26" style="background:;">
   <article data-timings="">
     <ul>
 <li>Make a short fake document with different sections and subsections.</li>
@@ -671,7 +704,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-25" style="background:;">
+<slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h2>Writing functions</h2>
   </hgroup>
@@ -685,7 +718,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-26" style="background:;">
+<slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h2>for instance:</h2>
   </hgroup>
@@ -700,7 +733,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-27" style="background:;">
+<slide class="" id="slide-29" style="background:;">
   <article data-timings="">
     <pre><code class="r">square.it(6)
 </code></pre>
@@ -712,7 +745,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-28" style="background:;">
+<slide class="" id="slide-30" style="background:;">
   <article data-timings="">
     <pre><code class="r">xy &lt;- function(x,y) {
     xy &lt;- x * y
@@ -732,7 +765,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-29" style="background:;">
+<slide class="" id="slide-31" style="background:;">
   <article data-timings="">
     <ul>
 <li>One function I use all the time  recodes all the values in a vector to lie between 0 and 1, where 0 indicates the lowest score in that vector, 1 indicates the highest. To calculate this, we substract the minimum of the vector X from X and divide that score  by the maximimum score of X minus the minimum of X. Write a zero1 function and apply it to mtcars$disp and mtcars$cyl. </li>
@@ -742,7 +775,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-30" style="background:;">
+<slide class="" id="slide-32" style="background:;">
   <hgroup>
     <h2>Exercises</h2>
   </hgroup>
@@ -757,7 +790,7 @@ Main text...
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-31" style="background:;">
+<slide class="" id="slide-33" style="background:;">
   <hgroup>
     <h2>More exercises</h2>
   </hgroup>
@@ -852,25 +885,25 @@ expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Latex/Knitr'>
+        data-slide=12 title=''>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Getting Started'>
+        data-slide=13 title=''>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title=''>
+        data-slide=14 title='Latex/Knitr'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title=''>
+        data-slide=15 title='Getting Started'>
          15
       </a>
     </li>
@@ -906,7 +939,7 @@ expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Let&#39;s try it.'>
+        data-slide=21 title=''>
          21
       </a>
     </li>
@@ -918,7 +951,7 @@ expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Put this where you want your bibliography'>
+        data-slide=23 title='Let&#39;s try it.'>
          23
       </a>
     </li>
@@ -930,25 +963,25 @@ expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Writing functions'>
+        data-slide=25 title='Put this where you want your bibliography'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='for instance:'>
+        data-slide=26 title=''>
          26
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title=''>
+        data-slide=27 title='Writing functions'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title=''>
+        data-slide=28 title='for instance:'>
          28
       </a>
     </li>
@@ -960,14 +993,26 @@ expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='Exercises'>
+        data-slide=30 title=''>
          30
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='More exercises'>
+        data-slide=31 title=''>
          31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Exercises'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='More exercises'>
+         33
       </a>
     </li>
   </ul>

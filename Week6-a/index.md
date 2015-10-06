@@ -289,7 +289,31 @@ The following frameworks are compatible with Slidify for making your presentatio
   + Some Bullet points and header
   + A plot
   + A proportion table (try pander::pander())
+  
 * Try different frameworks
+
+---
+
+```r
+n <- 100
+x <- rnorm(n)
+y <- 2*x + rnorm(n)
+out <- lm(y ~ x)
+library(pander)
+panderOptions("digits", 2)
+pander(out)
+```
+
+
+--------------------------------------------------------------
+     &nbsp;        Estimate   Std. Error   t value   Pr(>|t|) 
+----------------- ---------- ------------ --------- ----------
+      **x**          2.1         0.11        19      4.1e-34  
+
+ **(Intercept)**    0.095        0.11       0.85       0.4    
+--------------------------------------------------------------
+
+Table: Fitting linear model: y ~ x
 
 ---
 ## Latex/Knitr

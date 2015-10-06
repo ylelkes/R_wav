@@ -1,0 +1,537 @@
+---
+title       : Creating slideshows, latex, and functions
+subtitle    : 
+author      : 
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+ext_widgets: {rCharts: [libraries/nvd3]}
+
+---
+## Slidify
+
+1. Easy to use software that links R, markdown, and html5 slide decks
+
+```
+library(devtools)
+install_github('slidify', 'ramnathv')
+```
+
+---
+## To get started:
+```
+library(slidify)
+author("mydeck")
+``` 
+
+This will do the following:
+
+1. Create a new directory named mydeck.
+2. Copy necessary scaffolding for the presentation.
+3.  Open index.Rmd for you to edit.
+
+
+---
+```
+---
+title       : 
+subtitle    : 
+author      : 
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+```
+
+---
+## Getting started
+
+* Seperate slides by an empty line followed by three dashes (---)
+* Give your slides a header, and use markdown within the slide:
+
+``` 
+---
+ ## This is the header for this slides
+  * These are bullets
+    + So is this
+```
+
+
+---
+## Inputting code and graphics
+
+```
+{r,echo=F,fig.height=8,warning=F,message=F}
+library(ggplot2)
+ggplot(mtcars,aes(x=mpg,y=hp))+geom_smooth(method="lm")
+```
+
+---
+## Inputting code and graphics
+![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1-1.png) 
+
+---
+## Can input web pages with iframe
+```
+<iframe src = 'https://github.com/ylelkes/R_wav' height='600px'></iframe>
+```
+
+
+--- 
+
+<iframe src = 'http://www.uva.nl/en/home' height='600px'></iframe>
+
+---
+## Interactive Chart
+
+<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/css/nv.d3.css>
+<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/css/rNVD3.css>
+<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/js/jquery-1.8.2.min.js></script>
+<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/js/d3.v3.min.js></script>
+<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/js/nv.d3.min-new.js></script>
+<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/js/fisheye.js></script> 
+ <style>
+  .rChart {
+    display: block;
+    margin-left: auto; 
+    margin-right: auto;
+    width: 800px;
+    height: 400px;
+  }  
+  </style>
+<div id = 'chart2' class = 'rChart nvd3'></div>
+<script type='text/javascript'>
+ $(document).ready(function(){
+      drawchart2()
+    });
+    function drawchart2(){  
+      var opts = {
+ "dom": "chart2",
+"width":    800,
+"height":    400,
+"x": "Hair",
+"y": "Freq",
+"group": "Eye",
+"type": "multiBarChart",
+"pointSize":      0,
+"lineWidth":      1,
+"id": "chart2" 
+},
+        data = [
+ {
+ "Hair": "Black",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":             32 
+},
+{
+ "Hair": "Brown",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":             53 
+},
+{
+ "Hair": "Red",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":             10 
+},
+{
+ "Hair": "Blond",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":              3 
+},
+{
+ "Hair": "Black",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             11 
+},
+{
+ "Hair": "Brown",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             50 
+},
+{
+ "Hair": "Red",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             10 
+},
+{
+ "Hair": "Blond",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             30 
+},
+{
+ "Hair": "Black",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":             10 
+},
+{
+ "Hair": "Brown",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":             25 
+},
+{
+ "Hair": "Red",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":              7 
+},
+{
+ "Hair": "Blond",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":              5 
+},
+{
+ "Hair": "Black",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":              3 
+},
+{
+ "Hair": "Brown",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":             15 
+},
+{
+ "Hair": "Red",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":              7 
+},
+{
+ "Hair": "Blond",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":              8 
+} 
+]
+  
+      if(!(opts.type==="pieChart" || opts.type==="sparklinePlus" || opts.type==="bulletChart")) {
+        var data = d3.nest()
+          .key(function(d){
+            //return opts.group === undefined ? 'main' : d[opts.group]
+            //instead of main would think a better default is opts.x
+            return opts.group === undefined ? opts.y : d[opts.group];
+          })
+          .entries(data);
+      }
+      
+      if (opts.disabled != undefined){
+        data.map(function(d, i){
+          d.disabled = opts.disabled[i]
+        })
+      }
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .width(opts.width)
+          .height(opts.height)
+          
+        if (opts.type != "bulletChart"){
+          chart
+            .x(function(d) { return d[opts.x] })
+            .y(function(d) { return d[opts.y] })
+        }
+          
+         
+        
+          
+        
+
+        
+        
+        
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
+
+---
+The following frameworks are compatible with Slidify for making your presentations:
+
+- [io2012](https://code.google.com/p/io-2012-slides/)
+- [html5slides](https://code.google.com/p/html5slides/)
+- [deck.js](http://imakewebthings.com/deck.js/)
+- [dzslides](http://paulrouget.com/dzslides/)
+- [landslide](https://github.com/adamzap/landslide)
+- [Slidy](http://www.w3.org/Talks/Tools/Slidy2/Overview.html#)
+
+---
+## Exercise
+* Create a 4 slide presentation:
+  + Title Slide
+  + Some Bullet points and header
+  + A plot
+  + A proportion table (try pander::pander())
+* Try different frameworks
+
+---
+## Latex/Knitr
+* Latex is a popular typesetting program. 
+* Advantages:
+  + Looks good
+  + You don't have to worry about headings, sections, etc
+  + Combine it with knitr and you have some reproducible research
+
+---
+## Getting Started
+
+```
+% hello.tex - Our first LaTeX example!
+
+\documentclass{article}
+
+\begin{document}
+
+Hello World!
+
+\end{document}
+```
+
+---
+```
+\documentclass{article}
+\usepackage{authblk}
+\title{Introduction to Latex}
+\author{Yphtach Lelkes}
+\affil{ASCoR}
+\date{\today}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+\begin{abstract}
+Put abstract here
+\end{abstract}
+
+Main text...
+\end{document}
+```
+
+---
+* With latex, we don't have to worry about section heads
+
+\section{Section Name}
+
+Text
+
+\subsection{Subsection Name}
+
+Text
+
+\subsubsection{SubSubsection Name}
+
+Text
+
+\paragraph{Paragraph Name}
+
+Text
+
+---
+* We also have an easy way to generate and build bibliographies.
+* Different versions but we'll start with natbib
+* google scholar example
+* \citep{}
+* \citet{}
+* \cite{}
+* Add \addbibresource{bibliography.bib} to preamble
+* \printbibliography Where you want the bibliography to be
+
+
+---
+* Can include graphics:
+  
+  \begin{figure}
+  \caption{Figure 1}
+  \includegraphics[width=2.5cm, height=2.5]{img.xxx}
+  \label{fig:figa}
+  \end{figure}
++ \includegraphics[width=\textwidth]{img.xxx}
+
+---
+* Just like markdown, knitr/sweave uses chunks
+
+> <<>>=
+
+> CODE
+
+> @
+
+* see http://yihui.name/knitr/options/
+
+---
+* If we want to include figures, we can do something like:
+
+> <<plot1, fig.pos="t", fig.height=4, fig.width=4, fig.cap="First plot",echo=F>>=
+
+> plot(mtcars$gear~mtcars$cyl)
+
+> @
+
+* We can later refer to that figure, e.g., See Figure \ref{fig:plot1}, which will look something like: See Figure 1. 
+
+---
+* If we want to include tables, we can do something like:
+
+> <<results=tex, echo=F>>=
+>
+> print(xtable(prop.table(table(mtcars$cyl,mtcars$gear)),caption="This is table1",  label="tab:t1"))
+>
+> @
+
+* We can later refer to that table, e.g., See Table \ref{tab:t1}, which will look something like: See Table 1. 
+* Just like inline code in markdown, R uses the term \Sexpr{6+6}
+
+
+---
+## Let's try it.
+
+```
+\documentclass[man]{apa6} % man for manuscript format, jou for journal format, doc for standard LaTeX document format
+\usepackage[natbibapa]{apacite} % Divine intervention help you if you need to use a different citation package.
+\usepackage[american]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+
+\usepackage{url}   % this allows us to cite URLs in the text
+\usepackage{graphicx}   % allows for graphic to float when doing jou or doc style
+\usepackage{verbatim}   % allows us to use \begin{comment} environment
+\usepackage{caption}
+%\usepackage{lscape}
+\usepackage{pdflscape}
+```
+
+
+
+---
+* Add title information
+
+```
+\title{Your APA6-Style Manuscript}
+\shorttitle{Your APA6-Style Manuscript}
+\author{You}
+\affiliation{Somewhere}
+
+\abstract{Your abstract here.}
+\begin{document}
+```
+
+---
+## Put this where you want your bibliography
+
+> 
+> \bibliographystyle{apacite}
+>
+> \bibliography{bibexample} % NAME OF your bibliography file
+
+
+---
+* Make a short fake document with different sections and subsections.
+* Use the mtcars data
+* Include a graph and in the chunk and give the figure a title and a label
+* Include a series of regressions and the stargazer package to include a regression table
+* Give the table a caption and a label (see xtable options). 
+* Refer to the table in the text with \ref{}
+* Create a chunk where you define x <- 36 (or something like that). Use \Sexpr{x} in a sentence. 
+* use \includegraphics to include the image hipdog.jpg and refer to that figure in the text with \ref{}
+* Try the different citation options and generate a bibliography with bibexample.bib
+* In the preamble see what happens when you change man to jou to doc
+
+---
+## Writing functions
+1. Sometimes we find ourselves rewriting code over and over again. 
+2. We can use functions to make plyr and other packages do what we want. 
+
+---
+##  for instance:
+
+```r
+square.it <- function(x) {
+    square <- x * x
+    return(square)
+}
+```
+
+---
+## 
+  
+
+```r
+square.it(6)
+```
+
+```
+## [1] 36
+```
+
+---
+
+
+```r
+xy <- function(x,y) {
+    xy <- x * y
+    return(xy)
+}
+```
+---
+
+  
+
+```r
+xy(6,4)
+```
+
+```
+## [1] 24
+```
+
+---
+
+* One function I use all the time  recodes all the values in a vector to lie between 0 and 1, where 0 indicates the lowest score in that vector, 1 indicates the highest. To calculate this, we substract the minimum of the vector X from X and divide that score  by the maximimum score of X minus the minimum of X. Write a zero1 function and apply it to mtcars$disp and mtcars$cyl. 
+
+---
+## Exercises
+* Dplyr works with user-defined functions. The input into a function need not be a vector or a number, but it can also be a dataframe. Remember that dplyr pushes an object forward. 
+
+* With the ToothGrowth data, write a function that takes a dataset (x), and regresses length (len) on dose, and keeps the estimate and standard error for the dose coefficient.
+
+* Stick that function into dplyr so that you get different output based on supplement type, and plot the coefficients and 95 percent confidence intervals.
+
+---
+## More exercises
+1. Let's create a list of 10 dataframes with x and y in each:
+
+
+```r
+sim_list = replicate(n = 10,                  
+expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
+```
+2. Write a function, that, given a dataframe regresses y on x and z (y=x+z).
+3. Input that function and dataframe into lapply(), which performs a function on each element in a list. The result will be a list of regressions.  
+4. Put the output into stargazer,screenreg, or another regression to table function, so you have a regression table that is 10 columns long.    

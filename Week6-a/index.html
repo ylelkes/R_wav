@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Creating slideshows, latex, and functions</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Creating slideshows, latex, and functions">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/nvd3/css/nv.d3.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/rNVD3.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  <script src="libraries/widgets/nvd3/js/jquery-1.8.2.min.js"></script>
+<script src="libraries/widgets/nvd3/js/d3.v3.min.js"></script>
+<script src="libraries/widgets/nvd3/js/nv.d3.min-new.js"></script>
+<script src="libraries/widgets/nvd3/js/fisheye.js"></script>
+
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Creating slideshows, latex, and functions</h1>
+    <h2></h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Slidify</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Easy to use software that links R, markdown, and html5 slide decks</li>
+</ol>
+
+<pre><code>library(devtools)
+install_github(&#39;slidify&#39;, &#39;ramnathv&#39;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>To get started:</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>library(slidify)
+author(&quot;mydeck&quot;)
+</code></pre>
+
+<p>This will do the following:</p>
+
+<ol>
+<li>Create a new directory named mydeck.</li>
+<li>Copy necessary scaffolding for the presentation.</li>
+<li> Open index.Rmd for you to edit.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <article data-timings="">
+    <pre><code>---
+title       : 
+subtitle    : 
+author      : 
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Getting started</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Seperate slides by an empty line followed by three dashes (---)</li>
+<li>Give your slides a header, and use markdown within the slide:</li>
+</ul>
+
+<pre><code>---
+ ## This is the header for this slides
+  * These are bullets
+    + So is this
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Inputting code and graphics</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>{r,echo=F,fig.height=8,warning=F,message=F}
+library(ggplot2)
+ggplot(mtcars,aes(x=mpg,y=hp))+geom_smooth(method=&quot;lm&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Inputting code and graphics</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Can input web pages with iframe</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>&lt;iframe src = &#39;https://github.com/ylelkes/R_wav&#39; height=&#39;600px&#39;&gt;&lt;/iframe&gt;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <article data-timings="">
+    <iframe src = 'http://www.uva.nl/en/home' height='600px'></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Interactive Chart</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/css/nv.d3.css>
+<link rel='stylesheet' href=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/css/rNVD3.css></p>
+
+<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/js/jquery-1.8.2.min.js></script>
+
+<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/js/d3.v3.min.js></script>
+
+<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/js/nv.d3.min-new.js></script>
+
+<script type='text/javascript' src=/Library/Frameworks/R.framework/Versions/3.1/Resources/library/rCharts/libraries/nvd3/js/fisheye.js></script> 
+
+<p><style>
+  .rChart {
+    display: block;
+    margin-left: auto; 
+    margin-right: auto;
+    width: 800px;
+    height: 400px;
+  }<br>
+  </style></p>
+
+<div id = 'chart2' class = 'rChart nvd3'></div>
+
+<script type='text/javascript'>
+ $(document).ready(function(){
+      drawchart2()
+    });
+    function drawchart2(){  
+      var opts = {
+ "dom": "chart2",
+"width":    800,
+"height":    400,
+"x": "Hair",
+"y": "Freq",
+"group": "Eye",
+"type": "multiBarChart",
+"pointSize":      0,
+"lineWidth":      1,
+"id": "chart2" 
+},
+        data = [
+ {
+ "Hair": "Black",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":             32 
+},
+{
+ "Hair": "Brown",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":             53 
+},
+{
+ "Hair": "Red",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":             10 
+},
+{
+ "Hair": "Blond",
+"Eye": "Brown",
+"Sex": "Male",
+"Freq":              3 
+},
+{
+ "Hair": "Black",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             11 
+},
+{
+ "Hair": "Brown",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             50 
+},
+{
+ "Hair": "Red",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             10 
+},
+{
+ "Hair": "Blond",
+"Eye": "Blue",
+"Sex": "Male",
+"Freq":             30 
+},
+{
+ "Hair": "Black",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":             10 
+},
+{
+ "Hair": "Brown",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":             25 
+},
+{
+ "Hair": "Red",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":              7 
+},
+{
+ "Hair": "Blond",
+"Eye": "Hazel",
+"Sex": "Male",
+"Freq":              5 
+},
+{
+ "Hair": "Black",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":              3 
+},
+{
+ "Hair": "Brown",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":             15 
+},
+{
+ "Hair": "Red",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":              7 
+},
+{
+ "Hair": "Blond",
+"Eye": "Green",
+"Sex": "Male",
+"Freq":              8 
+} 
+]
+  
+      if(!(opts.type==="pieChart" || opts.type==="sparklinePlus" || opts.type==="bulletChart")) {
+        var data = d3.nest()
+          .key(function(d){
+            //return opts.group === undefined ? 'main' : d[opts.group]
+            //instead of main would think a better default is opts.x
+            return opts.group === undefined ? opts.y : d[opts.group];
+          })
+          .entries(data);
+      }
+      
+      if (opts.disabled != undefined){
+        data.map(function(d, i){
+          d.disabled = opts.disabled[i]
+        })
+      }
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .width(opts.width)
+          .height(opts.height)
+          
+        if (opts.type != "bulletChart"){
+          chart
+            .x(function(d) { return d[opts.x] })
+            .y(function(d) { return d[opts.y] })
+        }
+          
+         
+        
+          
+        
+
+        
+        
+        
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <article data-timings="">
+    <p>The following frameworks are compatible with Slidify for making your presentations:</p>
+
+<ul>
+<li><a href="https://code.google.com/p/io-2012-slides/">io2012</a></li>
+<li><a href="https://code.google.com/p/html5slides/">html5slides</a></li>
+<li><a href="http://imakewebthings.com/deck.js/">deck.js</a></li>
+<li><a href="http://paulrouget.com/dzslides/">dzslides</a></li>
+<li><a href="https://github.com/adamzap/landslide">landslide</a></li>
+<li><a href="http://www.w3.org/Talks/Tools/Slidy2/Overview.html#">Slidy</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Exercise</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Create a 4 slide presentation:
+
+<ul>
+<li>Title Slide</li>
+<li>Some Bullet points and header</li>
+<li>A plot</li>
+<li>A proportion table (try pander::pander())</li>
+</ul></li>
+<li>Try different frameworks</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Latex/Knitr</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Latex is a popular typesetting program. </li>
+<li>Advantages:
+
+<ul>
+<li>Looks good</li>
+<li>You don&#39;t have to worry about headings, sections, etc</li>
+<li>Combine it with knitr and you have some reproducible research</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Getting Started</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>% hello.tex - Our first LaTeX example!
+
+\documentclass{article}
+
+\begin{document}
+
+Hello World!
+
+\end{document}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <article data-timings="">
+    <pre><code>\documentclass{article}
+\usepackage{authblk}
+\title{Introduction to Latex}
+\author{Yphtach Lelkes}
+\affil{ASCoR}
+\date{\today}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+\begin{abstract}
+Put abstract here
+\end{abstract}
+
+Main text...
+\end{document}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>With latex, we don&#39;t have to worry about section heads</li>
+</ul>
+
+<p>\section{Section Name}</p>
+
+<p>Text</p>
+
+<p>\subsection{Subsection Name}</p>
+
+<p>Text</p>
+
+<p>\subsubsection{SubSubsection Name}</p>
+
+<p>Text</p>
+
+<p>\paragraph{Paragraph Name}</p>
+
+<p>Text</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>We also have an easy way to generate and build bibliographies.</li>
+<li>Different versions but we&#39;ll start with natbib</li>
+<li>google scholar example</li>
+<li>\citep{}</li>
+<li>\citet{}</li>
+<li>\cite{}</li>
+<li>Add \addbibresource{bibliography.bib} to preamble</li>
+<li>\printbibliography Where you want the bibliography to be</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <article data-timings="">
+    <ul>
+<li><p>Can include graphics:</p>
+
+<p>\begin{figure}
+\caption{Figure 1}
+\includegraphics[width=2.5cm, height=2.5]{img.xxx}
+\label{fig:figa}
+\end{figure}</p></li>
+<li><p>\includegraphics[width=\textwidth]{img.xxx}</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>Just like markdown, knitr/sweave uses chunks</li>
+</ul>
+
+<blockquote>
+<p>&lt;&lt;&gt;&gt;=</p>
+
+<p>CODE</p>
+
+<p>@</p>
+</blockquote>
+
+<ul>
+<li>see <a href="http://yihui.name/knitr/options/">http://yihui.name/knitr/options/</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>If we want to include figures, we can do something like:</li>
+</ul>
+
+<blockquote>
+<p>&lt;<plot1, fig.pos="t", fig.height=4, fig.width=4, fig.cap="First plot",echo=F>&gt;=</p>
+
+<p>plot(mtcars$gear~mtcars$cyl)</p>
+
+<p>@</p>
+</blockquote>
+
+<ul>
+<li>We can later refer to that figure, e.g., See Figure \ref{fig:plot1}, which will look something like: See Figure 1. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>If we want to include tables, we can do something like:</li>
+</ul>
+
+<blockquote>
+<p>&lt;<results=tex, echo=F>&gt;=</p>
+
+<p>print(xtable(prop.table(table(mtcars$cyl,mtcars$gear)),caption=&quot;This is table1&quot;,  label=&quot;tab:t1&quot;))</p>
+
+<p>@</p>
+</blockquote>
+
+<ul>
+<li>We can later refer to that table, e.g., See Table \ref{tab:t1}, which will look something like: See Table 1. </li>
+<li>Just like inline code in markdown, R uses the term \Sexpr{6+6}</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s try it.</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>\documentclass[man]{apa6} % man for manuscript format, jou for journal format, doc for standard LaTeX document format
+\usepackage[natbibapa]{apacite} % Divine intervention help you if you need to use a different citation package.
+\usepackage[american]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+
+\usepackage{url}   % this allows us to cite URLs in the text
+\usepackage{graphicx}   % allows for graphic to float when doing jou or doc style
+\usepackage{verbatim}   % allows us to use \begin{comment} environment
+\usepackage{caption}
+%\usepackage{lscape}
+\usepackage{pdflscape}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>Add title information</li>
+</ul>
+
+<pre><code>\title{Your APA6-Style Manuscript}
+\shorttitle{Your APA6-Style Manuscript}
+\author{You}
+\affiliation{Somewhere}
+
+\abstract{Your abstract here.}
+\begin{document}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Put this where you want your bibliography</h2>
+  </hgroup>
+  <article data-timings="">
+    <blockquote>
+<p>\bibliographystyle{apacite}</p>
+
+<p>\bibliography{bibexample} % NAME OF your bibliography file</p>
+</blockquote>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>Make a short fake document with different sections and subsections.</li>
+<li>Use the mtcars data</li>
+<li>Include a graph and in the chunk and give the figure a title and a label</li>
+<li>Include a series of regressions and the stargazer package to include a regression table</li>
+<li>Give the table a caption and a label (see xtable options). </li>
+<li>Refer to the table in the text with \ref{}</li>
+<li>Create a chunk where you define x &lt;- 36 (or something like that). Use \Sexpr{x} in a sentence. </li>
+<li>use \includegraphics to include the image hipdog.jpg and refer to that figure in the text with \ref{}</li>
+<li>Try the different citation options and generate a bibliography with bibexample.bib</li>
+<li>In the preamble see what happens when you change man to jou to doc</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Writing functions</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Sometimes we find ourselves rewriting code over and over again. </li>
+<li>We can use functions to make plyr and other packages do what we want. </li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>for instance:</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">square.it &lt;- function(x) {
+    square &lt;- x * x
+    return(square)
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">square.it(6)
+</code></pre>
+
+<pre><code>## [1] 36
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">xy &lt;- function(x,y) {
+    xy &lt;- x * y
+    return(xy)
+}
+</code></pre>
+
+<hr>
+
+<pre><code class="r">xy(6,4)
+</code></pre>
+
+<pre><code>## [1] 24
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>One function I use all the time  recodes all the values in a vector to lie between 0 and 1, where 0 indicates the lowest score in that vector, 1 indicates the highest. To calculate this, we substract the minimum of the vector X from X and divide that score  by the maximimum score of X minus the minimum of X. Write a zero1 function and apply it to mtcars$disp and mtcars$cyl. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Dplyr works with user-defined functions. The input into a function need not be a vector or a number, but it can also be a dataframe. Remember that dplyr pushes an object forward. </p></li>
+<li><p>With the ToothGrowth data, write a function that takes a dataset (x), and regresses length (len) on dose, and keeps the estimate and standard error for the dose coefficient.</p></li>
+<li><p>Stick that function into dplyr so that you get different output based on supplement type, and plot the coefficients and 95 percent confidence intervals.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>More exercises</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Let&#39;s create a list of 10 dataframes with x and y in each:</li>
+</ol>
+
+<pre><code class="r">sim_list = replicate(n = 10,                  
+expr = {data.frame(x = rnorm(50), y = rnorm(50), z=rnorm(10))}, simplify = F)
+</code></pre>
+
+<ol>
+<li>Write a function, that, given a dataframe regresses y on x and z (y=x+z).</li>
+<li>Input that function and dataframe into lapply(), which performs a function on each element in a list. The result will be a list of regressions.<br></li>
+<li>Put the output into stargazer,screenreg, or another regression to table function, so you have a regression table that is 10 columns long.<br></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Slidify'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='To get started:'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title=''>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Getting started'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Inputting code and graphics'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Inputting code and graphics'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Can input web pages with iframe'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title=''>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Interactive Chart'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title=''>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Exercise'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Latex/Knitr'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Getting Started'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title=''>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title=''>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title=''>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title=''>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title=''>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title=''>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title=''>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Let&#39;s try it.'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title=''>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Put this where you want your bibliography'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title=''>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Writing functions'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='for instance:'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title=''>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title=''>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title=''>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Exercises'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='More exercises'>
+         31
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

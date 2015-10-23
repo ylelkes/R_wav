@@ -1,0 +1,3562 @@
+<!doctype HTML>
+<meta charset = 'utf-8'>
+<html>
+  <head>
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min.css'>
+    
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js' type='text/javascript'></script>
+    <script src='//d3js.org/d3.v3.min.js' type='text/javascript'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min.js' type='text/javascript'></script>
+    <script src='//nvd3.org/assets/lib/fisheye.js' type='text/javascript'></script>
+    
+    <style>
+    .rChart {
+      display: block;
+      margin-left: auto; 
+      margin-right: auto;
+      width: 800px;
+      height: 400px;
+    }  
+    </style>
+    
+  </head>
+  <body >
+    
+    <div id = 'chart3e5c9384337' class = 'rChart nvd3'></div>    
+    <script type='text/javascript'>
+ $(document).ready(function(){
+      drawchart3e5c9384337()
+    });
+    function drawchart3e5c9384337(){  
+      var opts = {
+ "dom": "chart3e5c9384337",
+"width":    800,
+"height":    400,
+"x": "Time",
+"y": "weight",
+"group": "Diet",
+"type": "stackedAreaChart",
+"id": "chart3e5c9384337" 
+},
+        data = [
+ {
+ "weight":             42,
+"Time":              0,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":             51,
+"Time":              2,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":             59,
+"Time":              4,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":             64,
+"Time":              6,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":             76,
+"Time":              8,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":             93,
+"Time":             10,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":            106,
+"Time":             12,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":            125,
+"Time":             14,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":            149,
+"Time":             16,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":            171,
+"Time":             18,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":            199,
+"Time":             20,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":            205,
+"Time":             21,
+"Chick": "1",
+"Diet": "1" 
+},
+{
+ "weight":             40,
+"Time":              0,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":             58,
+"Time":              4,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":             72,
+"Time":              6,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":             84,
+"Time":              8,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":            103,
+"Time":             10,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":            122,
+"Time":             12,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":            138,
+"Time":             14,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":            162,
+"Time":             16,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":            187,
+"Time":             18,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":            209,
+"Time":             20,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":            215,
+"Time":             21,
+"Chick": "2",
+"Diet": "1" 
+},
+{
+ "weight":             43,
+"Time":              0,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":             39,
+"Time":              2,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":             55,
+"Time":              4,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":             67,
+"Time":              6,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":             84,
+"Time":              8,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":             99,
+"Time":             10,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":            115,
+"Time":             12,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":            138,
+"Time":             14,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":            163,
+"Time":             16,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":            187,
+"Time":             18,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":            198,
+"Time":             20,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":            202,
+"Time":             21,
+"Chick": "3",
+"Diet": "1" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":             56,
+"Time":              4,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":             67,
+"Time":              6,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":             74,
+"Time":              8,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":             87,
+"Time":             10,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":            102,
+"Time":             12,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":            108,
+"Time":             14,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":            136,
+"Time":             16,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":            154,
+"Time":             18,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":            160,
+"Time":             20,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":            157,
+"Time":             21,
+"Chick": "4",
+"Diet": "1" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":             42,
+"Time":              2,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":             48,
+"Time":              4,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":             60,
+"Time":              6,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":             79,
+"Time":              8,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":            106,
+"Time":             10,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":            141,
+"Time":             12,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":            164,
+"Time":             14,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":            197,
+"Time":             16,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":            199,
+"Time":             18,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":            220,
+"Time":             20,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":            223,
+"Time":             21,
+"Chick": "5",
+"Diet": "1" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":             59,
+"Time":              4,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":             74,
+"Time":              6,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":             97,
+"Time":              8,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":            124,
+"Time":             10,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":            141,
+"Time":             12,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":            148,
+"Time":             14,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":            155,
+"Time":             16,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":            160,
+"Time":             18,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":            160,
+"Time":             20,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":            157,
+"Time":             21,
+"Chick": "6",
+"Diet": "1" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":             57,
+"Time":              4,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":             71,
+"Time":              6,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":             89,
+"Time":              8,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":            112,
+"Time":             10,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":            146,
+"Time":             12,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":            174,
+"Time":             14,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":            218,
+"Time":             16,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":            250,
+"Time":             18,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":            288,
+"Time":             20,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":            305,
+"Time":             21,
+"Chick": "7",
+"Diet": "1" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":             50,
+"Time":              2,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":             61,
+"Time":              4,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":             71,
+"Time":              6,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":             84,
+"Time":              8,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":             93,
+"Time":             10,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":            110,
+"Time":             12,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":            116,
+"Time":             14,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":            126,
+"Time":             16,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":            134,
+"Time":             18,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":            125,
+"Time":             20,
+"Chick": "8",
+"Diet": "1" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":             51,
+"Time":              2,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":             59,
+"Time":              4,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":             68,
+"Time":              6,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":             85,
+"Time":              8,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":             96,
+"Time":             10,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":             90,
+"Time":             12,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":             92,
+"Time":             14,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":             93,
+"Time":             16,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":            100,
+"Time":             18,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":            100,
+"Time":             20,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":             98,
+"Time":             21,
+"Chick": "9",
+"Diet": "1" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":             44,
+"Time":              2,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":             52,
+"Time":              4,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":             63,
+"Time":              6,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":             74,
+"Time":              8,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":             81,
+"Time":             10,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":             89,
+"Time":             12,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":             96,
+"Time":             14,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":            101,
+"Time":             16,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":            112,
+"Time":             18,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":            120,
+"Time":             20,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":            124,
+"Time":             21,
+"Chick": "10",
+"Diet": "1" 
+},
+{
+ "weight":             43,
+"Time":              0,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":             51,
+"Time":              2,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":             63,
+"Time":              4,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":             84,
+"Time":              6,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":            112,
+"Time":              8,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":            139,
+"Time":             10,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":            168,
+"Time":             12,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":            177,
+"Time":             14,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":            182,
+"Time":             16,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":            184,
+"Time":             18,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":            181,
+"Time":             20,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":            175,
+"Time":             21,
+"Chick": "11",
+"Diet": "1" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":             56,
+"Time":              4,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":             62,
+"Time":              6,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":             72,
+"Time":              8,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":             88,
+"Time":             10,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":            119,
+"Time":             12,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":            135,
+"Time":             14,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":            162,
+"Time":             16,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":            185,
+"Time":             18,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":            195,
+"Time":             20,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":            205,
+"Time":             21,
+"Chick": "12",
+"Diet": "1" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             48,
+"Time":              2,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             53,
+"Time":              4,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             60,
+"Time":              6,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             65,
+"Time":              8,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             67,
+"Time":             10,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             71,
+"Time":             12,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             70,
+"Time":             14,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             71,
+"Time":             16,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             81,
+"Time":             18,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             91,
+"Time":             20,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             96,
+"Time":             21,
+"Chick": "13",
+"Diet": "1" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":             62,
+"Time":              4,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":             79,
+"Time":              6,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":            101,
+"Time":              8,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":            128,
+"Time":             10,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":            164,
+"Time":             12,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":            192,
+"Time":             14,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":            227,
+"Time":             16,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":            248,
+"Time":             18,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":            259,
+"Time":             20,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":            266,
+"Time":             21,
+"Chick": "14",
+"Diet": "1" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "15",
+"Diet": "1" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "15",
+"Diet": "1" 
+},
+{
+ "weight":             56,
+"Time":              4,
+"Chick": "15",
+"Diet": "1" 
+},
+{
+ "weight":             64,
+"Time":              6,
+"Chick": "15",
+"Diet": "1" 
+},
+{
+ "weight":             68,
+"Time":              8,
+"Chick": "15",
+"Diet": "1" 
+},
+{
+ "weight":             68,
+"Time":             10,
+"Chick": "15",
+"Diet": "1" 
+},
+{
+ "weight":             67,
+"Time":             12,
+"Chick": "15",
+"Diet": "1" 
+},
+{
+ "weight":             68,
+"Time":             14,
+"Chick": "15",
+"Diet": "1" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "16",
+"Diet": "1" 
+},
+{
+ "weight":             45,
+"Time":              2,
+"Chick": "16",
+"Diet": "1" 
+},
+{
+ "weight":             49,
+"Time":              4,
+"Chick": "16",
+"Diet": "1" 
+},
+{
+ "weight":             51,
+"Time":              6,
+"Chick": "16",
+"Diet": "1" 
+},
+{
+ "weight":             57,
+"Time":              8,
+"Chick": "16",
+"Diet": "1" 
+},
+{
+ "weight":             51,
+"Time":             10,
+"Chick": "16",
+"Diet": "1" 
+},
+{
+ "weight":             54,
+"Time":             12,
+"Chick": "16",
+"Diet": "1" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":             51,
+"Time":              2,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":             61,
+"Time":              4,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":             72,
+"Time":              6,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":             83,
+"Time":              8,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":             89,
+"Time":             10,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":             98,
+"Time":             12,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":            103,
+"Time":             14,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":            113,
+"Time":             16,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":            123,
+"Time":             18,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":            133,
+"Time":             20,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":            142,
+"Time":             21,
+"Chick": "17",
+"Diet": "1" 
+},
+{
+ "weight":             39,
+"Time":              0,
+"Chick": "18",
+"Diet": "1" 
+},
+{
+ "weight":             35,
+"Time":              2,
+"Chick": "18",
+"Diet": "1" 
+},
+{
+ "weight":             43,
+"Time":              0,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":             48,
+"Time":              2,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":             55,
+"Time":              4,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":             62,
+"Time":              6,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":             65,
+"Time":              8,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":             71,
+"Time":             10,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":             82,
+"Time":             12,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":             88,
+"Time":             14,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":            106,
+"Time":             16,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":            120,
+"Time":             18,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":            144,
+"Time":             20,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":            157,
+"Time":             21,
+"Chick": "19",
+"Diet": "1" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":             47,
+"Time":              2,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":             54,
+"Time":              4,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":             58,
+"Time":              6,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":             65,
+"Time":              8,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":             73,
+"Time":             10,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":             77,
+"Time":             12,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":             89,
+"Time":             14,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":             98,
+"Time":             16,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":            107,
+"Time":             18,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":            115,
+"Time":             20,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":            117,
+"Time":             21,
+"Chick": "20",
+"Diet": "1" 
+},
+{
+ "weight":             40,
+"Time":              0,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":             50,
+"Time":              2,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":             62,
+"Time":              4,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":             86,
+"Time":              6,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":            125,
+"Time":              8,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":            163,
+"Time":             10,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":            217,
+"Time":             12,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":            240,
+"Time":             14,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":            275,
+"Time":             16,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":            307,
+"Time":             18,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":            318,
+"Time":             20,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":            331,
+"Time":             21,
+"Chick": "21",
+"Diet": "2" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":             55,
+"Time":              2,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":             64,
+"Time":              4,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":             77,
+"Time":              6,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":             90,
+"Time":              8,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":             95,
+"Time":             10,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":            108,
+"Time":             12,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":            111,
+"Time":             14,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":            131,
+"Time":             16,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":            148,
+"Time":             18,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":            164,
+"Time":             20,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":            167,
+"Time":             21,
+"Chick": "22",
+"Diet": "2" 
+},
+{
+ "weight":             43,
+"Time":              0,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":             52,
+"Time":              2,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":             61,
+"Time":              4,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":             73,
+"Time":              6,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":             90,
+"Time":              8,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":            103,
+"Time":             10,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":            127,
+"Time":             12,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":            135,
+"Time":             14,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":            145,
+"Time":             16,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":            163,
+"Time":             18,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":            170,
+"Time":             20,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":            175,
+"Time":             21,
+"Chick": "23",
+"Diet": "2" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             52,
+"Time":              2,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             58,
+"Time":              4,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             74,
+"Time":              6,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             66,
+"Time":              8,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             68,
+"Time":             10,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             70,
+"Time":             12,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             71,
+"Time":             14,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             72,
+"Time":             16,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             72,
+"Time":             18,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             76,
+"Time":             20,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             74,
+"Time":             21,
+"Chick": "24",
+"Diet": "2" 
+},
+{
+ "weight":             40,
+"Time":              0,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":             62,
+"Time":              4,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":             78,
+"Time":              6,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":            102,
+"Time":              8,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":            124,
+"Time":             10,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":            146,
+"Time":             12,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":            164,
+"Time":             14,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":            197,
+"Time":             16,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":            231,
+"Time":             18,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":            259,
+"Time":             20,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":            265,
+"Time":             21,
+"Chick": "25",
+"Diet": "2" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":             48,
+"Time":              2,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":             57,
+"Time":              4,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":             74,
+"Time":              6,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":             93,
+"Time":              8,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":            114,
+"Time":             10,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":            136,
+"Time":             12,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":            147,
+"Time":             14,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":            169,
+"Time":             16,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":            205,
+"Time":             18,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":            236,
+"Time":             20,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":            251,
+"Time":             21,
+"Chick": "26",
+"Diet": "2" 
+},
+{
+ "weight":             39,
+"Time":              0,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":             46,
+"Time":              2,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":             58,
+"Time":              4,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":             73,
+"Time":              6,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":             87,
+"Time":              8,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":            100,
+"Time":             10,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":            115,
+"Time":             12,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":            123,
+"Time":             14,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":            144,
+"Time":             16,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":            163,
+"Time":             18,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":            185,
+"Time":             20,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":            192,
+"Time":             21,
+"Chick": "27",
+"Diet": "2" 
+},
+{
+ "weight":             39,
+"Time":              0,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":             46,
+"Time":              2,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":             58,
+"Time":              4,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":             73,
+"Time":              6,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":             92,
+"Time":              8,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":            114,
+"Time":             10,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":            145,
+"Time":             12,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":            156,
+"Time":             14,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":            184,
+"Time":             16,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":            207,
+"Time":             18,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":            212,
+"Time":             20,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":            233,
+"Time":             21,
+"Chick": "28",
+"Diet": "2" 
+},
+{
+ "weight":             39,
+"Time":              0,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":             48,
+"Time":              2,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":             59,
+"Time":              4,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":             74,
+"Time":              6,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":             87,
+"Time":              8,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":            106,
+"Time":             10,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":            134,
+"Time":             12,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":            150,
+"Time":             14,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":            187,
+"Time":             16,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":            230,
+"Time":             18,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":            279,
+"Time":             20,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":            309,
+"Time":             21,
+"Chick": "29",
+"Diet": "2" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":             48,
+"Time":              2,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":             59,
+"Time":              4,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":             72,
+"Time":              6,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":             85,
+"Time":              8,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":             98,
+"Time":             10,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":            115,
+"Time":             12,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":            122,
+"Time":             14,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":            143,
+"Time":             16,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":            151,
+"Time":             18,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":            157,
+"Time":             20,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":            150,
+"Time":             21,
+"Chick": "30",
+"Diet": "2" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":             53,
+"Time":              2,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":             62,
+"Time":              4,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":             73,
+"Time":              6,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":             85,
+"Time":              8,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":            102,
+"Time":             10,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":            123,
+"Time":             12,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":            138,
+"Time":             14,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":            170,
+"Time":             16,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":            204,
+"Time":             18,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":            235,
+"Time":             20,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":            256,
+"Time":             21,
+"Chick": "31",
+"Diet": "3" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":             65,
+"Time":              4,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":             82,
+"Time":              6,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":            107,
+"Time":              8,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":            129,
+"Time":             10,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":            159,
+"Time":             12,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":            179,
+"Time":             14,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":            221,
+"Time":             16,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":            263,
+"Time":             18,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":            291,
+"Time":             20,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":            305,
+"Time":             21,
+"Chick": "32",
+"Diet": "3" 
+},
+{
+ "weight":             39,
+"Time":              0,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":             50,
+"Time":              2,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":             63,
+"Time":              4,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":             77,
+"Time":              6,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":             96,
+"Time":              8,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":            111,
+"Time":             10,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":            137,
+"Time":             12,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":            144,
+"Time":             14,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":            151,
+"Time":             16,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":            146,
+"Time":             18,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":            156,
+"Time":             20,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":            147,
+"Time":             21,
+"Chick": "33",
+"Diet": "3" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":             63,
+"Time":              4,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":             85,
+"Time":              6,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":            107,
+"Time":              8,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":            134,
+"Time":             10,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":            164,
+"Time":             12,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":            186,
+"Time":             14,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":            235,
+"Time":             16,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":            294,
+"Time":             18,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":            327,
+"Time":             20,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":            341,
+"Time":             21,
+"Chick": "34",
+"Diet": "3" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":             53,
+"Time":              2,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":             64,
+"Time":              4,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":             87,
+"Time":              6,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":            123,
+"Time":              8,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":            158,
+"Time":             10,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":            201,
+"Time":             12,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":            238,
+"Time":             14,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":            287,
+"Time":             16,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":            332,
+"Time":             18,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":            361,
+"Time":             20,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":            373,
+"Time":             21,
+"Chick": "35",
+"Diet": "3" 
+},
+{
+ "weight":             39,
+"Time":              0,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":             48,
+"Time":              2,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":             61,
+"Time":              4,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":             76,
+"Time":              6,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":             98,
+"Time":              8,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":            116,
+"Time":             10,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":            145,
+"Time":             12,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":            166,
+"Time":             14,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":            198,
+"Time":             16,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":            227,
+"Time":             18,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":            225,
+"Time":             20,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":            220,
+"Time":             21,
+"Chick": "36",
+"Diet": "3" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":             48,
+"Time":              2,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":             56,
+"Time":              4,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":             68,
+"Time":              6,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":             80,
+"Time":              8,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":             83,
+"Time":             10,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":            103,
+"Time":             12,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":            112,
+"Time":             14,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":            135,
+"Time":             16,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":            157,
+"Time":             18,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":            169,
+"Time":             20,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":            178,
+"Time":             21,
+"Chick": "37",
+"Diet": "3" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":             61,
+"Time":              4,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":             74,
+"Time":              6,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":             98,
+"Time":              8,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":            109,
+"Time":             10,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":            128,
+"Time":             12,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":            154,
+"Time":             14,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":            192,
+"Time":             16,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":            232,
+"Time":             18,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":            280,
+"Time":             20,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":            290,
+"Time":             21,
+"Chick": "38",
+"Diet": "3" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":             50,
+"Time":              2,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":             61,
+"Time":              4,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":             78,
+"Time":              6,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":             89,
+"Time":              8,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":            109,
+"Time":             10,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":            130,
+"Time":             12,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":            146,
+"Time":             14,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":            170,
+"Time":             16,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":            214,
+"Time":             18,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":            250,
+"Time":             20,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":            272,
+"Time":             21,
+"Chick": "39",
+"Diet": "3" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":             55,
+"Time":              2,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":             66,
+"Time":              4,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":             79,
+"Time":              6,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":            101,
+"Time":              8,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":            120,
+"Time":             10,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":            154,
+"Time":             12,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":            182,
+"Time":             14,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":            215,
+"Time":             16,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":            262,
+"Time":             18,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":            295,
+"Time":             20,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":            321,
+"Time":             21,
+"Chick": "40",
+"Diet": "3" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":             51,
+"Time":              2,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":             66,
+"Time":              4,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":             85,
+"Time":              6,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":            103,
+"Time":              8,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":            124,
+"Time":             10,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":            155,
+"Time":             12,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":            153,
+"Time":             14,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":            175,
+"Time":             16,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":            184,
+"Time":             18,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":            199,
+"Time":             20,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":            204,
+"Time":             21,
+"Chick": "41",
+"Diet": "4" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":             49,
+"Time":              2,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":             63,
+"Time":              4,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":             84,
+"Time":              6,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":            103,
+"Time":              8,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":            126,
+"Time":             10,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":            160,
+"Time":             12,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":            174,
+"Time":             14,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":            204,
+"Time":             16,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":            234,
+"Time":             18,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":            269,
+"Time":             20,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":            281,
+"Time":             21,
+"Chick": "42",
+"Diet": "4" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":             55,
+"Time":              2,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":             69,
+"Time":              4,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":             96,
+"Time":              6,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":            131,
+"Time":              8,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":            157,
+"Time":             10,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":            184,
+"Time":             12,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":            188,
+"Time":             14,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":            197,
+"Time":             16,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":            198,
+"Time":             18,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":            199,
+"Time":             20,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":            200,
+"Time":             21,
+"Chick": "43",
+"Diet": "4" 
+},
+{
+ "weight":             42,
+"Time":              0,
+"Chick": "44",
+"Diet": "4" 
+},
+{
+ "weight":             51,
+"Time":              2,
+"Chick": "44",
+"Diet": "4" 
+},
+{
+ "weight":             65,
+"Time":              4,
+"Chick": "44",
+"Diet": "4" 
+},
+{
+ "weight":             86,
+"Time":              6,
+"Chick": "44",
+"Diet": "4" 
+},
+{
+ "weight":            103,
+"Time":              8,
+"Chick": "44",
+"Diet": "4" 
+},
+{
+ "weight":            118,
+"Time":             10,
+"Chick": "44",
+"Diet": "4" 
+},
+{
+ "weight":            127,
+"Time":             12,
+"Chick": "44",
+"Diet": "4" 
+},
+{
+ "weight":            138,
+"Time":             14,
+"Chick": "44",
+"Diet": "4" 
+},
+{
+ "weight":            145,
+"Time":             16,
+"Chick": "44",
+"Diet": "4" 
+},
+{
+ "weight":            146,
+"Time":             18,
+"Chick": "44",
+"Diet": "4" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":             50,
+"Time":              2,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":             61,
+"Time":              4,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":             78,
+"Time":              6,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":             98,
+"Time":              8,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":            117,
+"Time":             10,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":            135,
+"Time":             12,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":            141,
+"Time":             14,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":            147,
+"Time":             16,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":            174,
+"Time":             18,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":            197,
+"Time":             20,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":            196,
+"Time":             21,
+"Chick": "45",
+"Diet": "4" 
+},
+{
+ "weight":             40,
+"Time":              0,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":             52,
+"Time":              2,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":             62,
+"Time":              4,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":             82,
+"Time":              6,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":            101,
+"Time":              8,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":            120,
+"Time":             10,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":            144,
+"Time":             12,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":            156,
+"Time":             14,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":            173,
+"Time":             16,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":            210,
+"Time":             18,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":            231,
+"Time":             20,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":            238,
+"Time":             21,
+"Chick": "46",
+"Diet": "4" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":             53,
+"Time":              2,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":             66,
+"Time":              4,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":             79,
+"Time":              6,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":            100,
+"Time":              8,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":            123,
+"Time":             10,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":            148,
+"Time":             12,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":            157,
+"Time":             14,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":            168,
+"Time":             16,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":            185,
+"Time":             18,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":            210,
+"Time":             20,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":            205,
+"Time":             21,
+"Chick": "47",
+"Diet": "4" 
+},
+{
+ "weight":             39,
+"Time":              0,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":             50,
+"Time":              2,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":             62,
+"Time":              4,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":             80,
+"Time":              6,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":            104,
+"Time":              8,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":            125,
+"Time":             10,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":            154,
+"Time":             12,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":            170,
+"Time":             14,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":            222,
+"Time":             16,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":            261,
+"Time":             18,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":            303,
+"Time":             20,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":            322,
+"Time":             21,
+"Chick": "48",
+"Diet": "4" 
+},
+{
+ "weight":             40,
+"Time":              0,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":             53,
+"Time":              2,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":             64,
+"Time":              4,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":             85,
+"Time":              6,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":            108,
+"Time":              8,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":            128,
+"Time":             10,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":            152,
+"Time":             12,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":            166,
+"Time":             14,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":            184,
+"Time":             16,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":            203,
+"Time":             18,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":            233,
+"Time":             20,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":            237,
+"Time":             21,
+"Chick": "49",
+"Diet": "4" 
+},
+{
+ "weight":             41,
+"Time":              0,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":             54,
+"Time":              2,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":             67,
+"Time":              4,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":             84,
+"Time":              6,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":            105,
+"Time":              8,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":            122,
+"Time":             10,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":            155,
+"Time":             12,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":            175,
+"Time":             14,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":            205,
+"Time":             16,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":            234,
+"Time":             18,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":            264,
+"Time":             20,
+"Chick": "50",
+"Diet": "4" 
+},
+{
+ "weight":            264,
+"Time":             21,
+"Chick": "50",
+"Diet": "4" 
+} 
+]
+  
+      if(!(opts.type==="pieChart" || opts.type==="sparklinePlus" || opts.type==="bulletChart")) {
+        var data = d3.nest()
+          .key(function(d){
+            //return opts.group === undefined ? 'main' : d[opts.group]
+            //instead of main would think a better default is opts.x
+            return opts.group === undefined ? opts.y : d[opts.group];
+          })
+          .entries(data);
+      }
+      
+      if (opts.disabled != undefined){
+        data.map(function(d, i){
+          d.disabled = opts.disabled[i]
+        })
+      }
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .width(opts.width)
+          .height(opts.height)
+          
+        if (opts.type != "bulletChart"){
+          chart
+            .x(function(d) { return d[opts.x] })
+            .y(function(d) { return d[opts.y] })
+        }
+          
+         
+        
+          
+        
+
+        
+        
+        
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
+    
+    <script></script>    
+  </body>
+</html>

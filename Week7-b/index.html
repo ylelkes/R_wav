@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Graphics and Maps</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Interactive Graphics and Maps">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/nvd3/css/nv.d3.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/rNVD3.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  <script src="libraries/widgets/nvd3/js/jquery-1.8.2.min.js"></script>
+<script src="libraries/widgets/nvd3/js/d3.v3.min.js"></script>
+<script src="libraries/widgets/nvd3/js/nv.d3.min-new.js"></script>
+<script src="libraries/widgets/nvd3/js/fisheye.js"></script>
+
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Interactive Graphics and Maps</h1>
+    <h2>AKA out of my element, and maps</h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>A number of options out there</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>ggvis</li>
+<li>rCharts</li>
+<li>plotly</li>
+<li>googleVis</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Lets work with rCharts</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>require(devtools)
+install_github(&#39;rCharts&#39;, &#39;ramnathv&#39;)
+library(rCharts)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Rcharts uses a lattice package like formula</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>## Example 1 Facetted Scatterplot
+names(iris) = gsub(&quot;\\.&quot;, &quot;&quot;, names(iris))
+rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = &#39;Species&#39;, type = &#39;point&#39;)
+</code></pre>
+
+<pre><code>## Example 2 Facetted Barplot
+hair_eye = as.data.frame(HairEyeColor)
+rPlot(Freq ~ Hair | Eye, color = &#39;Eye&#39;, data = hair_eye, type = &#39;bar&#39;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Rcharts uses a number of javascript charting libraries</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>polychart: rplot()</li>
+<li>MorrisJS: mplot()</li>
+<li>NVD3: nPlot()</li>
+<li>xCharts: xPlot()</li>
+<li>HighCharts: hPlot()</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Try it</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>go to: <a href="http://www.rpubs.com/dnchari/rcharts">http://www.rpubs.com/dnchari/rcharts</a></p>
+
+<ol>
+<li>Using your data, make 1 type of interactive chart from each library class, e.g., 1 type of polychart, 1 type of morris chart, etc...</li>
+<li>Save your favorite chart using:
+chartname$save(&#39;chartname.html&#39;, standalone = TRUE)</li>
+<li>email me the file, and present it to the class</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Won&#39;t go into shiny</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://shiny.rstudio.com/gallery/telephones-by-region.html">http://shiny.rstudio.com/gallery/telephones-by-region.html</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Maps</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>install.packages(&quot;maps&quot;)
+library(maps)
+library(ggplot2)
+states &lt;- map_data(&quot;state&quot;)
+arrests &lt;- USArrests
+names(arrests) &lt;- tolower(names(arrests))
+arrests$region &lt;- tolower(rownames(USArrests))
+choro &lt;- merge(states, arrests, sort = FALSE, by = &quot;region&quot;)
+choro &lt;- choro[order(choro$order), ]
+ggplot(choro,aes(x=long,y=lat, group = group, fill = assault))+geom_polygon()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Map alcohol consumption</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>alcohol data: <a href="https://cdn.rawgit.com/ylelkes/R_wav/master/data/alcohol.csv">https://cdn.rawgit.com/ylelkes/R_wav/master/data/alcohol.csv</a></li>
+<li>Map just europe: latitude of europe 30:75, longitude -25:50</li>
+</ol>
+
+<pre><code>library(maps)
+library(ggplot2)
+world &lt;- map_data(&quot;world&quot;)
+alcohol &lt;- read.csv(&quot;alcohol.csv&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='A number of options out there'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Lets work with rCharts'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Rcharts uses a lattice package like formula'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Rcharts uses a number of javascript charting libraries'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Try it'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Won&#39;t go into shiny'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Maps'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Map alcohol consumption'>
+         8
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

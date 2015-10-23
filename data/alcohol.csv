@@ -1,0 +1,194 @@
+"","Country","Year","Alcohol"
+"1","Afghanistan",2010,3.7
+"2","Albania",2010,53.8
+"3","Algeria",2010,9.3
+"4","Andorra",2010,68.3
+"5","Angola",2010,35.6
+"6","Antigua",2010,66.6
+"7","Argentina",2010,58.8
+"8","Armenia",2010,64
+"9","Australia",2010,84
+"10","Austria",2010,77.4
+"11","Azerbaijan",2010,44
+"12","Bahamas",2010,55
+"13","Bahrain",2010,9.8
+"14","Bangladesh",2010,1.9
+"15","Barbados",2010,68.6
+"16","Belarus",2010,79.2
+"17","Belgium",2010,82.3
+"18","Belize",2010,28.6
+"19","Benin",2010,39.4
+"20","Bhutan",2010,10.3
+"21","Bolivia",2010,51.7
+"22","Bosnia and Herzegovina",2010,57.2
+"23","Botswana",2010,41.5
+"24","Brazil",2010,57.7
+"25","Brunei",2010,20.4
+"26","Bulgaria",2010,67.4
+"27","Burkina Faso",2010,38
+"28","Burundi",2010,42.1
+"29","Ivory Coast",2010,23.3
+"30","Cape Verde",2010,38.6
+"31","Cambodia",2010,38.4
+"32","Cameroon",2010,43.2
+"33","Canada",2010,77.1
+"34","Central African Republic",2010,21.4
+"35","Chad",2010,13.1
+"36","Chile",2010,65.9
+"37","China",2010,44.1
+"38","Colombia",2010,48.3
+"39","Comoros",2010,11.9
+"40","Republic of Congo",2010,28.7
+"41","Cook Islands",2010,45.1
+"42","Costa Rica",2010,51.4
+"43","Croatia",2010,80.5
+"44","Cuba",2010,62.2
+"45","Cyprus",2010,85
+"46","Czech Republic",2010,89.1
+"47","North Korea",2010,21.1
+"48","Democratic Republic of the Congo",2010,27.9
+"49","Denmark",2010,88.6
+"50","Djibouti",2010,5.8
+"51","Dominica",2010,59
+"52","Dominican Republic",2010,55.2
+"53","Ecuador",2010,47.3
+"54","Egypt",2010,6.5
+"55","El Salvador",2010,44
+"56","Equatorial Guinea",2010,40
+"57","Eritrea",2010,43.3
+"58","Estonia",2010,65.2
+"59","Ethiopia",2010,15.7
+"60","Fiji",2010,41.4
+"61","Finland",2010,68
+"62","France",2010,94.8
+"63","Gabon",2010,41.1
+"64","Gambia",2010,11
+"65","Georgia",2010,36.1
+"66","Germany",2010,80.3
+"67","Ghana",2010,23.3
+"68","Greece",2010,66.2
+"69","Grenada",2010,48.4
+"70","Guatemala",2010,42.3
+"71","Guinea",2010,8.7
+"72","Guinea-Bissau",2010,30
+"73","Guyana",2010,59.5
+"74","Haiti",2010,55.4
+"75","Honduras",2010,47.4
+"76","Hungary",2010,81.4
+"77","Iceland",2010,67.9
+"78","India",2010,15.1
+"79","Indonesia",2010,8.1
+"80","Iran",2010,4.2
+"81","Iraq",2010,5.4
+"82","Ireland",2010,80.9
+"83","Israel",2010,51.9
+"84","Italy",2010,67.6
+"85","Jamaica",2010,45.8
+"86","Japan",2010,68.9
+"87","Jordan",2010,4.7
+"88","Kazakhstan",2010,39.4
+"89","Kenya",2010,22.7
+"90","Kiribati",2010,31
+"91","Kuwait",2010,9.7
+"92","Kyrgyzstan",2010,38.2
+"93","Laos",2010,47.9
+"94","Latvia",2010,67.7
+"95","Lebanon",2010,10.1
+"96","Lesotho",2010,30
+"97","Liberia",2010,30
+"98","Libya",2010,2.4
+"99","Lithuania",2010,65.3
+"100","Luxembourg",2010,93.9
+"101","Madagascar",2010,14.1
+"102","Malawi",2010,19.4
+"103","Malaysia",2010,12.7
+"104","Maldives",2010,9
+"105","Mali",2010,3.8
+"106","Malta",2010,60.6
+"107","Marshall Islands",2010,NA
+"108","Mauritania",2010,2.3
+"109","Mauritius",2010,32
+"110","Mexico",2010,56.9
+"111","Micronesia",2010,40.7
+"112","Monaco",2010,NA
+"113","Mongolia",2010,45.7
+"114","Montenegro",2010,65.2
+"115","Morocco",2010,5.4
+"116","Mozambique",2010,17.9
+"117","Myanmar",2010,7.9
+"118","Namibia",2010,39
+"119","Nauru",2010,28.1
+"120","Nepal",2010,7.6
+"121","Netherlands",2010,88.2
+"122","New Zealand",2010,79.5
+"123","Nicaragua",2010,49.3
+"124","Niger",2010,5.3
+"125","Nigeria",2010,43.6
+"126","Niue",2010,44
+"127","Norway",2010,85.9
+"128","Oman",2010,5.9
+"129","Pakistan",2010,4
+"130","Palau",2010,55
+"131","Panama",2010,59.8
+"132","Papua New Guinea",2010,34.6
+"133","Paraguay",2010,61.9
+"134","Peru",2010,55.4
+"135","Philippines",2010,44.3
+"136","Poland",2010,51.7
+"137","Portugal",2010,57
+"138","Qatar",2010,6.7
+"139","South Korea",2010,44.8
+"140","Moldova",2010,66.3
+"141","Romania",2010,67.6
+"142","Russia",2010,67.8
+"143","Rwanda",2010,44.7
+"144","Saint Kitts",2010,42.5
+"145","Saint Lucia",2010,52.2
+"146","Saint Vincent",2010,55.9
+"147","Samoa",2010,45.3
+"148","San Marino",2010,NA
+"149","Sao Tome and Principe",2010,38.1
+"150","Saudi Arabia",2010,5.8
+"151","Senegal",2010,5.5
+"152","Serbia",2010,66
+"153","Seychelles",2010,44.2
+"154","Sierra Leone",2010,44.7
+"155","Singapore",2010,49.9
+"156","Slovakia",2010,65.8
+"157","Slovenia",2010,67.6
+"158","Solomon Islands",2010,32.2
+"159","Somalia",2010,5.4
+"160","South Africa",2010,40.6
+"161","Spain",2010,68.3
+"162","Sri Lanka",2010,18.3
+"163","Sudan",2010,11.1
+"164","Suriname",2010,51.9
+"165","Swaziland",2010,43.9
+"166","Sweden",2010,68.8
+"167","Switzerland",2010,88.5
+"168","Syria",2010,7.5
+"169","Tajikistan",2010,9.3
+"170","Thailand",2010,29.7
+"171","Macedonia",2010,57.1
+"172","Timor-Leste",2010,7.1
+"173","Togo",2010,62.8
+"174","Tonga",2010,33
+"175","Trinidad",2010,51.1
+"176","Tunisia",2010,5.7
+"177","Turkey",2010,13.8
+"178","Turkmenistan",2010,39.3
+"179","Tuvalu",2010,24.4
+"180","Uganda",2010,41.3
+"181","Ukraine",2010,68.3
+"182","United Arab Emirates",2010,13
+"183","UK",2010,83.9
+"184","Tanzania",2010,41.9
+"185","USA",2010,68.9
+"186","Uruguay",2010,58.7
+"187","Uzbekistan",2010,37.2
+"188","Vanuatu",2010,31.8
+"189","Venezuela",2010,59.1
+"190","Vietnam",2010,38.3
+"191","Yemen",2010,4.1
+"192","Zambia",2010,30.6
+"193","Zimbabwe",2010,39
